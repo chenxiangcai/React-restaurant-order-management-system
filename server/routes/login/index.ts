@@ -3,7 +3,7 @@ const bcrypt = require('bcrypt')
 const _ = require('lodash')
 const jwt = require('jsonwebtoken')
 const {secret} = require('../../config/key')
-module.exports = async (req: any, res: any) => {
+module.exports = async (req, res) => {
     let user: {
         _id: string
         role: string

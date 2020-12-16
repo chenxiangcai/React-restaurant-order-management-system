@@ -1,5 +1,5 @@
 const {Schema, model} = require('mongoose');
-const {number, string, validate} = require('joi');
+const Joi = require('joi');
 const {genSalt, hash} = require('bcrypt');
 //用户集合规则
 const userSchema: object = new Schema({
@@ -56,13 +56,13 @@ User.findOne({userID: 1}).then(
 //用户注册验证
 const validateUser = (user: object): object => {
     const Schema = {
-        userID: number().error(new Error('账号只能为纯数字！')),
-        name: string().required().min(2).max(4).error(new Error('请输入您的正确姓名！')),
-        userPassword: string().required().regex(/^[0-9a-zA-Z]{3,20}$/).error(new Error('请输入2-7位的密码！')),
-        status: number().valid(0, 1),
-        role: string().valid('admin', 'waiter', 'chef')
+        userID: Joi.number().error(new Error('账号只能为纯数字！')),
+        name: Joi.string().required().min(2).max(4).error(new Error('请输入您的正确姓名！')),
+        userPassword: Joi.string().required().regex(/^[0-9a-zA-Z]{3,20}$/).error(new Error('请输入2-7位的密码！')),
+        status: Joi.number().valid(0, 1),
+        role: Joi.string().valid('admin', 'waiter', 'chef')
     }
-    return validate(user, Schema, {
+    return Joi.validate(user, Schema, {
         abortEarly: false,   //把所有错误检测完再返回
         allowUnknown: true   //允许对象包含被忽略的未知键
     })
@@ -71,10 +71,10 @@ const validateUser = (user: object): object => {
 //用户登录格式验证
 const validateLogin = (user: object): object => {
     const Schema = {
-        userID: string().regex(/^[0-9]*$/).required().error(new Error('账号或密码错误')),
-        userPassword: string().regex(/^[a-zA-Z0-9]{2,7}$/).error(new Error('账号或密码错误'))
+        userID: Joi.string().regex(/^[0-9]*$/).required().error(new Error('账号或密码错误')),
+        userPassword: Joi.string().regex(/^[a-zA-Z0-9]{2,7}$/).error(new Error('账号或密码错误'))
     }
-    return validate(user, Schema, {
+    return Joi.validate(user, Schema, {
         abortEarly: true    //出现错误立即返回
     })
 }
