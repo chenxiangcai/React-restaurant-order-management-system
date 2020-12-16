@@ -5,5 +5,5 @@ mongoose.connect(`mongodb://${config.get('db.user')}:${config.get('db.pwd')}@${c
     useNewUrlParser: true,
     useUnifiedTopology: true
 })
-    .then(() => console.log('数据库连接成功'))
-    .catch((e) => console.log('数据库连接失败' + e))
+    .then(() => console.log('MongoDB connected'))
+    .catch((e) => console.log('MongoDB disconnected' + e))

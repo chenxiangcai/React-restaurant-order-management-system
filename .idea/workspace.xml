@@ -1,25 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="6d91caa1-987f-4124-9db6-b0e688ade05a" name="默认更改列表" comment="">
-      <change afterPath="$PROJECT_DIR$/.eslintcache" afterDir="false" />
+    <list default="true" id="6d91caa1-987f-4124-9db6-b0e688ade05a" name="默认更改列表" comment="feat 登录页">
+      <change beforePath="$PROJECT_DIR$/.eslintcache" beforeDir="false" afterPath="$PROJECT_DIR$/.eslintcache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.test.tsx" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/logo.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/reportWebVitals.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/setupTests.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/login/login-style.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/login/login-style.js" afterDir="false" />
     </list>
+    <list id="659ec1d8-9937-4a25-b75f-d5a3890c13fc" name="feat 后台服务器" comment="feat 后台服务器" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="tsconfig.json" />
+        <option value="TypeScript JSX File" />
+        <option value="JavaScript File" />
+        <option value="TypeScript File" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="hiddenUrls">
+      <set>
+        <option value="https://github.com/chenxiangcai/Ts-restaurant-ordering-system" />
+      </set>
+    </option>
   </component>
   <component name="ProjectId" id="1ldxphXefm3t6TyPxpKDU5eGqRR" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
@@ -35,16 +52,55 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/assets" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="nodejs_interpreter_path" value="node" />
     <property name="nodejs_package_manager_path" value="npm" />
+    <property name="settings.editor.selected.configurable" value="editing.templates" />
     <property name="ts.external.directory.path" value="D:\Users\Chen\WebstormProjects\restaurant-ordering-system\node_modules\typescript\lib" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Users\Chen\WebstormProjects\restaurant-ordering-system\src\assets" />
+      <recent name="D:\Users\Chen\WebstormProjects\restaurant-ordering-system\src\utils" />
+      <recent name="D:\Users\Chen\WebstormProjects\restaurant-ordering-system\server\config" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Users\Chen\WebstormProjects\restaurant-ordering-system\src" />
+      <recent name="D:\Users\Chen\WebstormProjects\restaurant-ordering-system\server\model\Income" />
+      <recent name="D:\Users\Chen\WebstormProjects\restaurant-ordering-system\server\model\User" />
+    </key>
+  </component>
   <component name="RunManager" selected="npm.npm start">
     <configuration name="Debug Application" type="JavascriptDebugType" uri="http://localhost:3000">
+      <method v="2" />
+    </configuration>
+    <configuration name="app.ts" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/server/app.ts" working-dir="$PROJECT_DIR$/server">
+      <method v="2" />
+    </configuration>
+    <configuration name="app.ts" type="TypeScriptProgramRunner" factoryName="TypeScript" temporary="true">
+      <module name="restaurant-ordering-system" />
+      <option name="interpreterRef" value="project" />
+      <option name="interpreterOptions" value="" />
+      <option name="workingDirectory" value="$PROJECT_DIR$/server" />
+      <option name="tsconfigFile" value="" />
+      <option name="extraTypeScriptOptions" value="" />
+      <option name="scriptName" value="$PROJECT_DIR$/server/app.ts" />
+      <option name="programParameters" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="connect.ts" type="TypeScriptProgramRunner" factoryName="TypeScript" temporary="true">
+      <module name="restaurant-ordering-system" />
+      <option name="interpreterRef" value="project" />
+      <option name="interpreterOptions" value="" />
+      <option name="workingDirectory" value="$PROJECT_DIR$/server/model" />
+      <option name="tsconfigFile" value="" />
+      <option name="extraTypeScriptOptions" value="" />
+      <option name="scriptName" value="$PROJECT_DIR$/server/model/connect.ts" />
+      <option name="programParameters" value="" />
       <method v="2" />
     </configuration>
     <configuration name="npm start" type="js.build_tools.npm">
@@ -57,34 +113,107 @@
       <envs />
       <method v="2" />
     </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="TypeScript.app.ts" />
+        <item itemvalue="Node.js.app.ts" />
+        <item itemvalue="TypeScript.connect.ts" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="6d91caa1-987f-4124-9db6-b0e688ade05a" name="默认更改列表" comment="" />
+      <changelist id="659ec1d8-9937-4a25-b75f-d5a3890c13fc" name="feat 后台服务器" comment="" />
       <created>1607940954702</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1607940954702</updated>
-      <workItem from="1607940957701" duration="1853000" />
+      <workItem from="1607940957701" duration="9227000" />
+      <workItem from="1607954324987" duration="239000" />
+      <workItem from="1607954915842" duration="3351000" />
+      <workItem from="1608000206377" duration="195000" />
+      <workItem from="1608031774323" duration="12971000" />
+      <workItem from="1608045137248" duration="134000" />
+      <workItem from="1608103629822" duration="65000" />
+      <workItem from="1608103702227" duration="15521000" />
+      <workItem from="1608125612020" duration="608000" />
+      <workItem from="1608207719912" duration="2006000" />
     </task>
+    <task id="LOCAL-00001" summary="init 初始化项目">
+      <created>1607945320341</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1607945320341</updated>
+    </task>
+    <task id="LOCAL-00002" summary="feat 后台服务器">
+      <created>1607955541345</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1607955541345</updated>
+    </task>
+    <task id="LOCAL-00003" summary="feat 后台服务器">
+      <created>1607956501006</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1607956501006</updated>
+    </task>
+    <task id="LOCAL-00004" summary="feat 后台服务器">
+      <created>1607957071525</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1607957071525</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.History.Properties">
+    <option name="COLUMN_ID_ORDER">
+      <list>
+        <option value="Default.Root" />
+        <option value="Default.Author" />
+        <option value="Default.Date" />
+        <option value="Default.Subject" />
+      </list>
+    </option>
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="master" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
           </value>
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="init 初始化项目" />
+    <MESSAGE value="feat 后台服务器" />
+    <MESSAGE value="feat 登录页" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat 登录页" />
   </component>
 </project>
