@@ -7,6 +7,7 @@ import logo from '../../assets/images/logo.png'
 import {TOLOGIN} from "./actions";
 import {LoginApi} from '../../common/api'
 import {Dispatch} from "redux";
+import DocumentTitle from 'react-document-title'
 
 type Props = {
     status: number,
@@ -59,49 +60,51 @@ const Login: FC<Props> = (props) => {
     }
 
     return (
-        <LoginWrap>
-            <Form
-                name="normal_login"
-                className="login-form"
-                initialValues={{
-                    remember: true,
-                }}
-                onFinish={onFinish}
-            >
-                <img className='logo-left' src={logo} alt='logo'/>
-                <img className='logo' src={logo} alt=''/>
-                <span className='login-form-title'>账号登录</span>
-                <Form.Item
-                    name="userID"
-                    rules={[
-                        {
-                            required: true,
-                            message: '请输入工号',
-                        },
-                    ]}
+        <DocumentTitle title='登录'>
+            <LoginWrap>
+                <Form
+                    name="normal_login"
+                    className="login-form"
+                    initialValues={{
+                        remember: true,
+                    }}
+                    onFinish={onFinish}
                 >
-                    <Input prefix={<UserOutlined className="site-form-item-icon"/>} placeholder="工号"/>
-                </Form.Item>
-                <Form.Item
-                    name="userPassword"
-                    rules={[
-                        {
-                            required: true,
-                            message: '请输入密码',
-                        },
-                    ]}
-                >
-                    <Input.Password prefix={<LockOutlined className="site-form-item-icon"/>}
-                                    type="password"
-                                    placeholder="密码"/>
-                </Form.Item>
-                <Form.Item>
-                    <Button type="primary" htmlType="submit" size="large"
-                            className="login-form-button">立即登录</Button>
-                    <div className="login-form-login"><span>还没有账号？<a href="???">去注册...</a></span></div>
-                </Form.Item>
-            </Form>
-        </LoginWrap>
+                    <img className='logo-left' src={logo} alt='logo'/>
+                    <img className='logo' src={logo} alt=''/>
+                    <span className='login-form-title'>账号登录</span>
+                    <Form.Item
+                        name="userID"
+                        rules={[
+                            {
+                                required: true,
+                                message: '请输入工号',
+                            },
+                        ]}
+                    >
+                        <Input prefix={<UserOutlined className="site-form-item-icon"/>} placeholder="工号"/>
+                    </Form.Item>
+                    <Form.Item
+                        name="userPassword"
+                        rules={[
+                            {
+                                required: true,
+                                message: '请输入密码',
+                            },
+                        ]}
+                    >
+                        <Input.Password prefix={<LockOutlined className="site-form-item-icon"/>}
+                                        type="password"
+                                        placeholder="密码"/>
+                    </Form.Item>
+                    <Form.Item>
+                        <Button type="primary" htmlType="submit" size="large"
+                                className="login-form-button">立即登录</Button>
+                        <div className="login-form-login"><span>还没有账号？<a href="???">去注册...</a></span></div>
+                    </Form.Item>
+                </Form>
+            </LoginWrap>
+        </DocumentTitle>
     );
 };
 
