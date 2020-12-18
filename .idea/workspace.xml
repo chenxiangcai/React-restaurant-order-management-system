@@ -2,10 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6d91caa1-987f-4124-9db6-b0e688ade05a" name="默认更改列表" comment="feat 登录页">
+      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2020_12_17_21_01_[默认更改列表]/shelved.patch" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2020_12_17_21_01___.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Layout/index.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Layout/index.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/admin/dashboard/index.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.eslintcache" beforeDir="false" afterPath="$PROJECT_DIR$/.eslintcache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/login/login-style.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/login/login-style.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/index.ts" afterDir="false" />
     </list>
     <list id="659ec1d8-9937-4a25-b75f-d5a3890c13fc" name="feat 后台服务器" comment="feat 后台服务器" />
     <option name="SHOW_DIALOG" value="false" />
@@ -17,9 +22,10 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="tsconfig.json" />
-        <option value="TypeScript JSX File" />
         <option value="JavaScript File" />
         <option value="TypeScript File" />
+        <option value="CSS File" />
+        <option value="TypeScript JSX File" />
       </list>
     </option>
   </component>
@@ -53,6 +59,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/src/assets" />
+    <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
@@ -90,6 +97,7 @@
       <option name="extraTypeScriptOptions" value="" />
       <option name="scriptName" value="$PROJECT_DIR$/server/app.ts" />
       <option name="programParameters" value="" />
+      <option name="tsnodePackage" value="D:\Users\Chen\WebstormProjects\restaurant-ordering-system\server\node_modules\ts-node" />
       <method v="2" />
     </configuration>
     <configuration name="connect.ts" type="TypeScriptProgramRunner" factoryName="TypeScript" temporary="true">
@@ -139,7 +147,8 @@
       <workItem from="1608103629822" duration="65000" />
       <workItem from="1608103702227" duration="15521000" />
       <workItem from="1608125612020" duration="608000" />
-      <workItem from="1608207719912" duration="2006000" />
+      <workItem from="1608207719912" duration="7899000" />
+      <workItem from="1608258709791" duration="2968000" />
     </task>
     <task id="LOCAL-00001" summary="init 初始化项目">
       <created>1607945320341</created>
@@ -169,7 +178,14 @@
       <option name="project" value="LOCAL" />
       <updated>1607957071525</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="feat 登录页">
+      <created>1608210040774</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1608210040774</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
