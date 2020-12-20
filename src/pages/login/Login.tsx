@@ -50,6 +50,10 @@ const Login: FC<Props> = (props) => {
         }
     }, [props])
 
+    /**
+     * 表单提交验证函数
+     * @param values 用户提交的用户名和密码
+     */
     function onFinish(values: userInput): void {
         const {userID, userPassword} = values;
         if ((userID as string).trim() === '' || userPassword.trim() === '') {

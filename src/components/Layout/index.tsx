@@ -17,12 +17,12 @@ const LayoutWrap: FunctionComponent<{}> = (props) => {
     return (
         <Layout style={{minHeight: '100vh'}}>
             <Sider collapsible collapsed={collapsed} onCollapse={() => {
-                setCollapsed(true)
+                setCollapsed(!collapsed)
             }}>
                 <div className="logo">
                     <img className='bigLogo' src={logo} alt="logo"/>
                 </div>
-                <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline">
+                <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline" style={{fontSize: 17}}>
                     <Menu.Item
                         key="1"
                         icon={<LineChartOutlined/>}
