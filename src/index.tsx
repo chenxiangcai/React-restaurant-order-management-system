@@ -4,14 +4,13 @@ import './index.css';
 import App from './App';
 import {BrowserRouter, Redirect, Route, Switch} from 'react-router-dom'
 import {Provider} from "react-redux";
-import {persistor, store} from "./store";
+import {store} from "./store";
 import {normalRoute} from "./routes";
-import {PersistGate} from "redux-persist/integration/react";
+//import {PersistGate} from "redux-persist/integration/react";
 
 
 ReactDOM.render(
     <Provider store={store}>
-        <PersistGate loading={null} persistor={persistor}>
             <BrowserRouter>
                 <Switch>
                     {/*管理路由转移到APP组件进行渲染*/}
@@ -26,7 +25,6 @@ ReactDOM.render(
                     <Redirect to='/404'/>
                 </Switch>
             </BrowserRouter>
-        </PersistGate>
     </Provider>,
     document.getElementById('root'));
 

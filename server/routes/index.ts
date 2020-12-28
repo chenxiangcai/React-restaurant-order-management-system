@@ -4,7 +4,14 @@
 * @author: 陈相材
 * @time: 2020-12-14 19:49:21
 */
-module.exports = app => {
+export = app => {
+    // 用户二级路由
+    app.use('/staff', require('./staff'))
+
+
+
+
     // 用户登录
     app.post('/login', require('./login'))
+
 }

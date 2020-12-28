@@ -26,8 +26,8 @@ http.interceptors.response.use(function (response) {
 });
 
 
-export const get = (url: string, {params = ''}) => {
-    return axios({
+export const get = (url: string, params:object = {}) => {
+    return http({
         method: "get",
         url,
         params,
@@ -40,7 +40,7 @@ export const get = (url: string, {params = ''}) => {
         });
 };
 export const del = (url: string, {params = ''}) => {
-    return axios({
+    return http({
         method: "delete",
         url,
         params,

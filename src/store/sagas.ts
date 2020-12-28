@@ -6,12 +6,18 @@
 */
 import {takeEvery} from 'redux-saga/effects'
 import {sagas as login} from '../pages/login'
+import {sagas as staff} from '../pages/admin/staff'
+
 
 let {TOLOGIN} = login.types;
+let {GETLIST, ADDSTAFF, TOGGLEPAGE} = staff.types;
 
 function* sagas() {
     console.log('saga总监听执行')
     yield takeEvery(TOLOGIN, login.action);
+    yield takeEvery(ADDSTAFF, staff.addStaff)
+    yield takeEvery(TOGGLEPAGE, staff.togglePage)
+    yield takeEvery(GETLIST, staff.togglePage);
 }
 
 export default sagas;

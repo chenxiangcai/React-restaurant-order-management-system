@@ -3,12 +3,12 @@ const bcrypt = require('bcrypt')
 const _ = require('lodash')
 const jwt = require('jsonwebtoken')
 const {secret} = require('../../config/key')
-module.exports = async (req, res) => {
+export = async (req, res) => {
     let user: {
         _id: string
         role: string
         name: string | number
-        userPassword: any
+        password: any
     }
     let token, userInfo: object
 
@@ -18,13 +18,13 @@ module.exports = async (req, res) => {
             meta: {status: 400, message: error.message}
         })
     }
-    user = await User.findOne({userID: req.fields.userID});
+    user = await User.findOne({account: req.fields.account});
     if (!user) {
         return res.send({
             meta: {status: 400, message: '账号或密码错误！'}
         })
     }
-    if (!await bcrypt.compare(req.fields.userPassword, user.userPassword)) {
+    if (!await bcrypt.compare(req.fields.password, user.password)) {
         return res.send({
             meta: {status: 400, message: '账号或密码错误！'}
         })

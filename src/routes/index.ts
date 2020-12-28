@@ -6,6 +6,7 @@
 */
 import {Login} from "../pages/login";
 import Dashboard from "../pages/admin/dashboard";
+import {Staff} from "../pages/admin/staff";
 
 
 export const normalRoute = [{
@@ -16,5 +17,9 @@ export const normalRoute = [{
 export const adminRoute = [{
     path: '/admin/dashboard',
     component: Dashboard,
+    exact: true
+}, {
+    path: '/admin/staffs',
+    component: Staff,
     exact: true
 }]

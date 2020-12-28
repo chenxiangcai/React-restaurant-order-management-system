@@ -16,8 +16,8 @@ type Props = {
 
 };
 type userInput = {
-    userID: number | string
-    userPassword: string
+    account: number | string
+    password: string
 }
 
 const mapStateToProps = (state: any) => ({
@@ -41,7 +41,7 @@ const Login: FC<Props> = (props) => {
             const {status, history} = props
             switch (status) {
                 case 1:
-                    return history.replace('/admin/dashboard');
+                    return  message.success('登录成功！') && history.replace('/admin/dashboard') ;
                 case -1:
                     return message.warning('网络连接错误！');
                 default:
@@ -54,9 +54,10 @@ const Login: FC<Props> = (props) => {
      * 表单提交验证函数
      * @param values 用户提交的用户名和密码
      */
+    // todo 账号输入是字符串的问题
     function onFinish(values: userInput): void {
-        const {userID, userPassword} = values;
-        if ((userID as string).trim() === '' || userPassword.trim() === '') {
+        const {account, password} = values;
+        if ((account as string).trim() === '' || password.trim() === '') {
             message.error('请输入工号或密码！')
         } else {
             props.toLogin(values)
@@ -78,7 +79,7 @@ const Login: FC<Props> = (props) => {
                     <img className='logo' src={logo} alt=''/>
                     <span className='login-form-title'>账号登录</span>
                     <Form.Item
-                        name="userID"
+                        name="account"
                         rules={[
                             {
                                 required: true,
@@ -89,7 +90,7 @@ const Login: FC<Props> = (props) => {
                         <Input prefix={<UserOutlined className="site-form-item-icon"/>} placeholder="工号"/>
                     </Form.Item>
                     <Form.Item
-                        name="userPassword"
+                        name="password"
                         rules={[
                             {
                                 required: true,
