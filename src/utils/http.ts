@@ -25,8 +25,8 @@ http.interceptors.response.use(function (response) {
     return Promise.reject(error);
 });
 
-
-export const get = (url: string, params:object = {}) => {
+// @ts-ignore
+export const get = (url: string, params: object = {}) => {
     return http({
         method: "get",
         url,
@@ -39,11 +39,11 @@ export const get = (url: string, params:object = {}) => {
             return err.message;
         });
 };
-export const del = (url: string, {params = ''}) => {
+// @ts-ignore
+export const del = (url: string) => {
     return http({
         method: "delete",
         url,
-        params,
     })
         .then((result) => {
             return result.data;

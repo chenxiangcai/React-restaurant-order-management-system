@@ -1,10 +1,11 @@
-import {ADDERROR, ADDSUCCESS, GETFAILED, GETLIST, GETSUCCESS, TOGGLED} from './actions'
+import {ADDERROR, ADDSUCCESS, DELERROR, DELSTAFF, DELSUCCESS, GETFAILED, GETLIST, GETSUCCESS, TOGGLED} from './actions'
 
-type state = { list: object[], addStatus: number, errorMsg: string }
+type state = { list: object[], addStatus: number, errorMsg: string, delStatus: number }
 const defaultState = {
     list: [],
     addStatus: 99999, //添加用户初始状态
-    errorMsg: ''
+    errorMsg: '',
+    delStatus: 99999,
 };
 // eslint-disable-next-line import/no-anonymous-default-export
 export default (state: state = defaultState, action: any) => {
@@ -37,6 +38,23 @@ export default (state: state = defaultState, action: any) => {
             return {
                 ...state,
                 list: action.data.user
+            }
+        }
+        case DELSTAFF: {
+            return {
+                ...state, action
+            }
+        }
+        case DELSUCCESS: {
+            return {
+                ...state,
+                delStatus: Math.random()
+            }
+        }
+        case DELERROR: {
+            return {
+                ...state,
+                delStatus: Math.random() * 10
             }
         }
 

@@ -1,17 +1,21 @@
 import {put} from 'redux-saga/effects'
 import * as types from './actions'
-import {get, post} from '../../../utils/http'
+import {del, get, post} from '../../../utils/http'
 import {STAFFLIST} from "../../../common/api";
 
 
-function* getStaffList(action: any) {
+function* delStaff(action: any) {
     try {
-        console.log('员工列表saga执行')
-        const result = yield get(action.url)
-        if (result.meta.status === 200) {
-            yield put({type: types.GETSUCCESS, data: result})
+        console.log('删除员工saga执行')
+        const result = yield del(`${action.url}/${action.data}`)
+        console.log(result)
+        if (result._id) {
+            console.log('发送删除成功saga')
+            yield put({type: types.DELSUCCESS, data: result})
+            console.log('删除员工成功')
+            yield put({type: types.GETLIST, url: STAFFLIST})
         } else {
-            yield put({type: types.GETFAILED, data: result})
+            yield put({type: types.DELERROR, data: result})
         }
     } catch (e) {
         // yield put({type: types.NETERROR})
@@ -28,7 +32,7 @@ function* addStaff(action: any) {
         if (result.status && result.status !== -1) {
             yield put({type: types.ADDSUCCESS, data: result})
             console.log('添加员工成功')
-            yield put({type: types.GETLIST,url:STAFFLIST})
+            yield put({type: types.GETLIST, url: STAFFLIST})
             console.log('发送了获取列表的请求')
         } else {
             console.log('发送了添加错误的action')
@@ -42,10 +46,10 @@ function* addStaff(action: any) {
 
 function* togglePage(action: any) {
     try {
-        console.log('切换页面saga执行')
+        console.log('切换，列表页面saga执行')
         const result = yield get(action.url, action.data)
         if (result.meta.status === 200) {
-             yield put({type: types.TOGGLED, data: result})
+            yield put({type: types.TOGGLED, data: result})
         } else {
             // yield put({type: types.GETFAILED, data: result})
         }
@@ -54,4 +58,4 @@ function* togglePage(action: any) {
     }
 }
 
-export {types, getStaffList, addStaff, togglePage};
+export {types, delStaff, addStaff, togglePage};

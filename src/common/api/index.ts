@@ -7,5 +7,5 @@ export type STAFFLIST = typeof STAFFLIST
 export const STAFFADD = '/staff/add'
 export type STAFFADD = typeof STAFFADD
 
-export const DELSTAFF_URL = '/staff/del'
+export const DELSTAFF_URL = '/staff'
 export type DELSTAFF_URL = typeof DELSTAFF_URL

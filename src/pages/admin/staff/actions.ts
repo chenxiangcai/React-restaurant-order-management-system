@@ -24,3 +24,9 @@ export type TOGGLED = typeof TOGGLED
 
 export const DELSTAFF = 'delstaff'
 export type DELSTAFF = typeof DELSTAFF
+
+export const DELSUCCESS = 'delsuccess'
+export type DELSUCCESS = typeof DELSUCCESS
+
+export const DELERROR = 'delerror'
+export type DELERROR = typeof DELERROR
