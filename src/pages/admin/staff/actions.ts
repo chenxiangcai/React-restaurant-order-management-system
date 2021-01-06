@@ -30,3 +30,13 @@ export type DELSUCCESS = typeof DELSUCCESS
 
 export const DELERROR = 'delerror'
 export type DELERROR = typeof DELERROR
+
+export const EDITSTAFF = 'editstaff'
+export type EDITSTAFF = typeof EDITSTAFF
+
+export const EDITSUCCESS = 'editsuccess'
+export type EDITSUCCESS = typeof EDITSUCCESS
+
+export const EDITERROR = 'editerror'
+export type EDITERROR = typeof EDITERROR
+

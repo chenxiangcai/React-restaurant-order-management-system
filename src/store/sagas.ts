@@ -9,7 +9,7 @@ import {sagas as login} from '../pages/login'
 import {sagas as staff} from '../pages/admin/staff'
 
 let {TOLOGIN} = login.types;
-let {GETLIST, ADDSTAFF, TOGGLEPAGE, DELSTAFF} = staff.types;
+let {GETLIST, ADDSTAFF, TOGGLEPAGE, DELSTAFF, EDITSTAFF} = staff.types;
 
 function* sagas() {
     console.log('saga总监听执行')
@@ -18,6 +18,7 @@ function* sagas() {
     yield takeEvery(TOGGLEPAGE, staff.togglePage)
     yield takeEvery(GETLIST, staff.togglePage);
     yield takeEvery(DELSTAFF, staff.delStaff)
+    yield takeEvery(EDITSTAFF, staff.editStaff)
 }
 
 export default sagas;

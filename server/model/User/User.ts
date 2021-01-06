@@ -69,6 +69,8 @@ const validateUser = (user: any): any => {
     })
 }
 
+
+
 //用户登录格式验证
 const validateLogin = (user: object): object => {
     const Schema = {

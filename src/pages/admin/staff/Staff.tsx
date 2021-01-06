@@ -1,4 +1,4 @@
-import React, {FunctionComponent, useEffect, useState} from 'react';
+import React, {FunctionComponent, useEffect, useMemo, useRef, useState} from 'react';
 import {
     Button,
     Card,
@@ -16,8 +16,8 @@ import {
 } from 'antd';
 import {ColumnsType} from 'antd/es/table';
 import {Dispatch} from "redux";
-import {ADDSTAFF, DELSTAFF, TOGGLEPAGE} from "./actions";
-import {DELSTAFF_URL, STAFFADD, STAFFLIST} from "../../../common/api";
+import {ADDSTAFF, DELSTAFF, EDITSTAFF, TOGGLEPAGE} from "./actions";
+import {DELSTAFF_URL, EDITSTAFF_URL, STAFFADD, STAFFLIST} from "../../../common/api";
 import DocumentTitle from "react-document-title";
 import moment from 'moment';
 import {FieldNumberOutlined, LockOutlined, UserOutlined} from "@ant-design/icons";
@@ -34,11 +34,13 @@ interface OwnProps {
 
     addStaff(value: object): void,
 
+    editStaff(value: object): void
+
 }
 
 interface User {
-    _id: string,
-    name: number | string,
+    _id: any,
+    name: string,
     role: string,
     title: string,
     status: number,
@@ -52,7 +54,8 @@ const mapStateToProps = (state: any) => ({
     list: state.staff.list,
     addStatus: state.staff.addStatus,
     delStatus: state.staff.delStatus,
-    errorMsg: state.staff.errorMsg
+    errorMsg: state.staff.errorMsg,
+    editStatus: state.staff.editStatus
 })
 const mapDispatchToProps = (dispatch: Dispatch) => ({
     delStaff(value: string) {
@@ -73,6 +76,13 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
         dispatch({
             type: TOGGLEPAGE,
             url: STAFFLIST,
+            data: value
+        })
+    },
+    editStaff(value: object) {
+        dispatch({
+            type: EDITSTAFF,
+            url: EDITSTAFF_URL,
             data: value
         })
     }
@@ -150,7 +160,7 @@ const Staff: FunctionComponent<Props> = (props) => {
             title: '操作',
             key: '_id',
             width: 300,
-            render: (text, records) => (
+            render: (text, records, index) => (
                 <Space>
                     <Button type='primary' size={"small"} onClick={() => {
                         edit_staff(records)
@@ -190,20 +200,35 @@ const Staff: FunctionComponent<Props> = (props) => {
 
 
     /**
-     * 新增弹出框
+     * 新增和编辑弹出框
      * visible: 弹框可见性
-     * selected:选中项
+     * selected: 选中项
+     * popStaffStyle: 弹窗类型
      */
     const [visible, setVisible] = useState(false);
     const [selected, setSelected] = useState(['waiter'])
+    const [popStaffStyle, setPopStaffStyle] = useState('')
+    const [editValues, setEditValues] = useState({account: 0, name: ''})
 
-    // 表单提交函数
+    // 表单提交函数 新增和编辑
     const handleOk = (value: any) => {
-        value.account = props.list.total + 1
-        value.joinTime = new Date().getTime()
-        props.addStaff(value)
-        setVisible(false);
+        if (value.hasOwnProperty('password')) {
+            // 找出最大值 作为账号account的值
+            value.account = props.list.records.reduce((pre: any, cur: any) => pre > cur.account ? pre : `${cur.account + 1}`, 0)
+            value.joinTime = new Date().getTime()
+            props.addStaff(value)
+            setVisible(false);
+        } else {
+            // @ts-ignore
+            value.name = edited_name.current.state.value
+            value.account = editValues.account
+            // Dispach编辑行为
+            props.editStaff(value)
+            setVisible(false)
+        }
     };
+
+    const edited_name = useRef(null);
 
     // 取消弹出框
     const handleCancel = () => {
@@ -226,30 +251,50 @@ const Staff: FunctionComponent<Props> = (props) => {
 
     // 编辑员工触发
     const edit_staff = (value: User) => {
-        console.log(value)
+        setVisible(true)
+        setPopStaffStyle('编辑员工')
+        setEditValues({
+                account: value.account,
+                name: value.name
+            }
+        )
     }
+
+    // 监听拿到最新的修改信息 状态更新立即更改
+    useEffect(() => {
+    }, [editValues])
+
     // 员工列表数据和事件处理
     useEffect(() => {
         props.togglePage(pageMsg)
         const {list} = props
         const user_List = list.records
         setUserList(user_List)
-        //数组长度发生变化后 重新请求数据 渲染列表
+        //数组长度发生变化后 获取数据 渲染列表
     }, [props.list.total, props.list.page, props.list.size])
+
+    // 修改状态后 部分信息改变 通过memo监听list变化 重新渲染页面
+    useMemo(() => {
+        const {list} = props
+        const user_List = list.records
+        setUserList(user_List)
+    }, [props.list])
 
 
     // 弹框状态管理 fix 状态存储在缓存 解决每次重新加载页面弹框问题
     useEffect(() => {
-        const {errorMsg, addStatus, delStatus} = props
+        const {errorMsg, addStatus, delStatus, editStatus} = props
         const astatus = getStore('addStatus')
         const dstatus = getStore('delStatus')
+        const estatus = getStore('editStatus')
         //添加
         if (astatus == addStatus) {
         } else {
             setStore('addStatus', addStatus)
             if (addStatus < 1) message.success('员工添加成功！')
-            else if (errorMsg && errorMsg.includes('密码')) message.error('请输入3位数以上的密码！')
-            else if (errorMsg && errorMsg.includes('姓名')) message.error('请输入正确的姓名格式！')
+            else if (errorMsg && errorMsg.includes('密码')) message.warning('请输入3位数以上的密码！')
+            else if (errorMsg && errorMsg.includes('姓名')) message.warning('请输入正确的姓名格式！')
+            else if (errorMsg && errorMsg.includes('注册')) message.error('此账号已被注册！')
         }
         //删除
         if (dstatus == delStatus) {
@@ -257,8 +302,17 @@ const Staff: FunctionComponent<Props> = (props) => {
             setStore('delStatus', delStatus)
             if (delStatus < 1) message.success('员工删除成功！')
         }
-    }, [props.addStatus, props.delStatus])
+        //修改
+        if (estatus == editStatus) {
+        } else {
+            setStore('editStatus', editStatus)
+            if (editStatus < 1) message.success('资料修改成功！')
+        }
+    }, [props.addStatus, props.delStatus, props.editStatus])
 
+    // @ts-ignore
+    // @ts-ignore
+    // @ts-ignore
     return (
         <DocumentTitle title="员工管理">
             <ConfigProvider locale={zhCN}>
@@ -266,6 +320,7 @@ const Staff: FunctionComponent<Props> = (props) => {
                       extra={
                           <Button type="primary" onClick={() => {
                               setVisible(true)
+                              setPopStaffStyle('新增员工')
                           }}>新增</Button>
                       }
                       headStyle={{fontSize: 18}}
@@ -303,38 +358,73 @@ const Staff: FunctionComponent<Props> = (props) => {
                     />}
                     {/*新增员工弹出框*/}
                     <Modal
-                        title="新增员工"
+                        title={popStaffStyle}
                         visible={visible}
                         onCancel={handleCancel}
                         destroyOnClose
                         footer={null}
                     >
-
                         <Form name="normal_login" className="login-form" onFinish={handleOk}>
                             <Form.Item name="account"
                             >
-                                <Input defaultValue={props.list.total + 1}
-                                       disabled prefix={<FieldNumberOutlined className="site-form-item-icon"/>}
-                                       placeholder="工号"/>
-                            </Form.Item>
-                            <Form.Item name="name" rules={[
                                 {
-                                    required: true,
-                                    message: '请输入姓名',
-                                },
-                            ]}>
-                                <Input prefix={<UserOutlined className="site-form-item-icon"/>} placeholder="姓名"/>
-                            </Form.Item>
-                            <Form.Item name="password" rules={[
+                                    popStaffStyle === '新增员工' &&
+                                    <Form.Item name="account" style={{margin: 0}}>
+                                        <Input
+                                            defaultValue={props.list.records.reduce((pre: any, cur: any) => {
+                                                // console.log(pre, cur.account)
+                                                return pre > cur.account ? `${pre}` : `${cur.account + 1}`
+                                            }, 0)}
+                                            disabled prefix={<FieldNumberOutlined className="site-form-item-icon"/>}
+                                            placeholder="工号"/>
+                                    </Form.Item>
+                                }
                                 {
-                                    required: true,
-                                    message: '请输入密码',
-                                },
-                            ]}>
-                                <Input.Password prefix={<LockOutlined className="site-form-item-icon"/>}
-                                                type="password"
-                                                placeholder="密码"/>
+                                    popStaffStyle === '编辑员工' &&
+                                    <Form.Item name="account" style={{margin: 0}}>
+                                        <Input
+                                            defaultValue={editValues.account}
+                                            disabled prefix={<FieldNumberOutlined className="site-form-item-icon"/>}
+                                            placeholder="工号"/>
+                                    </Form.Item>
+                                }
                             </Form.Item>
+                            {
+                                popStaffStyle === '新增员工' &&
+                                <Form.Item name="name" rules={[
+                                    {
+                                        required: true,
+                                        message: '请输入姓名',
+                                    },
+                                ]}>
+                                    <Input autoFocus={true}
+                                           prefix={<UserOutlined className="site-form-item-icon"/>}
+                                           placeholder="姓名"/>
+                                </Form.Item>
+                            }
+                            {
+                                popStaffStyle === '编辑员工' &&
+                                <Form.Item name="name">
+                                    <Input autoFocus={true}
+                                           defaultValue={editValues.name}
+                                           ref={edited_name}
+                                           prefix={<UserOutlined className="site-form-item-icon"/>}
+                                           placeholder="姓名"/>
+                                </Form.Item>
+                            }
+                            {
+                                popStaffStyle === '新增员工' &&
+                                <Form.Item name="password" rules={[
+                                    {
+                                        required: true,
+                                        message: '请输入密码',
+                                    },
+                                ]}>
+                                    <Input.Password prefix={<LockOutlined className="site-form-item-icon"/>}
+                                                    type="password"
+                                                    placeholder="密码"/>
+                                </Form.Item>
+                            }
                             <Form.Item name="role" initialValue={'waiter'}>
                                 <Radio.Group
                                     options={positionOptions}
@@ -353,7 +443,16 @@ const Staff: FunctionComponent<Props> = (props) => {
                             <Form.Item style={{marginBottom: 0}}>
                                 <Space style={{float: "right"}}>
                                     <Button type="default" onClick={handleCancel}>取消</Button>
-                                    <Button type="primary" htmlType="submit" className="login-form-button">添加</Button>
+                                    {
+                                        popStaffStyle === '新增员工' &&
+                                        <Button type="primary" htmlType="submit"
+                                                className="login-form-button">添加</Button>
+                                    }
+                                    {
+                                        popStaffStyle === '编辑员工' &&
+                                        <Button type="primary" htmlType="submit"
+                                                className="login-form-button">提交</Button>
+                                    }
                                 </Space>
                             </Form.Item>
                         </Form>

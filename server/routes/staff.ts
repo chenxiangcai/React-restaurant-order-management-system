@@ -11,5 +11,6 @@ const staff = require('express').Router();
 staff.get('/', require('./staffs/list'))
 staff.post('/add', require('./staffs/add'))
 staff.delete('/:id', require('./staffs/del'))
+staff.put('/edit', require('./staffs/edit'))
 
 export = staff

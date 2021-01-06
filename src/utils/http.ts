@@ -67,7 +67,7 @@ export const post = ({url}, params: object) => {
         });
 };
 // @ts-ignore
-export const put = ({url}, params: object) => {
+export const puts = ({url}, params: object) => {
     return http({
         method: "put",
         url,

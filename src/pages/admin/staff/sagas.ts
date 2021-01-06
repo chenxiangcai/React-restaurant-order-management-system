@@ -1,6 +1,6 @@
 import {put} from 'redux-saga/effects'
 import * as types from './actions'
-import {del, get, post} from '../../../utils/http'
+import {del, get, post, puts} from '../../../utils/http'
 import {STAFFLIST} from "../../../common/api";
 
 
@@ -58,4 +58,21 @@ function* togglePage(action: any) {
     }
 }
 
-export {types, delStaff, addStaff, togglePage};
+function* editStaff(action: any) {
+    try {
+        console.log('修改saga执行')
+        const result = yield puts({
+            url: action.url
+        }, action.data)
+        if (result.meta.status === 200) {
+            console.log('修改员工成功')
+            yield put({type: types.EDITSUCCESS, data: result})
+            yield put({type: types.GETLIST, url: STAFFLIST})
+            console.log('发送了获取列表的请求')
+        }
+    } catch (e) {
+
+    }
+}
+
+export {types, delStaff, addStaff, togglePage, editStaff};

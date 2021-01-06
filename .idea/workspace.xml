@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="6d91caa1-987f-4124-9db6-b0e688ade05a" name="默认更改列表" comment="feat 员工列表页列表、新增功能">
-      <change afterPath="$PROJECT_DIR$/server/routes/staffs/del.ts" afterDir="false" />
+    <list default="true" id="6d91caa1-987f-4124-9db6-b0e688ade05a" name="默认更改列表" comment="feat 员工列表页删除功能">
+      <change afterPath="$PROJECT_DIR$/server/routes/staffs/edit.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.eslintcache" beforeDir="false" afterPath="$PROJECT_DIR$/.eslintcache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/model/User/User.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/model/User/User.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/routes/staff.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/routes/staff.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/routes/staffs/del.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/routes/staffs/del.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/common/api/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/api/index.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/admin/staff/Staff.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/admin/staff/Staff.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/admin/staff/actions.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/admin/staff/actions.ts" afterDir="false" />
@@ -25,9 +27,9 @@
       <list>
         <option value="tsconfig.json" />
         <option value="JavaScript File" />
-        <option value="TypeScript File" />
-        <option value="HTML File" />
         <option value="TypeScript JSX File" />
+        <option value="HTML File" />
+        <option value="TypeScript File" />
       </list>
     </option>
   </component>
@@ -200,7 +202,16 @@
       <workItem from="1609239235338" duration="12125000" />
       <workItem from="1609289042397" duration="4261000" />
       <workItem from="1609324449303" duration="6441000" />
-      <workItem from="1609332187346" duration="1608000" />
+      <workItem from="1609332187346" duration="4714000" />
+      <workItem from="1609375855849" duration="3203000" />
+      <workItem from="1609402605782" duration="1996000" />
+      <workItem from="1609504578034" duration="5500000" />
+      <workItem from="1609559625926" duration="7783000" />
+      <workItem from="1609647029098" duration="1032000" />
+      <workItem from="1609721487714" duration="1863000" />
+      <workItem from="1609739678014" duration="10767000" />
+      <workItem from="1609845794064" duration="10071000" />
+      <workItem from="1609893584800" duration="286000" />
     </task>
     <task id="LOCAL-00001" summary="init 初始化项目">
       <created>1607945320341</created>
@@ -244,7 +255,14 @@
       <option name="project" value="LOCAL" />
       <updated>1609163834655</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="feat 员工列表页删除功能">
+      <created>1609333992531</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1609333992531</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -292,7 +310,8 @@
     <MESSAGE value="feat 后台页面框架、路由配置" />
     <MESSAGE value="perf 优化本地存储" />
     <MESSAGE value="feat 员工列表页列表、新增功能" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat 员工列表页列表、新增功能" />
+    <MESSAGE value="feat 员工列表页删除功能" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat 员工列表页删除功能" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

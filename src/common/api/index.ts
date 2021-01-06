@@ -9,3 +9,6 @@ export type STAFFADD = typeof STAFFADD
 
 export const DELSTAFF_URL = '/staff'
 export type DELSTAFF_URL = typeof DELSTAFF_URL
+
+export const EDITSTAFF_URL = '/staff/edit'
+export type EDITSTAFF_URL = typeof EDITSTAFF_URL
