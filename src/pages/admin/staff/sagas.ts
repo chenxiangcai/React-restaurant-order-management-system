@@ -29,7 +29,7 @@ function* addStaff(action: any) {
             url: action.url
         }, action.data)
         console.log(result)
-        if (result.status && result.status !== -1) {
+        if (result.status && result.status !== -7) {
             yield put({type: types.ADDSUCCESS, data: result})
             console.log('添加员工成功')
             yield put({type: types.GETLIST, url: STAFFLIST})

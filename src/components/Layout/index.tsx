@@ -1,8 +1,8 @@
 import React, {FunctionComponent, useState} from 'react';
-import {Breadcrumb, Layout, Menu} from 'antd';
+import {Layout, Menu} from 'antd';
 import {FileOutlined, LineChartOutlined, ShopOutlined, TeamOutlined, UnorderedListOutlined} from '@ant-design/icons';
 import logo from '../../assets/images/logo_small.png'
-import {useHistory} from 'react-router-dom';
+import {useHistory, useLocation} from 'react-router-dom';
 import './index.css'
 
 const {Header, Content, Footer, Sider} = Layout;
@@ -13,6 +13,7 @@ const LayoutWrap: FunctionComponent<{}> = (props) => {
 
     const [collapsed, setCollapsed] = useState(false);
     const history = useHistory()
+    const {pathname} = useLocation()
 
     return (
         <Layout style={{minHeight: '100vh'}}>
@@ -22,7 +23,7 @@ const LayoutWrap: FunctionComponent<{}> = (props) => {
                 <div className="logo">
                     <img className='bigLogo' src={logo} alt="logo"/>
                 </div>
-                <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline" style={{fontSize: 17}}>
+                <Menu theme="dark" defaultSelectedKeys={[pathname]} mode="inline" style={{fontSize: 17}}>
                     <Menu.Item
                         key="1"
                         icon={<LineChartOutlined/>}
@@ -44,7 +45,7 @@ const LayoutWrap: FunctionComponent<{}> = (props) => {
                     </SubMenu>
 
                     <Menu.Item
-                        key="ss1"
+                        key="/admin/staffs"
                         icon={<TeamOutlined/>}
                         onClick={() => {
                             history.push('/admin/staffs')
@@ -63,11 +64,11 @@ const LayoutWrap: FunctionComponent<{}> = (props) => {
             </Sider>
             <Layout className="site-layout">
                 <Header className="site-layout-background" style={{padding: 0}}/>
-                <Content style={{margin: '0 16px'}}>
-                    <Breadcrumb style={{margin: '16px 0'}}>
-                        <Breadcrumb.Item>后台</Breadcrumb.Item>
-                        <Breadcrumb.Item>Bill</Breadcrumb.Item>
-                    </Breadcrumb>
+                <Content style={{margin: '16px 16px'}}>
+                    {/*<Breadcrumb style={{margin: '16px 0'}}>*/}
+                    {/*    <Breadcrumb.Item>后台</Breadcrumb.Item>*/}
+                    {/*    <Breadcrumb.Item>Bill</Breadcrumb.Item>*/}
+                    {/*</Breadcrumb>*/}
                     <div className="site-layout-background" style={{padding: 24, minHeight: 780}}>
                         {props.children}
                     </div>

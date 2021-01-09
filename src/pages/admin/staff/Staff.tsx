@@ -151,7 +151,13 @@ const Staff: FunctionComponent<Props> = (props) => {
             render: (status: any) => (
                 <>
                     {
-                        status === 1 ? '在职' : '请假'
+                        status === 1 && '在职'
+                    }
+                    {
+                        status === 0 && '请假'
+                    }
+                    {
+                        status === -1 && '离职'
                     }
                 </>
             ),
@@ -208,7 +214,7 @@ const Staff: FunctionComponent<Props> = (props) => {
     const [visible, setVisible] = useState(false);
     const [selected, setSelected] = useState(['waiter'])
     const [popStaffStyle, setPopStaffStyle] = useState('')
-    const [editValues, setEditValues] = useState({account: 0, name: ''})
+    const [editValues, setEditValues] = useState({account: 0, name: '', role: '', status: -9})
 
     // 表单提交函数 新增和编辑
     const handleOk = (value: any) => {
@@ -222,6 +228,7 @@ const Staff: FunctionComponent<Props> = (props) => {
             // @ts-ignore
             value.name = edited_name.current.state.value
             value.account = editValues.account
+
             // Dispach编辑行为
             props.editStaff(value)
             setVisible(false)
@@ -255,13 +262,19 @@ const Staff: FunctionComponent<Props> = (props) => {
         setPopStaffStyle('编辑员工')
         setEditValues({
                 account: value.account,
-                name: value.name
+                name: value.name,
+                role: value.role,
+                status: value.status
             }
         )
     }
 
     // 监听拿到最新的修改信息 状态更新立即更改
     useEffect(() => {
+        const {role} = editValues
+        setSelected([`${role}`])
+        // console.log(selected)
+        // console.log(editValues)
     }, [editValues])
 
     // 员工列表数据和事件处理
@@ -310,9 +323,6 @@ const Staff: FunctionComponent<Props> = (props) => {
         }
     }, [props.addStatus, props.delStatus, props.editStatus])
 
-    // @ts-ignore
-    // @ts-ignore
-    // @ts-ignore
     return (
         <DocumentTitle title="员工管理">
             <ConfigProvider locale={zhCN}>
@@ -425,7 +435,7 @@ const Staff: FunctionComponent<Props> = (props) => {
                                                     placeholder="密码"/>
                                 </Form.Item>
                             }
-                            <Form.Item name="role" initialValue={'waiter'}>
+                            <Form.Item name="role" initialValue={popStaffStyle === '编辑员工' ? selected[0] : 'waiter'}>
                                 <Radio.Group
                                     options={positionOptions}
                                     onChange={onChange1}
@@ -433,7 +443,8 @@ const Staff: FunctionComponent<Props> = (props) => {
                                     optionType="button"
                                 />
                             </Form.Item>
-                            <Form.Item name="status" initialValue={1} style={{marginTop: -10}}>
+                            <Form.Item name="status" initialValue={popStaffStyle === '编辑员工' ? editValues.status : 1}
+                                       style={{marginTop: -10}}>
                                 <Radio.Group>
                                     <Radio value={1}>在职</Radio>
                                     <Radio value={0}>请假</Radio>

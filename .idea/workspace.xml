@@ -1,20 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="6d91caa1-987f-4124-9db6-b0e688ade05a" name="默认更改列表" comment="feat 员工列表页删除功能">
-      <change afterPath="$PROJECT_DIR$/server/routes/staffs/edit.ts" afterDir="false" />
+    <list default="true" id="6d91caa1-987f-4124-9db6-b0e688ade05a" name="默认更改列表" comment="feat 员工列表页编辑功能">
       <change beforePath="$PROJECT_DIR$/.eslintcache" beforeDir="false" afterPath="$PROJECT_DIR$/.eslintcache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/model/User/User.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/model/User/User.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/routes/staff.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/routes/staff.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/routes/staffs/del.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/routes/staffs/del.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/common/api/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/api/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/routes/staffs/add.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/routes/staffs/add.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/routes/staffs/edit.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/routes/staffs/edit.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/routes/staffs/list.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/routes/staffs/list.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Layout/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Layout/index.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/admin/staff/Staff.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/admin/staff/Staff.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/admin/staff/actions.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/admin/staff/actions.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/admin/staff/reducers.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/admin/staff/reducers.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/admin/staff/sagas.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/admin/staff/sagas.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store/sagas.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/sagas.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/http.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/http.ts" afterDir="false" />
     </list>
     <list id="659ec1d8-9937-4a25-b75f-d5a3890c13fc" name="feat 后台服务器" comment="feat 后台服务器" />
     <option name="SHOW_DIALOG" value="false" />
@@ -65,6 +60,7 @@
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="ToolWindow运行.ShowToolbar" value="false" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$USER_HOME$/Desktop/supplier-portal/supplier-portal" />
     <property name="node.js.detected.package.eslint" value="true" />
@@ -211,7 +207,11 @@
       <workItem from="1609721487714" duration="1863000" />
       <workItem from="1609739678014" duration="10767000" />
       <workItem from="1609845794064" duration="10071000" />
-      <workItem from="1609893584800" duration="286000" />
+      <workItem from="1609893584800" duration="2122000" />
+      <workItem from="1610019473190" duration="2556000" />
+      <workItem from="1610066848415" duration="383000" />
+      <workItem from="1610168086318" duration="709000" />
+      <workItem from="1610168847060" duration="7804000" />
     </task>
     <task id="LOCAL-00001" summary="init 初始化项目">
       <created>1607945320341</created>
@@ -262,7 +262,14 @@
       <option name="project" value="LOCAL" />
       <updated>1609333992531</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="feat 员工列表页编辑功能">
+      <created>1609894150763</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1609894150763</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -289,7 +296,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="Login" />
+                        <option value="staff" />
                       </list>
                     </value>
                   </entry>
@@ -311,7 +318,8 @@
     <MESSAGE value="perf 优化本地存储" />
     <MESSAGE value="feat 员工列表页列表、新增功能" />
     <MESSAGE value="feat 员工列表页删除功能" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat 员工列表页删除功能" />
+    <MESSAGE value="feat 员工列表页编辑功能" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat 员工列表页编辑功能" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

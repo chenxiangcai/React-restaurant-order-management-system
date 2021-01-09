@@ -1,5 +1,6 @@
 const {User, validateUser} = require('../../model/User/User')
 export = async (req, res) => {
+    console.log(req.fields)
     const {name, role, status, account} = req.fields
     try {
         validateUser(req.fields)
