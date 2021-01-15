@@ -1,19 +1,5 @@
 import React, {FunctionComponent, useEffect, useMemo, useRef, useState} from 'react';
-import {
-    Button,
-    Card,
-    ConfigProvider,
-    Form,
-    Input,
-    message,
-    Modal,
-    Pagination,
-    Popconfirm,
-    Radio,
-    Space,
-    Table,
-    Tag
-} from 'antd';
+import {Button, Card, ConfigProvider, Form, Input, message, Modal, Popconfirm, Radio, Space, Table, Tag} from 'antd';
 import {ColumnsType} from 'antd/es/table';
 import {Dispatch} from "redux";
 import {ADDSTAFF, DELSTAFF, EDITSTAFF, TOGGLEPAGE} from "./actions";
@@ -24,6 +10,7 @@ import {FieldNumberOutlined, LockOutlined, UserOutlined} from "@ant-design/icons
 import {connect} from "react-redux";
 import {getStore, setStore} from "../../../utils/storage";
 import zhCN from 'antd/es/locale/zh_CN';
+import Paging from "../../../components/Paging";
 
 interface OwnProps {
     [prop: string]: any
@@ -51,7 +38,7 @@ interface User {
 type Props = OwnProps;
 
 const mapStateToProps = (state: any) => ({
-    list: state.staff.list,
+    list: state.staff.list || [],
     addStatus: state.staff.addStatus,
     delStatus: state.staff.delStatus,
     errorMsg: state.staff.errorMsg,
@@ -346,14 +333,9 @@ const Staff: FunctionComponent<Props> = (props) => {
                             pagination={false}
                         />
                     }
-                    {userList &&
-                    <Pagination
-                        defaultCurrent={props.list.page}
-                        total={props.list.total}
-                        hideOnSinglePage={false}
-                        style={{float: "right", marginTop: 20}}
-                        showTotal={total => `共 ${total} 条`}
-                        onChange={(page = 1, pageSize = 10): any => {
+                    {
+                        userList &&
+                        <Paging page={props.list.page} total={props.list.total} fun={(page = 1, pageSize = 10): any => {
                             props.togglePage({
                                 query: '',
                                 page: page,
@@ -364,8 +346,8 @@ const Staff: FunctionComponent<Props> = (props) => {
                                 page: page,
                                 pagesize: pageSize
                             })
-                        }}
-                    />}
+                        }}/>
+                    }
                     {/*新增员工弹出框*/}
                     <Modal
                         title={popStaffStyle}
@@ -409,7 +391,7 @@ const Staff: FunctionComponent<Props> = (props) => {
                                 ]}>
                                     <Input autoFocus={true}
                                            prefix={<UserOutlined className="site-form-item-icon"/>}
-                                           placeholder="姓名"/>
+                                           placeholder="请输入2位及以上的姓名"/>
                                 </Form.Item>
                             }
                             {
@@ -419,7 +401,7 @@ const Staff: FunctionComponent<Props> = (props) => {
                                            defaultValue={editValues.name}
                                            ref={edited_name}
                                            prefix={<UserOutlined className="site-form-item-icon"/>}
-                                           placeholder="姓名"/>
+                                           placeholder="请输入2位及以上的姓名"/>
                                 </Form.Item>
                             }
                             {
@@ -432,7 +414,7 @@ const Staff: FunctionComponent<Props> = (props) => {
                                 ]}>
                                     <Input.Password prefix={<LockOutlined className="site-form-item-icon"/>}
                                                     type="password"
-                                                    placeholder="密码"/>
+                                                    placeholder="请输入3位及以上的密码"/>
                                 </Form.Item>
                             }
                             <Form.Item name="role" initialValue={popStaffStyle === '编辑员工' ? selected[0] : 'waiter'}>

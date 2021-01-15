@@ -1,5 +1,5 @@
 import reducers from './reducers'
 import * as sagas from './sagas'
-import Staff from './Staff'
+import Dish from './Dish'
 
-export {Staff, sagas, reducers}
+export {Dish, sagas, reducers}

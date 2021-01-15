@@ -2,7 +2,7 @@ import React, {FunctionComponent} from "react";
 import {RouteComponentProps} from "react-router";
 import {adminRoute} from "./routes";
 import {Redirect, Route, Switch} from "react-router-dom";
-import LayoutWrap from "./components/Layout";
+import LayoutWrap from "./common/Layout";
 
 type Props = RouteComponentProps;
 

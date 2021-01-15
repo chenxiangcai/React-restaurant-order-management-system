@@ -5,13 +5,11 @@
 * @time: 2020-12-14 19:49:21
 */
 export = app => {
-    // 用户二级路由
-    app.use('/staff', require('./staff'))
+    app.use('/staff', require('./staff')) // 用户二级路由
+    app.use('/dish', require('./dish')) // 菜品
+    app.use('/category', require('./category')) // 分类
 
 
-
-
-    // 用户登录
-    app.post('/login', require('./login'))
+    app.post('/login', require('./login')) // 用户登录
 
 }

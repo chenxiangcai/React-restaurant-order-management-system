@@ -6,6 +6,10 @@ const cateSchema: object = new Schema({
     foodTypeName: {
         type: String,
         required: [true, '请输入菜品分类']
+    },
+    createAt: {
+        type: Date,
+        default: Date.now
     }
 }, {versionKey: false}) //忽略增加的文档在数据库中的__v字段
 
@@ -21,6 +25,16 @@ const validateCategory = (order: object): object => {
         allowUnknown: true   //允许对象包含被忽略的未知键
     })
 }
+
+/*//初始化分类
+Category.findOne({foodTypeName: '这是一个测试分类'}).then(
+    async (result: null | object): Promise<void> => {
+        if (result == null) {
+            await Category.create({
+                foodTypeName: '这是一个测试分类'
+            })
+        }
+    })*/
 
 export = {
     Category, validateCategory
