@@ -1,8 +1,8 @@
-const {User, validateLogin} = require('../../model/User/User')
+const {User, validateLogin} = require('../../../model/User/User')
 const bcrypt = require('bcrypt')
 const _ = require('lodash')
 const jwt = require('jsonwebtoken')
-const {secret} = require('../../config/key')
+const {secret} = require('../../../config/key')
 export = async (req, res) => {
     let user: {
         _id: string

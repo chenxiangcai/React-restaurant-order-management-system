@@ -396,7 +396,7 @@ const Staff: FunctionComponent<Props> = (props) => {
                             }
                             {
                                 popStaffStyle === '编辑员工' &&
-                                <Form.Item name="name">
+                                <Form.Item name="name" initialValue={editValues.name}>
                                     <Input autoFocus={true}
                                            defaultValue={editValues.name}
                                            ref={edited_name}

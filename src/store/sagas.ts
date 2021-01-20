@@ -11,7 +11,7 @@ import {sagas as dish} from "../pages/admin/dish";
 
 const {TOLOGIN} = login.types;
 const {GETLIST, ADDSTAFF, TOGGLEPAGE, DELSTAFF, EDITSTAFF} = staff.types;
-const {GETDISHLIST} = dish.types
+const {GETDISHLIST, ADDDISH, DELDISH, EDITDISH} = dish.types
 
 function* sagas() {
     console.log('saga总监听执行')
@@ -24,6 +24,9 @@ function* sagas() {
     yield takeEvery(EDITSTAFF, staff.editStaff)
     //菜品
     yield takeEvery(GETDISHLIST, dish.toggleDishPage)
+    yield takeEvery(ADDDISH, dish.addDish)
+    yield takeEvery(DELDISH, dish.delDish)
+    yield takeEvery(EDITDISH, dish.editDish)
 }
 
 export default sagas;

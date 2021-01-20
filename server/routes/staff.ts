@@ -8,9 +8,9 @@
 const staff = require('express').Router();
 
 //用户列表
-staff.get('/', require('./staffs/list'))
-staff.post('/add', require('./staffs/add'))
-staff.delete('/:id', require('./staffs/del'))
-staff.put('/edit', require('./staffs/edit'))
+staff.get('/', require('./admin/staffs/list'))
+staff.post('/add', require('./admin/staffs/add'))
+staff.delete('/:id', require('./admin/staffs/del'))
+staff.put('/edit', require('./admin/staffs/edit'))
 
 export = staff

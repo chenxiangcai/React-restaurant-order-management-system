@@ -22,10 +22,10 @@ const dishesSchema: object = new Schema({
         type: Number,
         required: [true, '请输入菜品价格']
     },
-    status: { //默认1 未售完 ,0已售完
+     number: {
         type: Number,
         required: true,
-        default: 1,
+        // default: 1,
     },
     createAt: {
         type: Date,
@@ -41,6 +41,7 @@ const validateDishes = (dishes: object): object => {
         name: Joi.string().required().error(new Error('请输入菜品名！')),
         category: Joi.string().required().error(new Error('请输入菜品分类！')),
         price: Joi.number().required().error(new Error('请输入菜品价格！')),
+        number:Joi.number().required().error(new Error('请输入菜品库存'))
     }
     return Joi.validate(dishes, Schema, {
         abortEarly: false,   //把所有错误检测完再返回
@@ -57,7 +58,7 @@ Dishes.findOne({name: '这是一个测试菜品2'}).then(
                 picture: '',
                 category: '5ff97c1fffe1551a78f01fb4',
                 price: 77,
-                status: 1
+                number: 888
             })
         }
     })*/

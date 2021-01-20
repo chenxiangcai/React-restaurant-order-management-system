@@ -1,4 +1,4 @@
-const {User, validateUser} = require('../../model/User/User')
+const {User, validateUser} = require('../../../model/User/User')
 const bcrypt = require('bcrypt')
 const _ = require('lodash')
 export = async (req, res) => {

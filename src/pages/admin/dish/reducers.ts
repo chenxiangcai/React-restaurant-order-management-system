@@ -1,13 +1,24 @@
-import {GETCATELISTSUCCESS, GETDISHLIST, GETSUCCESS,} from './actions'
+import {
+    ADDDISHERR,
+    ADDDISHSUC,
+    DELDISHERR,
+    DELDISHSUC,
+    EDITDISH,
+    EDITDISHDISHSUC,
+    EDITDISHERR,
+    GETCATELISTSUCCESS,
+    GETDISHLIST,
+    GETSUCCESS,
+} from './actions'
 
-type state = { list: object[], addStatus: number, errorMsg: string, delStatus: number }
+type state = { list: object[], addDishStatus: number, errorMsgDish: string, delDishStatus: number }
 const defaultState = {
     list: [],
     cateList: [],
-    addStatus: 99999, //添加用户初始状态
-    errorMsg: '',
-    delStatus: 99999,
-    editStatus: 99999
+    addDishStatus: 99999, //添加用户初始状态
+    errorMsgDish: '',
+    delDishStatus: 99999,
+    editDishStatus: 99999
 };
 // eslint-disable-next-line import/no-anonymous-default-export
 export default (state: state = defaultState, action: any) => {
@@ -26,61 +37,47 @@ export default (state: state = defaultState, action: any) => {
                 ...state,
                 cateList: action.data.category.records
             }
-        // case GETFAILED:
-        //     return {
-        //         ...state
-        //     }
-        // case ADDSUCCESS:
-        //     return {
-        //         ...state,
-        //         addStatus: Math.random()
-        //     }
-        // case ADDERROR:
-        //     return {
-        //         ...state,
-        //         addStatus: Math.random() * 10,
-        //         errorMsg: action.data.message
-        //     }
-        // case TOGGLED: {
-        //     return {
-        //         ...state,
-        //         list: action.data.user
-        //     }
-        // }
-        // case DELSTAFF: {
-        //     return {
-        //         ...state, action
-        //     }
-        // }
-        // case DELSUCCESS: {
-        //     return {
-        //         ...state,
-        //         delStatus: Math.random()
-        //     }
-        // }
-        // case DELERROR: {
-        //     return {
-        //         ...state,
-        //         delStatus: Math.random() * 10
-        //     }
-        // }
-        // case EDITSTAFF: {
-        //     return {
-        //         ...state, action
-        //     }
-        // }
-        // case EDITSUCCESS: {
-        //     return {
-        //         ...state,
-        //         editStatus: Math.random()
-        //     }
-        // }
-        // case EDITERROR: {
-        //     return {
-        //         ...state,
-        //         editStatus: Math.random() * 10
-        //     }
-        // }
+        case DELDISHSUC:
+            return {
+                ...state,
+                delDishStatus: Math.random()
+            }
+        case DELDISHERR: {
+            return {
+                ...state,
+                delDishStatus: Math.random() * 10
+            }
+        }
+        case ADDDISHSUC:
+            return {
+                ...state,
+                addDishStatus: Math.random()
+            }
+        case ADDDISHERR: {
+            return {
+                ...state,
+                addDishStatus: Math.random() * 10,
+                errorMsgDish: action.data.message
+            }
+        }
+        case EDITDISHDISHSUC: {
+            return {
+                ...state,
+                editDishStatus: Math.random()
+            }
+        }
+        case EDITDISHERR: {
+            return {
+                ...state,
+                editStatus: Math.random() * 10
+            }
+        }
+        case EDITDISH: {
+            return {
+                ...state,
+                action
+            }
+        }
 
         default:
             return state

@@ -5,6 +5,8 @@ const path = require('path')
 // 连接数据库
 require('./model/connect.ts')
 
+app.use(express.static(path.join(__dirname, 'public')))
+
 // 设置跨域和相应数据格式
 app.all('/*', (req: express.Request, res:express.Response, next)=>{
         res.header('Access-Control-Allow-Origin', '*')

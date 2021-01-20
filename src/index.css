@@ -1,3 +1,5 @@
 #root {
     height: 100%;
+    min-height: 780px;
+    min-width: 1200px;
 }

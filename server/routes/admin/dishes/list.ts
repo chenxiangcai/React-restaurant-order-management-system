@@ -1,4 +1,4 @@
-const {Dishes} = require('../../model/Dish/Dish')
+const {Dishes} = require('../../../model/Dish/Dish')
 const pagination = require('mongoose-sex-page')
 
 export = async (req, res) => {

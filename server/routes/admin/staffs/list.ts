@@ -1,4 +1,4 @@
-const {User} = require('../../model/User/User')
+const {User} = require('../../../model/User/User')
 const pagination = require('mongoose-sex-page')
 
 export = async (req, res) => {
