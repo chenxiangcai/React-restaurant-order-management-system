@@ -1,0 +1,19 @@
+#components-layout-demo-side .logo {
+    height: 32px;
+    margin: 16px;
+    background: rgba(255, 255, 255, 0.3);
+}
+
+.site-layout .site-layout-background {
+    background: #fff;
+}
+
+.logo {
+    text-align: center;
+}
+
+.bigLogo {
+    margin: 15px 0 10px 0;
+    width: 50%;
+    height: 50%;
+}

@@ -1,4 +1,6 @@
+// @ts-ignore
 const {Schema, model} = require('mongoose');
+// @ts-ignore
 const Joi = require('joi');
 
 //收入集合
@@ -44,6 +46,6 @@ const validateIncome = (user: object): object => {
 }
 
 
-export = {
+module.exports = {
     Income, validateIncome
 }

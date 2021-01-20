@@ -60,7 +60,7 @@ export const LoginWrap = styled.div`
       margin: 10px 0 40px 0;
       font-size: 12px;
       width: 100%;
-      display: inline;
+      display: inline-block;
       position: relative;
 
       span {

@@ -6,12 +6,27 @@
 */
 import {takeEvery} from 'redux-saga/effects'
 import {sagas as login} from '../pages/login'
+import {sagas as staff} from '../pages/admin/staff'
+import {sagas as dish} from "../pages/admin/dish";
 
-let {TOLOGIN} = login.types;
+const {TOLOGIN} = login.types;
+const {GETLIST, ADDSTAFF, TOGGLEPAGE, DELSTAFF, EDITSTAFF} = staff.types;
+const {GETDISHLIST, ADDDISH, DELDISH, EDITDISH} = dish.types
 
 function* sagas() {
     console.log('saga总监听执行')
     yield takeEvery(TOLOGIN, login.action);
+    // 员工
+    yield takeEvery(ADDSTAFF, staff.addStaff)
+    yield takeEvery(TOGGLEPAGE, staff.togglePage)
+    yield takeEvery(GETLIST, staff.togglePage);
+    yield takeEvery(DELSTAFF, staff.delStaff)
+    yield takeEvery(EDITSTAFF, staff.editStaff)
+    //菜品
+    yield takeEvery(GETDISHLIST, dish.toggleDishPage)
+    yield takeEvery(ADDDISH, dish.addDish)
+    yield takeEvery(DELDISH, dish.delDish)
+    yield takeEvery(EDITDISH, dish.editDish)
 }
 
 export default sagas;

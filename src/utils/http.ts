@@ -25,9 +25,9 @@ http.interceptors.response.use(function (response) {
     return Promise.reject(error);
 });
 
-
-export const get = (url: string, {params = ''}) => {
-    return axios({
+// @ts-ignore
+export const get = (url: string, params: object = {}) => {
+    return http({
         method: "get",
         url,
         params,
@@ -39,11 +39,11 @@ export const get = (url: string, {params = ''}) => {
             return err.message;
         });
 };
-export const del = (url: string, {params = ''}) => {
-    return axios({
+// @ts-ignore
+export const del = (url: string) => {
+    return http({
         method: "delete",
         url,
-        params,
     })
         .then((result) => {
             return result.data;
@@ -67,7 +67,7 @@ export const post = ({url}, params: object) => {
         });
 };
 // @ts-ignore
-export const put = ({url}, params: object) => {
+export const puts = ({url}, params: object) => {
     return http({
         method: "put",
         url,
