@@ -1,0 +1,28 @@
+GET http://localhost:8080/category
+Accept: application/json
+
+<> 2021-01-20T145552.404.html
+
+###
+
+GET http://localhost:8080/category
+Accept: application/json
+
+<> 2021-01-20T145515.404.html
+
+###
+
+GET http://localhost:8080/category
+Accept: application/json
+
+<> 2021-01-20T145510.404.html
+
+###
+
+GET http://localhost:8080/category/lish
+Accept: application/json
+
+<> 2021-01-20T145104.404.html
+
+###
+

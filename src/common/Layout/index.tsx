@@ -29,17 +29,18 @@ const LayoutWrap: FunctionComponent<{}> = (props) => {
                         统计
                     </Menu.Item>
 
-
-                    <Menu.Item
-                        key="/admin/dishes"
-                        icon={<ShopOutlined/>}
-                        onClick={() => {
-                            history.push('/admin/dishes')
-                        }}
-                    >
-                        菜品
-                    </Menu.Item>
-
+                    <SubMenu key="sub122" icon={<ShopOutlined/>} title="菜品">
+                        <Menu.Item key="/admin/dishes"
+                                   onClick={() => {
+                                       history.push('/admin/dishes')
+                                   }}
+                        >菜品列表</Menu.Item>
+                        <Menu.Item key="/admin/dishes/category"
+                                   onClick={() => {
+                                       history.push('/admin/dishes/category')
+                                   }}
+                        >菜品分类</Menu.Item>
+                    </SubMenu>
 
                     <Menu.Item
                         key="/admin/staffs"
@@ -57,9 +58,9 @@ const LayoutWrap: FunctionComponent<{}> = (props) => {
                         <Menu.Item key="8">后厨订单</Menu.Item>
                     </SubMenu>
 
-                    <SubMenu key="sub2" icon={<TeamOutlined/>} title="Team">
-                        <Menu.Item key="6">Team 1</Menu.Item>
-                        <Menu.Item key="8">Team 2</Menu.Item>
+                    <SubMenu key="sub2453" icon={<TeamOutlined/>} title="Team">
+                        <Menu.Item key="1236">Team 1</Menu.Item>
+                        <Menu.Item key="8123">Team 2</Menu.Item>
                     </SubMenu>
                     <Menu.Item key="9" icon={<FileOutlined/>}>
                         Files

@@ -1,4 +1,5 @@
 const {Category} = require('../../../model/Category/Category')
+const {Dish} = require('../../../model/Dish/Dish')
 const pagination = require('mongoose-sex-page')
 
 export = async (req, res) => {
@@ -9,8 +10,7 @@ export = async (req, res) => {
     if (!page || typeof page !== 'number') page = 1
     if (pagesize == null) pagesize = 10
 
-    // console.log(page,pagesize)
-    const category = await pagination(Category).find(condition).page(page).size(pagesize).exec()
+    const category = await pagination(Category).find(condition).page(page).size(pagesize).populate('dish').exec()
 
     res.send({category, meta: {status: 200, message: '查询成功'}})
 }

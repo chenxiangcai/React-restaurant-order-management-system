@@ -31,6 +31,19 @@ export type DELDISH_URL = typeof DELDISH_URL
 export const EDITDISH_URL = '/dish/edit'
 export type EDITDISH_URL = typeof EDITDISH_URL
 
+// 分类模块
+export const GETCATELIST_URL = '/category'
+export type GETCATELIST_URL = typeof GETCATELIST_URL
+
+export const ADDCATELIST_URL = '/category/add'
+export type ADDCATELIST_URL = typeof ADDCATELIST_URL
+
+export const EDITCATE_URL = '/category/edit'
+export type EDITCATE_URL = typeof EDITCATE_URL
+
+export const DELCATE_URL = '/category/del'
+export type DELCATE_URL = typeof DELCATE_URL
+
 // 图片上传地址
 export const UPPIC_URL = 'http://localhost:8080/upload'
 export type UPPIC_URL = typeof UPPIC_URL

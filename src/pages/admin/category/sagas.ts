@@ -1,0 +1,81 @@
+import {put} from 'redux-saga/effects'
+import * as types from './action'
+import {del, get, post, puts} from '../../../utils/http'
+import {} from "../../../common/api";
+
+
+// function* delDish(action: any) {
+//     try {
+//         console.log('删除菜品saga执行')
+//         const result = yield del(`${action.url}/${action.data}`)
+//         if (result.status === 200) {
+//             console.log('发送菜品删除成功saga')
+//             yield put({type: types.DELDISHSUC, data: result})
+//             console.log('删除菜品成功')
+//             yield put({type: types.GETDISHLIST, url: DISHLIST})
+//             console.log('发送了获取列表的请求')
+//         } else {
+//             yield put({type: types.DELDISHERR, data: result})
+//         }
+//     } catch (e) {
+//         // yield put({type: types.NETERROR})
+//     }
+// }
+//
+// function* addDish(action: any) {
+//     try {
+//         console.log('新增菜品saga执行')
+//         const result = yield post({
+//             url: action.url
+//         }, action.data)
+//         console.log(result)
+//         if (result.status && result.status !== -7) {
+//             yield put({type: types.ADDDISHSUC, data: result})
+//             console.log('添加菜品成功')
+//             yield put({type: types.GETDISHLIST, url: DISHLIST})
+//             console.log('发送了获取列表的请求')
+//         } else {
+//             console.log('发送了添加错误的action')
+//             yield put({type: types.ADDDISHERR, data: result})
+//         }
+//     } catch (e) {
+//         // todo 网络错误提示
+//         // yield put({type: types.NETERROR})
+//     }
+// }
+
+function* toggleCatePage(action: any) {
+    try {
+        console.log('分类列表页面saga执行')
+        const result = yield get(action.url, action.data)
+        console.log(result)
+        if (result.meta.status === 200) {
+            console.log('分类列表获取成功')
+            yield put({type: types.GETCATELISTSUC, data: result})
+            console.log('发送了分类列表获取成功')
+        } else {
+            // yield put({type: types.GETFAILED, data: result})
+        }
+    } catch (e) {
+        // yield put({type: types.NETERROR})
+    }
+}
+
+// function* editDish(action: any) {
+//     try {
+//         console.log('修改菜品信息saga执行')
+//         const result = yield puts({
+//             url: action.url
+//         }, action.data)
+//         if (result.meta.status === 200) {
+//             console.log('修改菜品成功')
+//             yield put({type: types.EDITDISHDISHSUC, data: result})
+//             yield put({type: types.GETDISHLIST, url: DISHLIST})
+//             console.log('发送了获取列表的请求')
+//         }
+//     } catch (e) {
+//
+//     }
+// }
+
+export {types, toggleCatePage};

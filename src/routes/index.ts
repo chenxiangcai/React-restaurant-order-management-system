@@ -8,6 +8,7 @@ import {Login} from "../pages/login";
 import Dashboard from "../pages/admin/dashboard";
 import {Staff} from "../pages/admin/staff";
 import {Dish} from "../pages/admin/dish";
+import {Category} from "../pages/admin/category";
 
 // 普通路由
 export const normalRoute = [{
@@ -26,5 +27,9 @@ export const adminRoute = [{
 }, {
     path: '/admin/dishes',
     component: Dish,
+    exact: true
+}, {
+    path: '/admin/dishes/category',
+    component: Category,
     exact: true
 }]
