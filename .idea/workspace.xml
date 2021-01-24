@@ -1,13 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="6d91caa1-987f-4124-9db6-b0e688ade05a" name="默认更改列表" comment="feat 后台页面框架、路由配置">
+    <list default="true" id="6d91caa1-987f-4124-9db6-b0e688ade05a" name="默认更改列表" comment="0">
+      <change afterPath="$PROJECT_DIR$/.idea/shelf/_2021_1_20_16_35____.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/shelf/_2021_1_20_16_45____.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/shelf/_2021_1_20_16_45____1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/shelf/在进行检出之前于_2021_1_20_16_35_取消提交了变更_[默认更改列表]/shelved.patch" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/shelf/在进行检出之前于_2021_1_20_16_45_取消提交了变更_[默认更改列表]/shelved.patch" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/shelf/在进行检出之前于_2021_1_20_16_45_取消提交了变更_[默认更改列表]1/shelved.patch" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/routes/guard.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.eslintcache" beforeDir="false" afterPath="$PROJECT_DIR$/.eslintcache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/app.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/app.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/model/User/User.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/model/User/User.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/routes/admin/login/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/routes/admin/login/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/routes/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/routes/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/common/api/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/api/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/login/Login.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/login/Login.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/login/actions.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/login/actions.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/login/reducers.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/login/reducers.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/login/sagas.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/login/sagas.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/storage.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/storage.ts" afterDir="false" />
     </list>
     <list id="659ec1d8-9937-4a25-b75f-d5a3890c13fc" name="feat 后台服务器" comment="feat 后台服务器" />
     <option name="SHOW_DIALOG" value="false" />
@@ -32,6 +47,32 @@
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitToolBoxStore">
+    <option name="projectConfigVersion" value="2" />
+    <option name="recentBranches">
+      <RecentBranches>
+        <option name="branchesForRepo">
+          <list>
+            <RecentBranchesForRepo>
+              <option name="branches">
+                <list>
+                  <RecentBranch>
+                    <option name="branchName" value="Login" />
+                    <option name="lastUsedInstant" value="1611132394" />
+                  </RecentBranch>
+                  <RecentBranch>
+                    <option name="branchName" value="master" />
+                    <option name="lastUsedInstant" value="1611132393" />
+                  </RecentBranch>
+                </list>
+              </option>
+              <option name="repositoryRootUrl" value="file://$PROJECT_DIR$" />
+            </RecentBranchesForRepo>
+          </list>
+        </option>
+      </RecentBranches>
+    </option>
   </component>
   <component name="GithubPullRequestsUISettings">
     <option name="hiddenUrls">
@@ -92,6 +133,7 @@
       <option name="extraTypeScriptOptions" value="" />
       <option name="scriptName" value="$PROJECT_DIR$/server/app.ts" />
       <option name="programParameters" value="" />
+      <option name="tsnodePackage" value="D:\Users\Chen\WebstormProjects\restaurant-ordering-system\server\node_modules\ts-node" />
       <method v="2" />
     </configuration>
     <configuration name="connect.ts" type="TypeScriptProgramRunner" factoryName="TypeScript" temporary="true">
@@ -140,6 +182,8 @@
       <workItem from="1608045137248" duration="134000" />
       <workItem from="1608103629822" duration="65000" />
       <workItem from="1608103702227" duration="15521000" />
+      <workItem from="1611225756061" duration="10373000" />
+      <workItem from="1611470220987" duration="11970000" />
     </task>
     <task id="LOCAL-00001" summary="init 初始化项目">
       <created>1607945320341</created>
@@ -169,7 +213,14 @@
       <option name="project" value="LOCAL" />
       <updated>1607957071525</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="0">
+      <created>1611132499312</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1611132499312</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -215,6 +266,7 @@
     <MESSAGE value="feat 后台服务器" />
     <MESSAGE value="feat 登录页" />
     <MESSAGE value="feat 后台页面框架、路由配置" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat 后台页面框架、路由配置" />
+    <MESSAGE value="0" />
+    <option name="LAST_COMMIT_MESSAGE" value="0" />
   </component>
 </project>

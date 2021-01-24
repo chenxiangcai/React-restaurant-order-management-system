@@ -1,5 +1,6 @@
-import {ERRORLOGIN, NETERROR, SUCCESSLOGIN, TOLOGIN} from "./actions";
-import {setStore} from "../../utils/storage";
+import { ERRORLOGIN, NETERROR, SUCCESSLOGIN, TOLOGIN } from "./actions";
+import { setStore } from "../../utils/storage";
+
 const defaultState = {
     //登录状态
     status: 0
@@ -12,12 +13,27 @@ export default (state = defaultState, action: any) => {
                 ...state, action,
             };
         case SUCCESSLOGIN:
-            const {token} = action.data
+            const { token } = action.data
+            const { role } = action.data.userInfo
             setStore('token', token)
-            return {
-                ...state,
-                status: 1,
+            switch (role) {
+                case 'admin':
+                    return {
+                        ...state,
+                        status: 1,
+                    }
+                case 'chef':
+                    return {
+                        ...state,
+                        status: 2,
+                    }
+                case 'waiter':
+                    return {
+                        ...state,
+                        status: 3,
+                    }
             }
+            return {}
         case ERRORLOGIN:
             return {
                 ...state,
