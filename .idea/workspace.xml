@@ -1,21 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="6d91caa1-987f-4124-9db6-b0e688ade05a" name="默认更改列表" comment="feat 新增菜品列表页">
-      <change afterPath="$PROJECT_DIR$/src/pages/admin/category/Category.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/admin/category/action.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/admin/category/index.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/admin/category/reducers.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/admin/category/sagas.ts" afterDir="false" />
+    <list default="true" id="6d91caa1-987f-4124-9db6-b0e688ade05a" name="默认更改列表" comment="init category">
       <change beforePath="$PROJECT_DIR$/.eslintcache" beforeDir="false" afterPath="$PROJECT_DIR$/.eslintcache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/_2021_1_20_09_03____.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/_2021_1_20_09_03____.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/_2021_1_20_09_05____.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/_2021_1_20_09_05____.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/model/Category/Category.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/model/Category/Category.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/routes/admin/category/list.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/routes/admin/category/list.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/common/Layout/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/Layout/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/common/api/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/api/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store/reducers.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/reducers.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store/sagas.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/sagas.ts" afterDir="false" />
     </list>
     <list id="659ec1d8-9937-4a25-b75f-d5a3890c13fc" name="feat 后台服务器" comment="feat 后台服务器" />
     <option name="SHOW_DIALOG" value="false" />
@@ -62,7 +52,7 @@
                 <list>
                   <RecentBranch>
                     <option name="branchName" value="category" />
-                    <option name="lastUsedInstant" value="1611104865" />
+                    <option name="lastUsedInstant" value="1611490272" />
                   </RecentBranch>
                   <RecentBranch>
                     <option name="branchName" value="master" />
@@ -235,7 +225,6 @@
       <option name="extraTypeScriptOptions" value="" />
       <option name="scriptName" value="$PROJECT_DIR$/server/app.ts" />
       <option name="programParameters" value="" />
-      <option name="tsnodePackage" value="D:\Users\Chen\WebstormProjects\restaurant-ordering-system\server\node_modules\ts-node" />
       <method v="2" />
     </configuration>
     <configuration name="npm start" type="js.build_tools.npm">
@@ -250,10 +239,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="HTTP 请求.rest-api_11#1" />
-        <item itemvalue="TypeScript.app.ts" />
         <item itemvalue="TypeScript.User.ts" />
         <item itemvalue="TypeScript.Category.ts" />
+        <item itemvalue="TypeScript.app.ts" />
+        <item itemvalue="HTTP 请求.rest-api_11#1" />
+        <item itemvalue="HTTP 请求.rest-api_11#1" />
       </list>
     </recent_temporary>
   </component>
@@ -438,7 +428,8 @@
     <MESSAGE value="feat 员工列表页删除功能" />
     <MESSAGE value="feat 员工列表页编辑功能" />
     <MESSAGE value="feat 菜品列表页相关构建" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat 菜品列表页相关构建" />
+    <MESSAGE value="init category" />
+    <option name="LAST_COMMIT_MESSAGE" value="init category" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
