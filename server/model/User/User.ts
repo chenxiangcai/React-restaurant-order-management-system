@@ -35,6 +35,7 @@ const userSchema: object = new Schema({
     }
 }, {versionKey: false}) //忽略增加的文档在数据库中的__v字段
 
+// @ts-ignore
 const User = model('User', userSchema);
 
 /*//初始化管理员

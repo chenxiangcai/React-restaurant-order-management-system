@@ -40,8 +40,12 @@ const Login: FC<Props> = (props) => {
         if (props.status !== 0) {
             const {status, history} = props
             switch (status) {
-                case 1:
+                case 1: //管理员
                     return  message.success('登录成功！') && history.replace('/admin/dashboard') ;
+                case 2: //厨师
+                    return  message.success('登录成功！') && history.replace('/chef') ;
+                case 3: //服务员
+                    return  message.success('登录成功！') && history.replace('/waiter') ;
                 case -1:
                     return message.warning('网络连接错误！');
                 default:

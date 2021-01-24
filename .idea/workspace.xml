@@ -1,11 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="6d91caa1-987f-4124-9db6-b0e688ade05a" name="默认更改列表" comment="init category">
+    <list default="true" id="6d91caa1-987f-4124-9db6-b0e688ade05a" name="默认更改列表" comment="0">
+      <change afterPath="$PROJECT_DIR$/.idea/shelf/_2021_1_20_16_35____.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/shelf/_2021_1_20_16_45____.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/shelf/_2021_1_20_16_45____1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/shelf/在进行检出之前于_2021_1_20_16_35_取消提交了变更_[默认更改列表]/shelved.patch" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/shelf/在进行检出之前于_2021_1_20_16_45_取消提交了变更_[默认更改列表]/shelved.patch" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/shelf/在进行检出之前于_2021_1_20_16_45_取消提交了变更_[默认更改列表]1/shelved.patch" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/routes/guard.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.eslintcache" beforeDir="false" afterPath="$PROJECT_DIR$/.eslintcache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/_2021_1_20_09_03____.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/_2021_1_20_09_03____.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/_2021_1_20_09_05____.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/_2021_1_20_09_05____.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/app.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/app.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/model/User/User.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/model/User/User.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/routes/admin/login/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/routes/admin/login/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/routes/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/routes/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/common/api/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/api/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/login/Login.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/login/Login.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/login/actions.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/login/actions.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/login/reducers.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/login/reducers.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/login/sagas.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/login/sagas.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/storage.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/storage.ts" afterDir="false" />
     </list>
     <list id="659ec1d8-9937-4a25-b75f-d5a3890c13fc" name="feat 后台服务器" comment="feat 后台服务器" />
     <option name="SHOW_DIALOG" value="false" />
@@ -17,10 +34,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="tsconfig.json" />
-        <option value="JavaScript File" />
-        <option value="HTTP Private Environment File" />
         <option value="TypeScript JSX File" />
-        <option value="HTML File" />
+        <option value="JavaScript File" />
         <option value="TypeScript File" />
       </list>
     </option>
@@ -33,14 +48,6 @@
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitSEFilterConfiguration">
-    <file-type-list>
-      <filtered-out-file-type name="LOCAL_BRANCH" />
-      <filtered-out-file-type name="REMOTE_BRANCH" />
-      <filtered-out-file-type name="TAG" />
-      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
-    </file-type-list>
-  </component>
   <component name="GitToolBoxStore">
     <option name="projectConfigVersion" value="2" />
     <option name="recentBranches">
@@ -51,16 +58,12 @@
               <option name="branches">
                 <list>
                   <RecentBranch>
-                    <option name="branchName" value="category" />
-                    <option name="lastUsedInstant" value="1611490272" />
+                    <option name="branchName" value="Login" />
+                    <option name="lastUsedInstant" value="1611132394" />
                   </RecentBranch>
                   <RecentBranch>
                     <option name="branchName" value="master" />
-                    <option name="lastUsedInstant" value="1610177537" />
-                  </RecentBranch>
-                  <RecentBranch>
-                    <option name="branchName" value="staff" />
-                    <option name="lastUsedInstant" value="1610177517" />
+                    <option name="lastUsedInstant" value="1611132393" />
                   </RecentBranch>
                 </list>
               </option>
@@ -89,21 +92,16 @@
   <component name="PropertiesComponent">
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$USER_HOME$/Desktop/supplier-portal/supplier-portal" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/assets" />
     <property name="node.js.detected.package.eslint" value="true" />
-    <property name="node.js.detected.package.standard" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
-    <property name="node.js.path.for.package.standard" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
-    <property name="node.js.selected.package.standard" value="" />
     <property name="nodejs_interpreter_path" value="node" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="restartRequiresConfirmation" value="false" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="settings.editor.selected.configurable" value="editing.templates" />
     <property name="ts.external.directory.path" value="D:\Users\Chen\WebstormProjects\restaurant-ordering-system\node_modules\typescript\lib" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
@@ -114,106 +112,16 @@
       <recent name="D:\Users\Chen\WebstormProjects\restaurant-ordering-system\server\config" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="D:\Users\Chen\WebstormProjects\restaurant-ordering-system\server\routes\admin" />
-      <recent name="D:\Users\Chen\WebstormProjects\restaurant-ordering-system\src\common" />
-      <recent name="D:\Users\Chen\WebstormProjects\restaurant-ordering-system\src\pages\admin\dish\Standing" />
-      <recent name="D:\Users\Chen\WebstormProjects\restaurant-ordering-system\server\routes" />
-      <recent name="D:\Users\Chen\WebstormProjects\restaurant-ordering-system" />
+      <recent name="D:\Users\Chen\WebstormProjects\restaurant-ordering-system\src" />
+      <recent name="D:\Users\Chen\WebstormProjects\restaurant-ordering-system\server\model\Income" />
+      <recent name="D:\Users\Chen\WebstormProjects\restaurant-ordering-system\server\model\User" />
     </key>
   </component>
-  <component name="RestClientSettings">
-    <option name="REQUEST_HISTORY">
-      <list>
-        <RestClientRequest>
-          <option name="httpMethod" value="GET" />
-          <option name="urlBase" value="http://localhost:8080/category" />
-          <option name="urlPath" value="" />
-          <option name="headers">
-            <list>
-              <KeyValuePair>
-                <option name="key" value="Accept" />
-                <option name="value" value="application/json" />
-              </KeyValuePair>
-            </list>
-          </option>
-          <option name="textToSend" value="" />
-          <option name="filesToSend" value="" />
-        </RestClientRequest>
-        <RestClientRequest>
-          <option name="httpMethod" value="GET" />
-          <option name="urlBase" value="http://localhost:8080/category/lish" />
-          <option name="urlPath" value="" />
-          <option name="headers">
-            <list>
-              <KeyValuePair>
-                <option name="key" value="Accept" />
-                <option name="value" value="application/json" />
-              </KeyValuePair>
-            </list>
-          </option>
-          <option name="textToSend" value="" />
-          <option name="filesToSend" value="" />
-        </RestClientRequest>
-        <RestClientRequest>
-          <option name="httpMethod" value="GET" />
-          <option name="urlBase" value="http://localhost:8080/dish" />
-          <option name="urlPath" value="" />
-          <option name="headers">
-            <list>
-              <KeyValuePair>
-                <option name="key" value="Accept" />
-                <option name="value" value="application/json" />
-              </KeyValuePair>
-            </list>
-          </option>
-          <option name="textToSend" value="" />
-          <option name="filesToSend" value="" />
-        </RestClientRequest>
-        <RestClientRequest>
-          <option name="httpMethod" value="GET" />
-          <option name="urlBase" value="http://localhost:8080/staff" />
-          <option name="urlPath" value="" />
-          <option name="headers">
-            <list>
-              <KeyValuePair>
-                <option name="key" value="Accept" />
-                <option name="value" value="application/json" />
-              </KeyValuePair>
-            </list>
-          </option>
-          <option name="textToSend" value="" />
-          <option name="filesToSend" value="" />
-        </RestClientRequest>
-      </list>
-    </option>
-  </component>
-  <component name="RunManager" selected="npm.npm start">
-    <configuration name="rest-api_11#1" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" path="$APPLICATION_CONFIG_DIR$/scratches/rest-api_11.http" runType="运行单个请求">
-      <method v="2" />
-    </configuration>
+  <component name="RunManager" selected="TypeScript.app.ts">
     <configuration name="Debug Application" type="JavascriptDebugType" uri="http://localhost:3000">
       <method v="2" />
     </configuration>
-    <configuration name="Category.ts" type="TypeScriptProgramRunner" factoryName="TypeScript" temporary="true">
-      <module name="restaurant-ordering-system" />
-      <option name="interpreterRef" value="project" />
-      <option name="interpreterOptions" value="" />
-      <option name="workingDirectory" value="$PROJECT_DIR$/server/model/Category" />
-      <option name="tsconfigFile" value="" />
-      <option name="extraTypeScriptOptions" value="" />
-      <option name="scriptName" value="$PROJECT_DIR$/server/model/Category/Category.ts" />
-      <option name="programParameters" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="User.ts" type="TypeScriptProgramRunner" factoryName="TypeScript" temporary="true">
-      <module name="restaurant-ordering-system" />
-      <option name="interpreterRef" value="project" />
-      <option name="interpreterOptions" value="" />
-      <option name="workingDirectory" value="$PROJECT_DIR$/server/model/User" />
-      <option name="tsconfigFile" value="" />
-      <option name="extraTypeScriptOptions" value="" />
-      <option name="scriptName" value="$PROJECT_DIR$/server/model/User/User.ts" />
-      <option name="programParameters" value="" />
+    <configuration name="app.ts" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/server/app.ts" working-dir="$PROJECT_DIR$/server">
       <method v="2" />
     </configuration>
     <configuration name="app.ts" type="TypeScriptProgramRunner" factoryName="TypeScript" temporary="true">
@@ -224,6 +132,18 @@
       <option name="tsconfigFile" value="" />
       <option name="extraTypeScriptOptions" value="" />
       <option name="scriptName" value="$PROJECT_DIR$/server/app.ts" />
+      <option name="programParameters" value="" />
+      <option name="tsnodePackage" value="D:\Users\Chen\WebstormProjects\restaurant-ordering-system\server\node_modules\ts-node" />
+      <method v="2" />
+    </configuration>
+    <configuration name="connect.ts" type="TypeScriptProgramRunner" factoryName="TypeScript" temporary="true">
+      <module name="restaurant-ordering-system" />
+      <option name="interpreterRef" value="project" />
+      <option name="interpreterOptions" value="" />
+      <option name="workingDirectory" value="$PROJECT_DIR$/server/model" />
+      <option name="tsconfigFile" value="" />
+      <option name="extraTypeScriptOptions" value="" />
+      <option name="scriptName" value="$PROJECT_DIR$/server/model/connect.ts" />
       <option name="programParameters" value="" />
       <method v="2" />
     </configuration>
@@ -239,11 +159,9 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="TypeScript.User.ts" />
-        <item itemvalue="TypeScript.Category.ts" />
         <item itemvalue="TypeScript.app.ts" />
-        <item itemvalue="HTTP 请求.rest-api_11#1" />
-        <item itemvalue="HTTP 请求.rest-api_11#1" />
+        <item itemvalue="Node.js.app.ts" />
+        <item itemvalue="TypeScript.connect.ts" />
       </list>
     </recent_temporary>
   </component>
@@ -264,55 +182,8 @@
       <workItem from="1608045137248" duration="134000" />
       <workItem from="1608103629822" duration="65000" />
       <workItem from="1608103702227" duration="15521000" />
-      <workItem from="1608433426928" duration="27553000" />
-      <workItem from="1608513659579" duration="27691000" />
-      <workItem from="1608684700427" duration="3648000" />
-      <workItem from="1608688500450" duration="6097000" />
-      <workItem from="1608699625515" duration="69000" />
-      <workItem from="1608800275716" duration="995000" />
-      <workItem from="1608857216593" duration="1894000" />
-      <workItem from="1608883470677" duration="4116000" />
-      <workItem from="1608890989508" duration="9012000" />
-      <workItem from="1608954630160" duration="34938000" />
-      <workItem from="1609042117015" duration="417000" />
-      <workItem from="1609042580101" duration="30543000" />
-      <workItem from="1609115704303" duration="13444000" />
-      <workItem from="1609202357916" duration="16000" />
-      <workItem from="1609202415828" duration="4612000" />
-      <workItem from="1609217235947" duration="2345000" />
-      <workItem from="1609239235338" duration="12125000" />
-      <workItem from="1609289042397" duration="4261000" />
-      <workItem from="1609324449303" duration="6441000" />
-      <workItem from="1609332187346" duration="4714000" />
-      <workItem from="1609375855849" duration="3203000" />
-      <workItem from="1609402605782" duration="1996000" />
-      <workItem from="1609504578034" duration="5500000" />
-      <workItem from="1609559625926" duration="7783000" />
-      <workItem from="1609647029098" duration="1032000" />
-      <workItem from="1609721487714" duration="1863000" />
-      <workItem from="1609739678014" duration="10767000" />
-      <workItem from="1609845794064" duration="10071000" />
-      <workItem from="1609893584800" duration="2122000" />
-      <workItem from="1610019473190" duration="2556000" />
-      <workItem from="1610066848415" duration="383000" />
-      <workItem from="1610168086318" duration="709000" />
-      <workItem from="1610168847060" duration="7804000" />
-      <workItem from="1610178318603" duration="10059000" />
-      <workItem from="1610245426387" duration="25518000" />
-      <workItem from="1610325668172" duration="1395000" />
-      <workItem from="1610450850505" duration="7670000" />
-      <workItem from="1610536124968" duration="9135000" />
-      <workItem from="1610691623571" duration="9694000" />
-      <workItem from="1610765711033" duration="1403000" />
-      <workItem from="1610768078553" duration="23955000" />
-      <workItem from="1610873261405" duration="14370000" />
-      <workItem from="1610930176272" duration="6710000" />
-      <workItem from="1610967387319" duration="6717000" />
-      <workItem from="1611018305048" duration="1881000" />
-      <workItem from="1611035109931" duration="3590000" />
-      <workItem from="1611051288394" duration="10128000" />
-      <workItem from="1611102997870" duration="1120000" />
-      <workItem from="1611121606322" duration="9650000" />
+      <workItem from="1611225756061" duration="10373000" />
+      <workItem from="1611470220987" duration="11970000" />
     </task>
     <task id="LOCAL-00001" summary="init 初始化项目">
       <created>1607945320341</created>
@@ -342,42 +213,14 @@
       <option name="project" value="LOCAL" />
       <updated>1607957071525</updated>
     </task>
-    <task id="LOCAL-00005" summary="perf 优化本地存储">
-      <created>1608434439690</created>
+    <task id="LOCAL-00005" summary="0">
+      <created>1611132499312</created>
       <option name="number" value="00005" />
       <option name="presentableId" value="LOCAL-00005" />
       <option name="project" value="LOCAL" />
-      <updated>1608434439690</updated>
+      <updated>1611132499312</updated>
     </task>
-    <task id="LOCAL-00006" summary="feat 员工列表页列表、新增功能">
-      <created>1609163834655</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1609163834655</updated>
-    </task>
-    <task id="LOCAL-00007" summary="feat 员工列表页删除功能">
-      <created>1609333992531</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1609333992531</updated>
-    </task>
-    <task id="LOCAL-00008" summary="feat 员工列表页编辑功能">
-      <created>1609894150763</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1609894150763</updated>
-    </task>
-    <task id="LOCAL-00009" summary="feat 菜品列表页相关构建">
-      <created>1610692567028</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1610692567028</updated>
-    </task>
-    <option name="localTasksCounter" value="10" />
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -404,7 +247,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="master" />
+                        <option value="Login" />
                       </list>
                     </value>
                   </entry>
@@ -423,16 +266,7 @@
     <MESSAGE value="feat 后台服务器" />
     <MESSAGE value="feat 登录页" />
     <MESSAGE value="feat 后台页面框架、路由配置" />
-    <MESSAGE value="perf 优化本地存储" />
-    <MESSAGE value="feat 员工列表页列表、新增功能" />
-    <MESSAGE value="feat 员工列表页删除功能" />
-    <MESSAGE value="feat 员工列表页编辑功能" />
-    <MESSAGE value="feat 菜品列表页相关构建" />
-    <MESSAGE value="init category" />
-    <option name="LAST_COMMIT_MESSAGE" value="init category" />
-  </component>
-  <component name="XSLT-Support.FileAssociations.UIState">
-    <expand />
-    <select />
+    <MESSAGE value="0" />
+    <option name="LAST_COMMIT_MESSAGE" value="0" />
   </component>
 </project>

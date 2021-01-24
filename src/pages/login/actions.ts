@@ -17,3 +17,8 @@ export type ERRORLOGIN = typeof ERRORLOGIN
 export const NETERROR = 'NETERROR'
 export type NETERROR = typeof NETERROR
 
+export const CHEFLOGINSUC = 'chefloginsuc';
+export type CHEFLOGINSUC = typeof CHEFLOGINSUC
+
+export const WAITERLOGINSUC = 'waiterloginsuc';
+export type WAITERLOGINSUC = typeof WAITERLOGINSUC

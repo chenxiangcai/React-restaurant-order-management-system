@@ -3,32 +3,32 @@ export const LoginApi = '/login'
 export type LoginApi = typeof LoginApi
 
 // 员工模块
-export const STAFFLIST = '/staff'
+export const STAFFLIST = '/admin/staff'
 export type STAFFLIST = typeof STAFFLIST
 
-export const STAFFADD = '/staff/add'
+export const STAFFADD = '/admin/staff/add'
 export type STAFFADD = typeof STAFFADD
 
-export const DELSTAFF_URL = '/staff'
+export const DELSTAFF_URL = '/admin/staff'
 export type DELSTAFF_URL = typeof DELSTAFF_URL
 
-export const EDITSTAFF_URL = '/staff/edit'
+export const EDITSTAFF_URL = '/admin/staff/edit'
 export type EDITSTAFF_URL = typeof EDITSTAFF_URL
 
 // 菜品模块
-export const DISHLIST = '/dish'
+export const DISHLIST = '/admin/dish'
 export type DISHLIST = typeof DISHLIST
 
-export const CATELIST_URL = '/category'
+export const CATELIST_URL = '/admin/category'
 export type CATELIST_URL = typeof CATELIST_URL
 
-export const ADDDISH_URL = '/dish/add'
+export const ADDDISH_URL = '/admin/dish/add'
 export type ADDDISH_URL = typeof ADDDISH_URL
 
-export const DELDISH_URL = '/dish/del'
+export const DELDISH_URL = '/admin/dish/del'
 export type DELDISH_URL = typeof DELDISH_URL
 
-export const EDITDISH_URL = '/dish/edit'
+export const EDITDISH_URL = '/admin/dish/edit'
 export type EDITDISH_URL = typeof EDITDISH_URL
 
 // 分类模块

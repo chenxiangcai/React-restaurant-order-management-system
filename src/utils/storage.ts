@@ -13,3 +13,7 @@ export const removeStore = (name: string): string | undefined => {
     if (!name) return
     window.sessionStorage.removeItem(name)
 }
+
+export const isLogined = ()=>{
+    return !!getStore('token');
+}
