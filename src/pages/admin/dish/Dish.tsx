@@ -52,6 +52,7 @@ interface Dishes {
   category: {
     _id: string,
     foodTypeName: string
+    [prop: string]: any
   },
   number: number,
   price: number,
@@ -114,7 +115,7 @@ const Dish: FunctionComponent<Props> = (props) => {
       dataIndex: 'category',
       render: (value, records, index) => (
           <>
-            {records.category.foodTypeName}
+            {records?.category?.foodTypeName}
           </>
       ),
     },
@@ -171,8 +172,8 @@ const Dish: FunctionComponent<Props> = (props) => {
       picture: records.picture,
       number: records.number,
       price: records.price,
-      categoryId: records.category._id,
-      foodTypeName: records.category.foodTypeName
+      categoryId: records?.category?._id,
+      foodTypeName: records?.category?.foodTypeName
     })
 
   }
@@ -297,7 +298,7 @@ const Dish: FunctionComponent<Props> = (props) => {
       value.picture = dishImgUrl
       props.addDish(value)
     } else {
-      value.categoryId = editValue.categoryId
+      // value.categoryId = editValue.categoryId
       value._id = editValue._id
       value.picture = dishImgUrl
       console.log(value)

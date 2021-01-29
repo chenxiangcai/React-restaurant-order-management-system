@@ -15,7 +15,7 @@ const cateSchema: object = new Schema({
         type: Schema.Types.ObjectId,
         ref:'User',
         required: [true,'当前没有分类添加发起者']
-    }
+    },
 }, {versionKey: false}) //忽略增加的文档在数据库中的__v字段
 
 const Category = model('Category', cateSchema);

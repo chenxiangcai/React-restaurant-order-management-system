@@ -5,11 +5,11 @@ export const setStore = (name: string, content: any) => {
     }
     window.sessionStorage.setItem(name, content)
 }
-export const getStore = (name: string): string | null | undefined => {
+export const getStore = (name: string): any => {
     if (!name) return
     return window.sessionStorage.getItem(name)
 }
-export const removeStore = (name: string): string | undefined => {
+export const removeStore = (name: string): any=> {
     if (!name) return
     window.sessionStorage.removeItem(name)
 }

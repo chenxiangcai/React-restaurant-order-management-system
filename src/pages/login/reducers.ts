@@ -16,6 +16,7 @@ export default (state = defaultState, action: any) => {
             const { token } = action.data
             const { role } = action.data.userInfo
             setStore('token', token)
+            setStore('userInfo',action.data.userInfo)
             switch (role) {
                 case 'admin':
                     return {

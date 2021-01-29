@@ -32,16 +32,16 @@ export const EDITDISH_URL = '/admin/dish/edit'
 export type EDITDISH_URL = typeof EDITDISH_URL
 
 // 分类模块
-export const GETCATELIST_URL = '/category'
+export const GETCATELIST_URL = '/admin/category'
 export type GETCATELIST_URL = typeof GETCATELIST_URL
 
-export const ADDCATELIST_URL = '/category/add'
+export const ADDCATELIST_URL = '/admin/category/add'
 export type ADDCATELIST_URL = typeof ADDCATELIST_URL
 
-export const EDITCATE_URL = '/category/edit'
+export const EDITCATE_URL = '/admin/category/edit'
 export type EDITCATE_URL = typeof EDITCATE_URL
 
-export const DELCATE_URL = '/category/del'
+export const DELCATE_URL = '/admin/category/del'
 export type DELCATE_URL = typeof DELCATE_URL
 
 // 图片上传地址

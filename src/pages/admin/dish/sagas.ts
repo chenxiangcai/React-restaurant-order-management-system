@@ -51,8 +51,6 @@ function* toggleDishPage(action: any) {
         const cate_result = yield get(CATELIST_URL)
         if (result.meta.status === 200) {
             console.log('菜品列表获取成功')
-            yield put({type: types.GETCATELIST, data: result})
-            console.log('发送了获取分类列表')
             yield put({type: types.GETSUCCESS, data: result})
             console.log('发送获取成功')
         } else {

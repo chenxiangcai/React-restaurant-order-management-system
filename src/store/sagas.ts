@@ -13,7 +13,7 @@ import {sagas as category} from "../pages/admin/category";
 const {TOLOGIN} = login.types;
 const {GETLIST, ADDSTAFF, TOGGLEPAGE, DELSTAFF, EDITSTAFF} = staff.types;
 const {GETDISHLIST, ADDDISH, DELDISH, EDITDISH} = dish.types
-const {GETCATELISTS} = category.types
+const {GETCATELISTS,CATEADD } = category.types
 
 function* sagas() {
     console.log('saga总监听执行')
@@ -35,6 +35,7 @@ function* sagas() {
 
     // 分类
     yield takeEvery(GETCATELISTS, category.toggleCatePage)
+    yield takeEvery(CATEADD, category.addCate)
 }
 
 export default sagas;

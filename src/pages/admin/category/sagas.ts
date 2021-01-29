@@ -1,7 +1,7 @@
-import {put} from 'redux-saga/effects'
+import { put } from 'redux-saga/effects'
 import * as types from './action'
-import {del, get, post, puts} from '../../../utils/http'
-import {} from "../../../common/api";
+import { get, post } from '../../../utils/http'
+import { GETCATELIST_URL } from "../../../common/api";
 
 
 // function* delDish(action: any) {
@@ -22,43 +22,43 @@ import {} from "../../../common/api";
 //     }
 // }
 //
-// function* addDish(action: any) {
-//     try {
-//         console.log('新增菜品saga执行')
-//         const result = yield post({
-//             url: action.url
-//         }, action.data)
-//         console.log(result)
-//         if (result.status && result.status !== -7) {
-//             yield put({type: types.ADDDISHSUC, data: result})
-//             console.log('添加菜品成功')
-//             yield put({type: types.GETDISHLIST, url: DISHLIST})
-//             console.log('发送了获取列表的请求')
-//         } else {
-//             console.log('发送了添加错误的action')
-//             yield put({type: types.ADDDISHERR, data: result})
-//         }
-//     } catch (e) {
-//         // todo 网络错误提示
-//         // yield put({type: types.NETERROR})
-//     }
-// }
+function* addCate(action: any) {
+  try {
+    console.log('新增分类saga执行')
+    const result = yield post({
+      url: action.url
+    }, action.data)
+    console.log(result)
+    if (result.status && result.status !== -7) {
+      yield put({ type: types.CATEADDSUC, data: result })
+      console.log('添加菜品成功')
+      yield put({ type: types.GETCATELISTS, url: GETCATELIST_URL })
+      console.log('发送了获取列表的请求')
+    } else {
+      console.log('发送了添加错误的action')
+      yield put({ type: types.CATEADDERR, data: result })
+    }
+  } catch (e) {
+    // todo 网络错误提示
+    // yield put({type: types.NETERROR})
+  }
+}
 
 function* toggleCatePage(action: any) {
-    try {
-        console.log('分类列表页面saga执行')
-        const result = yield get(action.url, action.data)
-        console.log(result)
-        if (result.meta.status === 200) {
-            console.log('分类列表获取成功')
-            yield put({type: types.GETCATELISTSUC, data: result})
-            console.log('发送了分类列表获取成功')
-        } else {
-            // yield put({type: types.GETFAILED, data: result})
-        }
-    } catch (e) {
-        // yield put({type: types.NETERROR})
+  try {
+    console.log('分类列表页面saga执行')
+    const result = yield get(action.url, action.data)
+    console.log(result)
+    if (result.meta.status === 200) {
+      console.log('分类列表获取成功')
+      yield put({ type: types.GETCATELISTSUC, data: result })
+      console.log('发送了分类列表获取成功')
+    } else {
+      // yield put({type: types.GETFAILED, data: result})
     }
+  } catch (e) {
+    // yield put({type: types.NETERROR})
+  }
 }
 
 // function* editDish(action: any) {
@@ -78,4 +78,4 @@ function* toggleCatePage(action: any) {
 //     }
 // }
 
-export {types, toggleCatePage};
+export { types, toggleCatePage, addCate };
