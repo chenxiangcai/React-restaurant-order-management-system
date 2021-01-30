@@ -45,9 +45,9 @@ export const DELCATE_URL = '/admin/category/del'
 export type DELCATE_URL = typeof DELCATE_URL
 
 // 图片上传地址
-export const UPPIC_URL = 'http://localhost:8080/upload'
+export const UPPIC_URL = 'http://localhost:8300/upload'
 export type UPPIC_URL = typeof UPPIC_URL
 
 // 服务器端地址
-export const SERVER_URL = 'http://localhost:8080'
+export const SERVER_URL = 'http://localhost:8300'
 export type SERVER_URL = typeof SERVER_URL

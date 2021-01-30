@@ -26,7 +26,7 @@ app.all('/*', (req: express.Request, res: express.Response, next) => {
     )
     res.header('Access-Control-Allow-Methods', 'PUT,POST,GET,DELETE,OPTIONS')
     res.header('X-Powered-By', ' 3.2.1')
-    if (req.method == 'OPTIONS') res.send(200)
+    if (req.method == 'OPTIONS') res.sendStatus(200)
     /* 让options请求快速返回 */ else next()
 })
 
@@ -38,5 +38,5 @@ app.use(formidable({
 
 // 路由
 require('./routes')(app)
-app.listen(8080)
-console.log('server run success at port 8080')
+app.listen(8300)
+console.log('server run success at port 8300')

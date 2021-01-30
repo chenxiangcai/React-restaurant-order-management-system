@@ -15,7 +15,7 @@ const Paging: FunctionComponent<Props> = (props) => {
         <Pagination
             defaultCurrent={props.page}
             total={props.total}
-            hideOnSinglePage={false}
+            hideOnSinglePage={true}
             style={{float: "right", marginTop: 20}}
             showTotal={total => `共 ${total} 条`}
             onChange={props.fun}
