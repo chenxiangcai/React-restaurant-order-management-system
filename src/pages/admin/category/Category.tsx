@@ -1,27 +1,31 @@
-import React, { FunctionComponent, useEffect, useState } from 'react';
+import React, { FunctionComponent, useEffect, useMemo, useState } from 'react';
 import DocumentTitle from "react-document-title";
-import { Button, Card, ConfigProvider, Form, Input, Modal, Popconfirm, Space, Table } from "antd";
+import { Button, Card, ConfigProvider, Form, Input, message, Modal, Popconfirm, Space, Table } from "antd";
 import zhCN from "antd/es/locale/zh_CN";
 import { DeleteOutlined, EditOutlined, UserOutlined } from "@ant-design/icons";
 import { ColumnsType } from "antd/es/table";
 import { connect } from 'react-redux'
 import { Dispatch } from "redux";
-import { CATEADD, GETCATELISTS } from "./action";
-import { ADDCATELIST_URL, GETCATELIST_URL } from "../../../common/api";
+import { CATEADD, CATEDEL, CATEEDIT, GETCATELISTS } from "./action";
+import { ADDCATELIST_URL, DELCATE_URL, EDITCATE_URL, GETCATELIST_URL } from "../../../common/api";
 import moment from 'moment';
-import { getStore } from "../../../utils/storage";
+import { getStore, setStore } from "../../../utils/storage";
+import Paging from "../../../components/Paging";
 
 interface Categories {
   _id: string,
-  createAt: string,
-  foodTypeName: string,
-  relationshipCount: number
+  whoAdd: string,
+  foodTypeName: string
 }
 
 interface Prop {
   [prop: string]: any,
 
   addCate(value: object): void
+
+  editCate(value: object): void
+
+  delCate(vale: string): void
 
   toggleCatePage(value?: object): void
 }
@@ -36,20 +40,20 @@ const mapStateToProps = (state: any) => ({
   editCateStatus: state.cate.editCateStatus
 })
 const mapDispatchToProps = (dispatch: Dispatch) => ({
-  /* delDish(value: string) {
+   delCate(value: string) {
        dispatch({
-           type: DELDISH,
-           url: DELDISH_URL,
-           data: value
-       })
-   },*/
-  addCate(value: object) {
-       dispatch({
-           type: CATEADD,
-           url: ADDCATELIST_URL,
+           type: CATEDEL,
+           url: DELCATE_URL,
            data: value
        })
    },
+  addCate(value: object) {
+    dispatch({
+      type: CATEADD,
+      url: ADDCATELIST_URL,
+      data: value
+    })
+  },
   toggleCatePage(value: object) {
     dispatch({
       type: GETCATELISTS,
@@ -57,78 +61,90 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
       data: value
     })
   },
-  /*editDish(value: object) {
-      dispatch({
-          type: EDITDISH,
-          url: EDITDISH_URL,
-          data: value
-      })
-  }*/
+  editCate(value: object) {
+    dispatch({
+      type: CATEEDIT,
+      url: EDITCATE_URL,
+      data: value
+    })
+  }
 })
 
 
-// 表格列
-const columns: ColumnsType<Categories> = [
-  {
-    title: '分类',
-    dataIndex: 'foodTypeName',
-    key: 'name',
-  },
-  {
-    title: '创建时间',
-    key: 'category',
-    dataIndex: 'createAt',
-    render: (text => (
-        <>
-          {
-            moment(text).format('YYYY-MM-DD')
-          }
-        </>
-    ))
-  },
-  {
-    title: '关联菜品数量',
-    key: 'contactnum',
-    dataIndex: 'contactnum',
-    render: (text: number) => (
-        <>
-          {text}
-        </>
-    ),
-  },
-  {
-    title: '操作',
-    key: '_id',
-    width: 300,
-    render: (text, records, index) => (
-        <Space>
-          <Button type="primary" onClick={() => {
-            // edit_dish(records)
-          }} shape="circle" icon={<EditOutlined/>} size={"small"}/>
-          {
-            <Popconfirm
-                title="确定要删除此分类吗？"
-                placement="top"
-                okText="确定"
-                cancelText="取消"
-                onConfirm={() => {
-                  // del_dish(records)
-                }}
-            >
-              <Button type="primary" danger shape="circle" icon={<DeleteOutlined/>} size={"small"}/>
-            </Popconfirm>
-          }
-        </Space>
-    ),
-  },
-];
-
 const Category: FunctionComponent<Props> = (props) => {
+
+  // 表格列
+  const columns: ColumnsType<Categories> = [
+    {
+      title: '分类',
+      dataIndex: 'foodTypeName',
+      key: 'name',
+    },
+    {
+      title: '创建时间',
+      key: 'category',
+      dataIndex: 'createAt',
+      render: (text => (
+          <>
+            {
+              moment(text).format('YYYY-MM-DD')
+            }
+          </>
+      ))
+    },
+    {
+      title: '关联菜品数量',
+      key: 'contactnum',
+      dataIndex: 'contactnum',
+      render: (text: number) => (
+          <>
+            {text}
+          </>
+      ),
+    },
+    {
+      title: '操作',
+      key: '_id',
+      width: 300,
+      render: (text, records, index) => (
+          <Space>
+            <Button type="primary" onClick={() => {
+              edit_cate(records)
+            }} shape="circle" icon={<EditOutlined/>} size={"small"}/>
+            {
+              <Popconfirm
+                  title="确定要删除此分类吗？"
+                  placement="top"
+                  okText="确定"
+                  cancelText="取消"
+                  onConfirm={() => {
+                    del_cate(records)
+                  }}
+              >
+                <Button type="primary" danger shape="circle" icon={<DeleteOutlined/>} size={"small"}/>
+              </Popconfirm>
+            }
+          </Space>
+      ),
+    },
+  ];
 
   const [categoryList, SetCategoryList] = useState([])
   const [visible, setVisible] = useState(false);
   const [popCateStyle, setPopCateStyle] = useState('')
   const userInfo = JSON.parse(getStore('userInfo'))
+  const [editValue, SetEditValue] = useState({
+    _id: '',
+    whoAdd: '',
+    foodTypeName: ''
+  })
+  //列表显示
+  const [pageMsg, setPageMsg] = useState({
+    query: '',
+    page: 1,
+    pagesize: 10
+  })
+
   // 取消弹出框
   const handleCancel = () => {
     // todo 取消弹出框确认
@@ -141,30 +157,30 @@ const Category: FunctionComponent<Props> = (props) => {
     if (popCateStyle === '新增分类') {
       console.log(value)
       props.addCate(value)
-      setVisible(false)
-      console.log(value)
     } else {
-      console.log(2)
+      value._id = editValue._id
+      props.editCate(value)
     }
-    /*if (value.hasOwnProperty('password')) {
-      // 找出最大值 作为账号account的值
-      value.account = props.list.records.reduce((pre: any, cur: any) => pre > cur.account ? pre : `${cur.account + 1}`, 0)
-      value.joinTime = new Date().getTime()
-      props.addStaff(value)
-      setVisible(false);
-    } else {
-      // @ts-ignore
-      value.name = edited_name.current.state.value
-      // value.account = editValues.account
-
-      // Dispach编辑行为
-      props.editStaff(value)
-      setVisible(false)
-    }*/
+    setVisible(false)
   };
+  //修改分类
+  const edit_cate = (records: Categories) => {
+    setVisible(true)
+    setPopCateStyle('编辑分类')
+    SetEditValue({
+      _id: records?._id,
+      foodTypeName: records?.foodTypeName,
+      whoAdd: records?.whoAdd
+    })
+  }
+  // 删除触发
+  const del_cate = (value: Categories) => {
+    const { _id } = value
+    props.delCate(_id)
+  }
+
 
   // 列表数据和事件处理
-
   useEffect(() => {
         props.toggleCatePage()
         console.log(props)
@@ -175,6 +191,45 @@ const Category: FunctionComponent<Props> = (props) => {
         //数组长度发生变化后 获取数据 渲染列表
       },// @ts-ignore
       [props.list.total])
+
+  // 修改状态后 部分信息改变 通过memo监听list变化 重新渲染页面
+  useMemo(() => {
+    const { list } = props
+    const cateList = list.records
+    SetCategoryList(cateList)
+  }, [props.list])
+
+  // 弹框状态管理 fix 状态存储在缓存 解决每次重新加载页面弹框问题
+  useEffect(() => {
+    console.log(props)
+    const {errorMsgCate, addCateStatus, delCateStatus, editCateStatus} = props
+    const aastatus = getStore('addCateStatus')
+    const ddstatus = getStore('delCateStatus')
+    const eestatus = getStore('editCateStatus')
+    console.log(eestatus)
+    //添加
+    if (aastatus == addCateStatus) {
+    } else {
+      console.log(props)
+      console.log(errorMsgCate)
+      setStore('addCateStatus', addCateStatus)
+      if (addCateStatus < 1) message.success('分类添加成功！')
+      else if (errorMsgCate && errorMsgCate.includes('存在')) message.error('此菜品已存在！')
+    }
+    //删除
+    if (ddstatus == delCateStatus) {
+    } else {
+      setStore('delCateStatus', delCateStatus)
+      if (delCateStatus < 1) message.success('分类删除成功！')
+    }
+    //修改
+    if (eestatus == editCateStatus) {
+    } else {
+      setStore('editCateStatus', editCateStatus)
+      if (editCateStatus < 1) message.success('分类修改成功！')
+    }
+  }, [props])
+
 
   // @ts-ignore
   return (
@@ -198,7 +253,21 @@ const Category: FunctionComponent<Props> = (props) => {
                   pagination={false}
               />
             }
-
+            {
+              categoryList &&
+              <Paging page={props.list.page} total={props.list.total} fun={(page = 1, pageSize = 10): any => {
+                props.toggleCatePage({
+                  query: '',
+                  page: page,
+                  pagesize: pageSize
+                })
+                setPageMsg({
+                  query: '',
+                  page: page,
+                  pagesize: pageSize
+                })
+              }}/>
+            }
             <Modal
                 title={popCateStyle}
                 visible={visible}
@@ -223,7 +292,7 @@ const Category: FunctionComponent<Props> = (props) => {
                 }
                 {
                   popCateStyle === '编辑分类' &&
-                  <Form.Item name="foodTypeName" rules={[
+                  <Form.Item name="foodTypeName" initialValue={editValue.foodTypeName} rules={[
                     {
                       required: true,
                       message: '请输入分类',
@@ -237,15 +306,16 @@ const Category: FunctionComponent<Props> = (props) => {
 
                 {
                   popCateStyle === '新增分类' &&
-                  <Form.Item name="whoAdd" initialValue={userInfo._id}>
-                      <Input disabled defaultValue={userInfo._id}
+                  <Form.Item name="whoAdd" initialValue={userInfo.name}>
+                      <Input disabled
                              prefix={<UserOutlined className="site-form-item-icon"/>}/>
                   </Form.Item>
                 }
                 {
                   popCateStyle === '编辑分类' &&
-                  <Form.Item name="whoAdd">
-                      <Input prefix={<UserOutlined className="site-form-item-icon"/>}/>
+                  <Form.Item name="whoAdd" initialValue={userInfo.name}>
+                      <Input disabled
+                             prefix={<UserOutlined className="site-form-item-icon"/>}/>
                   </Form.Item>
                 }
 

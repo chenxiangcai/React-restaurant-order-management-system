@@ -1,14 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="6d91caa1-987f-4124-9db6-b0e688ade05a" name="默认更改列表" comment="init category">
+    <list default="true" id="6d91caa1-987f-4124-9db6-b0e688ade05a" name="默认更改列表" comment="save to Mac">
+      <change afterPath="$PROJECT_DIR$/server/routes/admin/category/del.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/routes/admin/category/edit.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.eslintcache" beforeDir="false" afterPath="$PROJECT_DIR$/.eslintcache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/config/custom-environment-variables.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/config/development.json" beforeDir="false" afterPath="$PROJECT_DIR$/server/config/development.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/model/User/User.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/model/User/User.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/server/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/app.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/app.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/routes/admin/category/add.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/routes/admin/category/add.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/routes/category.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/routes/category.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/common/api/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/api/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Paging.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Paging.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/admin/category/Category.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/admin/category/Category.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/admin/category/reducers.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/admin/category/reducers.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/admin/category/sagas.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/admin/category/sagas.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/admin/dish/Dish.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/admin/dish/Dish.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/sagas.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/sagas.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/http.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/http.ts" afterDir="false" />
     </list>
     <list id="659ec1d8-9937-4a25-b75f-d5a3890c13fc" name="feat 后台服务器" comment="feat 后台服务器" />
     <option name="SHOW_DIALOG" value="false" />
@@ -44,8 +52,8 @@
               <option name="branches">
                 <list>
                   <RecentBranch>
-                    <option name="branchName" value="Login" />
-                    <option name="lastUsedInstant" value="1611132394" />
+                    <option name="branchName" value="category" />
+                    <option name="lastUsedInstant" value="1611990017" />
                   </RecentBranch>
                   <RecentBranch>
                     <option name="branchName" value="master" />
@@ -88,7 +96,7 @@
     <property name="nodejs_interpreter_path" value="node" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="editing.templates" />
-    <property name="ts.external.directory.path" value="$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external" />
+    <property name="ts.external.directory.path" value="$PROJECT_DIR$/node_modules/typescript/lib" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
@@ -177,7 +185,10 @@
       <workItem from="1611708909061" duration="46000" />
       <workItem from="1611744794080" duration="7827000" />
       <workItem from="1611794137105" duration="321000" />
-      <workItem from="1611984130997" duration="2218000" />
+      <workItem from="1611984130997" duration="3133000" />
+      <workItem from="1611990591851" duration="4170000" />
+      <workItem from="1611998978853" duration="275000" />
+      <workItem from="1611999275894" duration="10258000" />
     </task>
     <task id="LOCAL-00001" summary="init 初始化项目">
       <created>1607945320341</created>
@@ -214,7 +225,14 @@
       <option name="project" value="LOCAL" />
       <updated>1611132499312</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="save to Mac">
+      <created>1611989952904</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1611989952904</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -261,6 +279,7 @@
     <MESSAGE value="feat 登录页" />
     <MESSAGE value="feat 后台页面框架、路由配置" />
     <MESSAGE value="0" />
-    <option name="LAST_COMMIT_MESSAGE" value="0" />
+    <MESSAGE value="save to Mac" />
+    <option name="LAST_COMMIT_MESSAGE" value="save to Mac" />
   </component>
 </project>
