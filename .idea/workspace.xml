@@ -2,21 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6d91caa1-987f-4124-9db6-b0e688ade05a" name="默认更改列表" comment="save to Mac">
-      <change afterPath="$PROJECT_DIR$/server/routes/admin/category/del.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/routes/admin/category/edit.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.eslintcache" beforeDir="false" afterPath="$PROJECT_DIR$/.eslintcache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/app.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/app.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/routes/admin/category/add.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/routes/admin/category/add.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/routes/category.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/routes/category.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/common/api/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/api/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Paging.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Paging.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/admin/category/Category.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/admin/category/Category.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/admin/category/reducers.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/admin/category/reducers.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/admin/category/sagas.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/admin/category/sagas.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/routes/admin/dishes/edit.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/routes/admin/dishes/edit.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/admin/dish/Dish.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/admin/dish/Dish.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store/sagas.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/sagas.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/http.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/http.ts" afterDir="false" />
     </list>
     <list id="659ec1d8-9937-4a25-b75f-d5a3890c13fc" name="feat 后台服务器" comment="feat 后台服务器" />
     <option name="SHOW_DIALOG" value="false" />
@@ -37,7 +26,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="master" />
+        <entry key="$PROJECT_DIR$" value="category" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />

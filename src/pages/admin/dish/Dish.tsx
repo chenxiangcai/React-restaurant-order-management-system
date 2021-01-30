@@ -301,7 +301,6 @@ const Dish: FunctionComponent<Props> = (props) => {
       // value.categoryId = editValue.categoryId
       value._id = editValue._id
       value.picture = dishImgUrl
-      value.category = editValue.categoryId
       console.log(value)
       props.editDish(value)
     }

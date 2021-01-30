@@ -2,6 +2,7 @@ const {Dishes, validateDishes} = require('../../../model/Dish/Dish')
 //const {Category} = require('../../../model/Category/Category')
 export = async (req, res) => {
     const {_id} = req.fields
+    console.log(req.fields)
     try {
         validateDishes(req.fields)
     } catch (e) {
