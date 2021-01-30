@@ -2,32 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6d91caa1-987f-4124-9db6-b0e688ade05a" name="默认更改列表" comment="init category">
-      <change afterPath="$PROJECT_DIR$/server/routes/admin/category/add.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.eslintcache" beforeDir="false" afterPath="$PROJECT_DIR$/.eslintcache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/_2021_1_20_09_03____.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/_2021_1_20_09_05____.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/_2021_1_20_16_35____.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/_2021_1_20_16_45____.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/_2021_1_20_16_45____.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/_2021_1_20_16_45____1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/在进行合并之前于_2021_1_20_09_03_取消提交了变更_[默认更改列表]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/在进行更新之前于_2021_1_20_09_05_取消提交了变更_[默认更改列表]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/在进行检出之前于_2021_1_20_16_35_取消提交了变更_[默认更改列表]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/在进行检出之前于_2021_1_20_16_45_取消提交了变更_[默认更改列表]1/shelved.patch" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/model/Category/Category.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/model/Category/Category.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/routes/admin/category/list.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/routes/admin/category/list.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/routes/admin/dishes/edit.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/routes/admin/dishes/edit.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/routes/admin/login/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/routes/admin/login/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/routes/category.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/routes/category.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/common/api/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/api/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/admin/category/Category.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/admin/category/Category.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/admin/category/reducers.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/admin/category/reducers.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/admin/category/sagas.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/admin/category/sagas.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/admin/dish/Dish.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/admin/dish/Dish.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/admin/dish/sagas.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/admin/dish/sagas.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/login/reducers.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/login/reducers.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store/sagas.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/sagas.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/storage.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/storage.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/config/custom-environment-variables.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/config/development.json" beforeDir="false" afterPath="$PROJECT_DIR$/server/config/development.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/model/User/User.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/model/User/User.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/server/package-lock.json" afterDir="false" />
     </list>
     <list id="659ec1d8-9937-4a25-b75f-d5a3890c13fc" name="feat 后台服务器" comment="feat 后台服务器" />
     <option name="SHOW_DIALOG" value="false" />
@@ -107,7 +88,7 @@
     <property name="nodejs_interpreter_path" value="node" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="editing.templates" />
-    <property name="ts.external.directory.path" value="D:\Users\Chen\WebstormProjects\restaurant-ordering-system\node_modules\typescript\lib" />
+    <property name="ts.external.directory.path" value="$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
@@ -138,6 +119,7 @@
       <option name="extraTypeScriptOptions" value="" />
       <option name="scriptName" value="$PROJECT_DIR$/server/app.ts" />
       <option name="programParameters" value="" />
+      <option name="tsnodePackage" value="~/WebstormProjects/Ts-restaurant-ordering-system/server/node_modules/ts-node" />
       <method v="2" />
     </configuration>
     <configuration name="connect.ts" type="TypeScriptProgramRunner" factoryName="TypeScript" temporary="true">
@@ -195,6 +177,7 @@
       <workItem from="1611708909061" duration="46000" />
       <workItem from="1611744794080" duration="7827000" />
       <workItem from="1611794137105" duration="321000" />
+      <workItem from="1611984130997" duration="2218000" />
     </task>
     <task id="LOCAL-00001" summary="init 初始化项目">
       <created>1607945320341</created>

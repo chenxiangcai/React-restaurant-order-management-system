@@ -38,7 +38,7 @@ const userSchema: object = new Schema({
 // @ts-ignore
 const User = model('User', userSchema);
 
-/*//初始化管理员
+//初始化管理员
 User.findOne({account: 1}).then(
     async (result: null | object): Promise<void> => {
         if (result == null) {
@@ -53,7 +53,7 @@ User.findOne({account: 1}).then(
                 status: 1
             })
         }
-    })*/
+    })
 
 //用户注册验证
 const validateUser = (user: any): any => {
