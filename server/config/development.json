@@ -4,6 +4,7 @@
     "user": "cxc",
     "host": "localhost",
     "port": "27017",
-    "name": "canteen-order"
+    "name": "canteen-order",
+    "pwd": "777"
   }
 }
