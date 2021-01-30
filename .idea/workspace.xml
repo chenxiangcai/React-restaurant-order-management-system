@@ -119,7 +119,6 @@
       <option name="extraTypeScriptOptions" value="" />
       <option name="scriptName" value="$PROJECT_DIR$/server/app.ts" />
       <option name="programParameters" value="" />
-      <option name="tsnodePackage" value="~/WebstormProjects/Ts-restaurant-ordering-system/server/node_modules/ts-node" />
       <method v="2" />
     </configuration>
     <configuration name="connect.ts" type="TypeScriptProgramRunner" factoryName="TypeScript" temporary="true">
