@@ -44,6 +44,33 @@ export type EDITCATE_URL = typeof EDITCATE_URL
 export const DELCATE_URL = '/admin/category/del'
 export type DELCATE_URL = typeof DELCATE_URL
 
+// 会员分类模块
+export const CUSCATELIST_URL = '/admin/customer/cate'
+export type CUSCATELIST_URL = typeof CUSCATELIST_URL
+
+export const CUSCATEEDIT_URL = '/admin/customer/cate/edit'
+export type CUSCATEEDIT_URL = typeof CUSCATEEDIT_URL
+
+export const CUSCATEDEL_URL = '/admin/customer/cate/del'
+export type CUSCATEDEL_URL = typeof CUSCATEDEL_URL
+
+export const CUSCATEADD_URL = '/admin/customer/cate/add'
+export type CUSCATEADD_URL = typeof CUSCATEADD_URL
+
+// 会员列表模块
+export const CUSLIST_URL = '/admin/customer/cate'
+export type CUSLIST_URL = typeof CUSLIST_URL
+
+export const CUSEDIT_URL = '/admin/customer/edit'
+export type CUSEDIT_URL = typeof CUSEDIT_URL
+
+export const CUSDEL_URL = '/admin/customer/del'
+export type CUSDEL_URL = typeof CUSDEL_URL
+
+export const CUSADD_URL = '/admin/customer/add'
+export type CUSADD_URL = typeof CUSADD_URL
+
+
 // 图片上传地址
 export const UPPIC_URL = 'http://localhost:8300/upload'
 export type UPPIC_URL = typeof UPPIC_URL

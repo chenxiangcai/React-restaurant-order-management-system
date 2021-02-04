@@ -9,7 +9,8 @@ export = app => {
 
     app.use('/admin/staff', require('./staff')) //用户二级路由
     app.use('/admin/dish', require('./dish')) //菜品
-    app.use('/admin/category', require('./category')) //分类
+    app.use('/admin/category', require('./category')) //菜品分类
+    app.use('/admin/customer',require('./customer')) //会员
 
 
     app.post('/login', require('./admin/login')) //用户登录
