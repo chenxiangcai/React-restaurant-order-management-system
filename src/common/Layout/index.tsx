@@ -68,7 +68,7 @@ const LayoutWrap: FunctionComponent<{}> = (props) => {
             <SubMenu key="sub2453" icon={<UsergroupAddOutlined/>} title="会员">
               <Menu.Item key="/admin/customer"
                          onClick={() => {
-                           history.push('/admin/dishes/category')
+                           history.push('/admin/customer')
                          }}
               >会员资料</Menu.Item>
               <Menu.Item key="/admin/customer/cate"

@@ -10,12 +10,14 @@ import { sagas as staff } from '../pages/admin/staff'
 import { sagas as dish } from "../pages/admin/dish";
 import { sagas as category } from "../pages/admin/category";
 import { sagas as cusCate } from '../pages/admin/customer/cate'
+import { sagas as cusList } from '../pages/admin/customer/list'
 
 const { TOLOGIN } = login.types;
 const { GETLIST, ADDSTAFF, TOGGLEPAGE, DELSTAFF, EDITSTAFF } = staff.types;
 const { GETDISHLIST, ADDDISH, DELDISH, EDITDISH } = dish.types
 const { GETCATELISTS, CATEADD, CATEEDIT, CATEDEL } = category.types
 const { GETCUSCATELIST, CUSCATEADD, CUSCATEEDIT, CUSCATEDEL } = cusCate.types
+const { GETCUSLIST, CUSADD, CUSEDIT, CUSDEL } = cusList.types
 
 function* sagas() {
   console.log('saga总监听执行')
@@ -46,6 +48,12 @@ function* sagas() {
   yield takeEvery(CUSCATEADD, cusCate.addCusCate)
   yield takeEvery(CUSCATEEDIT, cusCate.editCusCate)
   yield takeEvery(CUSCATEDEL, cusCate.delCusCate)
+
+  //会员列表
+  yield takeEvery(GETCUSLIST, cusList.toggleCusPage)
+  yield takeEvery(CUSADD, cusList.addCus)
+  yield takeEvery(CUSEDIT, cusList.editCus)
+  yield takeEvery(CUSDEL, cusList.delCus)
 
 }
 

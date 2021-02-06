@@ -58,7 +58,7 @@ export const CUSCATEADD_URL = '/admin/customer/cate/add'
 export type CUSCATEADD_URL = typeof CUSCATEADD_URL
 
 // 会员列表模块
-export const CUSLIST_URL = '/admin/customer/cate'
+export const CUSLIST_URL = '/admin/customer/'
 export type CUSLIST_URL = typeof CUSLIST_URL
 
 export const CUSEDIT_URL = '/admin/customer/edit'

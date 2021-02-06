@@ -11,7 +11,6 @@ const cusSchema: object = new Schema({
   name: {
     type: String,
     required: true,
-    minlength: 2,
   },
   joinTime: {
     type: Date,
@@ -19,6 +18,7 @@ const cusSchema: object = new Schema({
   },
   level: {
     type: Schema.Types.ObjectId,
+    ref: 'CusCate',
     required: true,
   },
   // 消费次数
@@ -26,9 +26,10 @@ const cusSchema: object = new Schema({
     type: Number,
     default: 0
   },
-  xftotal:{
-    type:Number,
-    default:0
+  // 总消费金额
+  xftotal: {
+    type: Number,
+    default: 0
   },
   status: { //默认1 正常 ,0 挂失, -1 停用
     type: Number,
@@ -45,7 +46,7 @@ const Customer = model('Customer', cusSchema);
 const validateCus = (cus: any): any => {
   const Schema = {
     telephone: Joi.number().required().error(new Error('手机号只能为纯数字！')),
-    name: Joi.string().required().min(2).error(new Error('请输入会员的正确姓名！')),
+    name: Joi.string().required().error(new Error('请输入会员的正确姓名！')),
     status: Joi.number().valid(0, 1, -1),
   }
   return Joi.validate(cus, Schema, {
