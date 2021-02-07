@@ -11,6 +11,8 @@ import {
 import logo from '../../assets/images/logo_small.png'
 import { useHistory, useLocation } from 'react-router-dom';
 import './index.css'
+// @ts-ignore
+import Darkmode from 'darkmode-js';
 
 const { Header, Content, Footer, Sider } = Layout;
 const { SubMenu } = Menu;
@@ -21,6 +23,23 @@ const LayoutWrap: FunctionComponent<{}> = (props) => {
   const [collapsed, setCollapsed] = useState(false);
   const history = useHistory()
   const { pathname } = useLocation()
+
+  const options = {
+    bottom: '30px', // default: '32px'
+    right: '32px', // default: '32px'
+    left: 'unset', // default: 'unset'
+    time: '0.5s', // default: '0.3s'
+    mixColor: '#fff', // default: '#fff'
+    backgroundColor: '#fff',  // default: '#fff'
+    buttonColorDark: '#100f2c',  // default: '#100f2c'
+    buttonColorLight: '#fff', // default: '#fff'
+    saveInCookies: false, // default: true,
+    label: '🌓', // default: ''
+    autoMatchOsTheme: true // default: true
+  }
+  const darkmode = new Darkmode(options);
+  darkmode.showWidget();
+
   return (
       <Layout style={{ minHeight: '100vh' }}>
         <Sider collapsible collapsed={collapsed} onCollapse={() => {

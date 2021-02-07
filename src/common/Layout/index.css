@@ -17,3 +17,7 @@
     width: 50%;
     height: 50%;
 }
+
+.darkmode-layer, .darkmode-toggle {
+    z-index: 500;
+}
