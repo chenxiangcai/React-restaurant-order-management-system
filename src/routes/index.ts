@@ -11,6 +11,7 @@ import { Dish } from "../pages/admin/dish";
 import { Category } from "../pages/admin/category";
 import { CusCate } from "../pages/admin/customer/cate";
 import { CusList } from "../pages/admin/customer/list";
+import { Order } from "../pages/admin/order";
 
 // 普通路由
 export const normalRoute = [{
@@ -41,5 +42,9 @@ export const adminRoute = [{
 }, {
   path: '/admin/customer',
   component: CusList,
+  exact: true
+}, {
+  path: '/admin/orders',
+  component: Order,
   exact: true
 }]

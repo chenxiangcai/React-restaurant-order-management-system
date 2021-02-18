@@ -58,7 +58,7 @@ export const CUSCATEADD_URL = '/admin/customer/cate/add'
 export type CUSCATEADD_URL = typeof CUSCATEADD_URL
 
 // 会员列表模块
-export const CUSLIST_URL = '/admin/customer/'
+export const CUSLIST_URL = '/admin/customer'
 export type CUSLIST_URL = typeof CUSLIST_URL
 
 export const CUSEDIT_URL = '/admin/customer/edit'
@@ -69,6 +69,19 @@ export type CUSDEL_URL = typeof CUSDEL_URL
 
 export const CUSADD_URL = '/admin/customer/add'
 export type CUSADD_URL = typeof CUSADD_URL
+
+// 订单列表模块
+export const ORDERLIST_URL = '/admin/order'
+export type ORDERLIST_URL = typeof ORDERLIST_URL
+
+export const ORDEREDIT_URL = '/admin/order/edit'
+export type ORDEREDIT_URL = typeof ORDEREDIT_URL
+
+export const ORDERDEL_URL = '/admin/order/del'
+export type ORDERDEL_URL = typeof ORDERDEL_URL
+
+export const ORDERADD_URL = '/admin/order/add'
+export type ORDERADD_URL = typeof ORDERADD_URL
 
 
 // 图片上传地址

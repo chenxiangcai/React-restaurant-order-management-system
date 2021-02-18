@@ -1,11 +1,10 @@
 import {
   CUSCATEADDERR,
   CUSCATEADDSUC, CUSCATEDELERR, CUSCATEDELSUC, CUSCATEEDITERR, CUSCATEEDITSUC,
-  GETCUSCATELIST, GETCUSCATELISTERR,
+  GETCUSCATELIST,
   GETCUSCATELISTSUC
 
 } from './action'
-import { CATEDELERR, CATEEDITSUC } from "../../category/action";
 
 type state = { list: object[], addCcateStatus: number, errorMsgCcate: string, delCcateStatus: number }
 const defaultState = {

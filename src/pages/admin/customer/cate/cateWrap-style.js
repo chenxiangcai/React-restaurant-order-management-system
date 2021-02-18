@@ -3,11 +3,8 @@ import styled from "styled-components";
 export const CateWrap = styled.div`
   /deep/ .ant-card-body {
     height: 100%;
-  }
-;
-
-  display: flex;
-  flex-wrap: wrap;
+  };
+  
   cursor: pointer;
 
   .plus {
@@ -19,16 +16,7 @@ export const CateWrap = styled.div`
   }
 
   .card {
-    width: 262px;
+    width: 100%;
     height: 120px;
-    margin-right: 20px;
-  }
-
-  .card:nth-child(4n) {
-    margin-right: 0;
-  }
-
-  .card:nth-child(n+5) {
-    margin-top: 20px;
   }
 `

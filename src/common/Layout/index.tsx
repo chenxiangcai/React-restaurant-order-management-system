@@ -69,6 +69,16 @@ const LayoutWrap: FunctionComponent<{}> = (props) => {
             </SubMenu>
 
             <Menu.Item
+                key="/admin/orders"
+                icon={<UnorderedListOutlined/>}
+                onClick={() => {
+                  history.push('/admin/orders')
+                }}
+            >
+              订单
+            </Menu.Item>
+
+            <Menu.Item
                 key="/admin/staffs"
                 icon={<TeamOutlined/>}
                 onClick={() => {
@@ -77,12 +87,6 @@ const LayoutWrap: FunctionComponent<{}> = (props) => {
             >
               职工
             </Menu.Item>
-
-            <SubMenu key="sub12" icon={<UnorderedListOutlined/>} title="订单">
-              <Menu.Item key="3">所有订单</Menu.Item>
-              <Menu.Item key="6">前台订单</Menu.Item>
-              <Menu.Item key="8">后厨订单</Menu.Item>
-            </SubMenu>
 
             <SubMenu key="sub2453" icon={<UsergroupAddOutlined/>} title="会员">
               <Menu.Item key="/admin/customer"

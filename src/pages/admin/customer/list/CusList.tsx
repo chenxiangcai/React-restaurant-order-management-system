@@ -120,13 +120,13 @@ const CusList: FunctionComponent<Props> = (props) => {
           title: '会员类别',
           key: 'level',
           dataIndex: 'level',
-          render: (level: any) => <>{level.name}</>,
+          render: (level: any) => <>{level?.name}</>,
         },
         {
           title: '折扣',
           key: 'level',
           dataIndex: 'level',
-          render: (level: any) => <>{level.discount}</>,
+          render: (level: any) => <>{level?.discount}</>,
         },
         {
           title: '消费次数',

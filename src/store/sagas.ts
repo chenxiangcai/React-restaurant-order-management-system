@@ -11,6 +11,7 @@ import { sagas as dish } from "../pages/admin/dish";
 import { sagas as category } from "../pages/admin/category";
 import { sagas as cusCate } from '../pages/admin/customer/cate'
 import { sagas as cusList } from '../pages/admin/customer/list'
+import { sagas as order } from '../pages/admin/order'
 
 const { TOLOGIN } = login.types;
 const { GETLIST, ADDSTAFF, TOGGLEPAGE, DELSTAFF, EDITSTAFF } = staff.types;
@@ -18,6 +19,7 @@ const { GETDISHLIST, ADDDISH, DELDISH, EDITDISH } = dish.types
 const { GETCATELISTS, CATEADD, CATEEDIT, CATEDEL } = category.types
 const { GETCUSCATELIST, CUSCATEADD, CUSCATEEDIT, CUSCATEDEL } = cusCate.types
 const { GETCUSLIST, CUSADD, CUSEDIT, CUSDEL } = cusList.types
+const { GETORDERLIST, ORDERADD, ORDERDEL, ORDEREDIT } = order.types
 
 function* sagas() {
   console.log('saga总监听执行')
@@ -49,11 +51,17 @@ function* sagas() {
   yield takeEvery(CUSCATEEDIT, cusCate.editCusCate)
   yield takeEvery(CUSCATEDEL, cusCate.delCusCate)
 
-  //会员列表
+  //会员
   yield takeEvery(GETCUSLIST, cusList.toggleCusPage)
   yield takeEvery(CUSADD, cusList.addCus)
   yield takeEvery(CUSEDIT, cusList.editCus)
   yield takeEvery(CUSDEL, cusList.delCus)
+
+  //订单
+  yield takeEvery(GETORDERLIST, order.toggleOrderPage)
+  yield takeEvery(ORDERDEL, order.delOrder)
+  yield takeEvery(ORDERADD, order.addOrder)
+  yield takeEvery(ORDEREDIT, order.editOrder)
 
 }
 

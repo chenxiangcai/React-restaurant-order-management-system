@@ -1,5 +1,5 @@
 import React, { FunctionComponent, useEffect, useMemo, useState } from 'react';
-import { Button, Card, ConfigProvider, Form, Input, message, Modal, Popconfirm, Space } from "antd";
+import { Button, Card, ConfigProvider, Form, Input, List, message, Modal, Popconfirm, Space } from "antd";
 import zhCN from "antd/es/locale/zh_CN";
 import DocumentTitle from "react-document-title";
 import {
@@ -175,60 +175,75 @@ const CusCate: FunctionComponent<Props> = (props) => {
     }
   }, [props.addCcateStatus, props.delCcateStatus, props.editCcateStatus])
 
-
+  // @ts-ignore
+  const [newList, setList] = []
+  //const s = cateList.unshift()
+  // @ts-ignore
+  //SetCateList()
   return (
       <DocumentTitle title="会员类别">
         <ConfigProvider locale={zhCN}>
           <Card title="会员类别">
+            {/*<List>*/}
+            {/*  <CateWrap>*/}
+            {/*    <Card onClick={() => {*/}
+            {/*      setVisible(true)*/}
+            {/*      setPopCateStyle('新增会员类别')*/}
+            {/*    }}*/}
+            {/*          style={{ width: 262, display: "inline-block" }} className={'card'}>*/}
+            {/*      <div className='plus'><PlusOutlined/></div>*/}
+            {/*    </Card>*/}
+            {/*  </CateWrap>*/}
+            {/*</List>*/}
+            <List
+                grid={{ gutter: 16, column: 4 }}
+                dataSource={cateList}
+                renderItem={(item: any) => (
+                    <List.Item>
+                      <CateWrap>
+                        <Card
+                            key={item.name}
+                            className='card'
+                            style={{ position: "relative" }}
+                        >
+                          <div style={{ position: "absolute", right: 8, top: 8 }}>
+                            <EditOutlined
+                                key="edit"
+                                style={{ paddingRight: 4 }}
+                                onClick={() => {
+                                  edit_cate(item)
+                                }}
+                            />
+                            {
+                              <Popconfirm
+                                  title="确定要删除此会员分类吗？"
+                                  placement="right"
+                                  okText="确定"
+                                  cancelText="取消"
+                                  onConfirm={() => {
+                                    del_cate(item)
+                                  }}
+                              >
+                                <CloseOutlined key="del"/>
+                              </Popconfirm>
+                            }
+                          </div>
+                          <div style={{ marginTop: -14, fontWeight: 600 }}>{item?.name}</div>
+                          <div style={{ textAlign: "center", paddingTop: '8%' }}>
+                            <div style={{ color: "red" }}>{item?.discount}折</div>
+                          </div>
+                        </Card>
+                      </CateWrap>
+                    </List.Item>
+                )}
+            />
             <CateWrap>
               <Card onClick={() => {
                 setVisible(true)
                 setPopCateStyle('新增会员类别')
-              }}
-                    style={{ width: 262, position: "relative" }} className={'card'}>
-                <div className='plus'>
-                  <PlusOutlined/>
-                </div>
+              }} style={{ width: '24%', height: 120, display: "inline-block" }}>
+                <div className='plus'><PlusOutlined/></div>
               </Card>
-
-              {
-                cateList && cateList.map((value: any) => {
-                  return (
-                      <Card
-                          key={value.name}
-                          className='card'
-                          style={{ position: "relative" }}
-                      >
-                        <div style={{ position: "absolute", right: 8, top: 8 }}>
-                          <EditOutlined
-                              key="edit"
-                              style={{ paddingRight: 4 }}
-                              onClick={() => {
-                                edit_cate(value)
-                              }}
-                          />
-                          {
-                            <Popconfirm
-                                title="确定要删除此会员分类吗？"
-                                placement="right"
-                                okText="确定"
-                                cancelText="取消"
-                                onConfirm={() => {
-                                  del_cate(value)
-                                }}
-                            >
-                              <CloseOutlined key="del"/>
-                            </Popconfirm>
-                          }
-
-                        </div>
-                        <div style={{ marginTop: -14, fontWeight: 600 }}>{value?.name}</div>
-                        <div style={{ textAlign: "center", paddingTop: '8%' }}>
-                          <div style={{ color: "red" }}>{value?.discount}折</div>
-                        </div>
-                      </Card>
-                  )
-                })}
             </CateWrap>
             <Modal
                 title={popCateStyle}
