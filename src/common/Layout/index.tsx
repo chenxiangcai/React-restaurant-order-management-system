@@ -112,7 +112,7 @@ const LayoutWrap: FunctionComponent<{}> = (props) => {
             {/*    <Breadcrumb.Item>后台</Breadcrumb.Item>*/}
             {/*    <Breadcrumb.Item>Bill</Breadcrumb.Item>*/}
             {/*</Breadcrumb>*/}
-            <div className="site-layout-background" style={{ padding: 24, minHeight: 780 }}>
+            <div className="site-layout-background" style={{ padding: 24, minHeight: 780, height: '100%' }}>
               {props.children}
             </div>
           </Content>

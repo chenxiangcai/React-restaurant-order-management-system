@@ -1,9 +1,13 @@
 const {Customer} = require('../../../../model/Customer/Customer')
-const _ = require('lodash')
 export = async (req, res) => {
-  const customer = await Customer.findOneAndDelete({_id: req.params.id})
-  res.send({
-    data: _.pick(customer, ['name']),
-    status: 200
-  })
+  const id = req.params.id
+  if (id.indexOf('-') !== -1) {
+    const ids = id.split('-')
+    for (const idElement of ids) {
+      await Customer.findOneAndDelete({ _id: idElement })
+    }
+  } else {
+    await Customer.findOneAndDelete({ _id: req.params.id })
+  }
+  res.send({ status: 200 })
 }

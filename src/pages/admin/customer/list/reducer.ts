@@ -21,7 +21,8 @@ export default (state: state = defaultState, action: any) => {
     case GETCUSLISTSUC:
       return {
         ...state,
-        list: action.data.customer
+        list: action.data.customer,
+        cateList: action.data.acuscate.records
       }
     case GETCUSCATESUC:
       return {

@@ -67,14 +67,15 @@ function* editCate(action: any) {
     const result = yield puts({
       url: action.url
     }, action.data)
-    if (result.meta.status === 200) {
+    if (result?.meta?.status === 200) {
       console.log('修改菜品成功')
       yield put({ type: types.CATEEDITSUC, data: result })
       yield put({ type: types.GETCATELISTS, url: CATELIST_URL })
       console.log('发送了获取列表的请求')
+    } else {
+      yield put({ type: types.CATEEDITERR, data: result })
     }
   } catch (e) {
-
   }
 }
 

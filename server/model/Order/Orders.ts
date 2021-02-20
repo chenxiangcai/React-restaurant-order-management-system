@@ -66,12 +66,12 @@ Orders.findOne({ orderid: 73499 }).then(
           tableid: 8,
           waiter: '6015033b71e42a1dcf104f74',
           orderdetail: [
-            { _id: '602d1ae8c9629d3af74f7263', num: 92 },
+            { _id: '60162a2a64a75c03f3e60b9e', num: 92 },
           ],
           receivable: 777,
           paid: 666,
           person: 12,
-          cus: '601e74da2015bb03b6f7ca92',
+          cus: '601e74d42015bb03b6f7ca91',
           level: '6017aa76610c061ff04fc6cf'
         })
       }

@@ -26,6 +26,7 @@ import {
 import { connect } from "react-redux";
 import { CUSADD, CUSDEL, CUSEDIT, GETCUSLIST } from "./action";
 import { getStore, setStore } from "../../../../utils/storage";
+import TableCheckBox from "../../../../components/TableCheckBox";
 
 const { Option } = Select;
 
@@ -161,7 +162,7 @@ const CusList: FunctionComponent<Props> = (props) => {
               </>
           ),
         },
-        {
+        /*{
           title: '操作',
           key: '_id',
           render: (text, records, index) => (
@@ -184,7 +185,7 @@ const CusList: FunctionComponent<Props> = (props) => {
                 }
               </Space>
           ),
-        },
+        },*/
       ];
 
       // 取消弹出框
@@ -275,9 +276,48 @@ const CusList: FunctionComponent<Props> = (props) => {
           }, [props.addCStatus, props.delCStatus, props.editCStatus]
       )
 
+//选中函数
+      const [selectValue, SetSelectValue] = useState([])
+      const [barVisible, setBarVisible] = useState('')
+      const rowSelection = {
+        onChange: (selectedRowKeys: any, selectedRows: any) => {
+          SetSelectValue(selectedRows)
+          console.log(`selectedRowKeys: ${selectedRowKeys}`, 'selectedRows: ', selectedRows);
+        },
+        onSelectAll: (selected: any, selectedRows: any, changeRows: any) => {
+          console.log(selected, selectedRows, changeRows);
+        },
+      };
+      //异步函数捕捉更新状态
+      useEffect(() => {
+        SetSelectValue(selectValue)
+        if (selectValue.length === 0) setBarVisible('none')
+        else setBarVisible('')
+      }, [selectValue])
+      //捕捉异步pageMsg
+      useEffect(() => {
+        setPageMsg(pageMsg)
+        props.toggleCusPage(pageMsg)
+      }, [pageMsg])
+      // 搜索后列表刷新
+      useEffect(() => {
+        const { list } = props
+        const order_List = list.records
+        setCusList(order_List)
+      }, [props.list.records])
+
+      //删除
+      function delSelected() {
+        // @ts-ignore
+        const delAry = selectValue.map(val => val._id)
+        // 把多个删除项处理为字符串格式 传给后端处理
+        const delIds = delAry.join('-')
+        props.delCus(delIds)
+        setBarVisible('none')
+      }
 
       return (
-          <DocumentTitle title="会员资料">
+          <DocumentTitle title="会员 > 资料">
             <ConfigProvider locale={zhCN}>
               <Card title="会员档案"
                     extra={
@@ -286,9 +326,24 @@ const CusList: FunctionComponent<Props> = (props) => {
                         setPopCusStyle('新增会员')
                       }}>新增</Button>
                     }
-                    headStyle={{ borderBottom: '1px solid #ccc' }}
-                    style={{ width: '100%', border: '1px solid #ccc' }}
+                    style={{ width: '100%' }}
               >
+                <TableCheckBox
+                    delSelected={delSelected}
+                    barVisible={barVisible}
+                    editBtn={() => {
+                      edit_cus(selectValue[0])
+                    }}
+                    Search={(value: string) => {
+                      setPageMsg({
+                        page: 1,
+                        pagesize: 10,
+                        query: value
+                      })
+                    }}
+                    title='手机号码'
+                />
+
                 {
                   cusList &&
                   <Table
@@ -297,18 +352,15 @@ const CusList: FunctionComponent<Props> = (props) => {
                       columns={columns}
                       dataSource={cusList}
                       pagination={false}
+                      rowSelection={rowSelection}
                   />
                 }
                 {
                   cusList &&
                   <Paging page={props.list.page} total={props.list.total} fun={(page = 1, pageSize = 10): any => {
-                    props.toggleCusPage({
-                      query: '',
-                      page: page,
-                      pagesize: pageSize
-                    })
+                    props.toggleCusPage(pageMsg)
                     setPageMsg({
-                      query: '',
+                      query: pageMsg.query,
                       page: page,
                       pagesize: pageSize
                     })

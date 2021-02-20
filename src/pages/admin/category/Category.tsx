@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useEffect, useMemo, useState } from 'react';
+import React, { FunctionComponent, useEffect, useMemo, useRef, useState } from 'react';
 import DocumentTitle from "react-document-title";
 import { Button, Card, ConfigProvider, Form, Input, message, Modal, Popconfirm, Space, Table } from "antd";
 import zhCN from "antd/es/locale/zh_CN";
@@ -11,6 +11,7 @@ import { ADDCATELIST_URL, DELCATE_URL, EDITCATE_URL, GETCATELIST_URL } from "../
 import moment from 'moment';
 import { getStore, setStore } from "../../../utils/storage";
 import Paging from "../../../components/Paging";
+import TableCheckBox from "../../../components/TableCheckBox";
 
 interface Categories {
   _id: string,
@@ -40,13 +41,13 @@ const mapStateToProps = (state: any) => ({
   editCateStatus: state.cate.editCateStatus
 })
 const mapDispatchToProps = (dispatch: Dispatch) => ({
-   delCate(value: string) {
-       dispatch({
-           type: CATEDEL,
-           url: DELCATE_URL,
-           data: value
-       })
-   },
+  delCate(value: string) {
+    dispatch({
+      type: CATEDEL,
+      url: DELCATE_URL,
+      data: value
+    })
+  },
   addCate(value: object) {
     dispatch({
       type: CATEADD,
@@ -78,11 +79,21 @@ const Category: FunctionComponent<Props> = (props) => {
     {
       title: '分类',
       dataIndex: 'foodTypeName',
-      key: 'name',
+      key: 'foodTypeName',
     },
     {
+      title: '关联菜品数量',
+      key: 'contactnum',
+      dataIndex: 'contactnum',
+    },
+    // {
+    //   title: '创建人',
+    //   key: 'whoAdd',
+    //   dataIndex: 'whoAdd',
+    // },
+    {
       title: '创建时间',
-      key: 'category',
+      key: 'createAt',
       dataIndex: 'createAt',
       render: (text => (
           <>
@@ -92,17 +103,7 @@ const Category: FunctionComponent<Props> = (props) => {
           </>
       ))
     },
-    {
-      title: '关联菜品数量',
-      key: 'contactnum',
-      dataIndex: 'contactnum',
-      render: (text: number) => (
-          <>
-            {text}
-          </>
-      ),
-    },
-    {
+    /*{
       title: '操作',
       key: '_id',
       width: 300,
@@ -126,7 +127,7 @@ const Category: FunctionComponent<Props> = (props) => {
             }
           </Space>
       ),
-    },
+    },*/
   ];
 
   const [categoryList, SetCategoryList] = useState([])
@@ -179,18 +180,14 @@ const Category: FunctionComponent<Props> = (props) => {
     props.delCate(_id)
   }
 
-
   // 列表数据和事件处理
   useEffect(() => {
-        props.toggleCatePage()
-        console.log(props)
-        // @ts-ignore
-        const { list } = props
-        const cates = list.records
-        SetCategoryList(cates)
-        //数组长度发生变化后 获取数据 渲染列表
-      },// @ts-ignore
-      [props.list.total])
+    props.toggleCatePage(pageMsg)
+    const { list } = props
+    const cates = list.records
+    SetCategoryList(cates)
+    //数组长度发生变化后 获取数据 渲染列表
+  }, [props.list.total, props.list.page, props.list.size])
 
   // 修改状态后 部分信息改变 通过memo监听list变化 重新渲染页面
   useMemo(() => {
@@ -201,8 +198,7 @@ const Category: FunctionComponent<Props> = (props) => {
 
   // 弹框状态管理 fix 状态存储在缓存 解决每次重新加载页面弹框问题
   useEffect(() => {
-    console.log(props)
-    const {errorMsgCate, addCateStatus, delCateStatus, editCateStatus} = props
+    const { errorMsgCate, addCateStatus, delCateStatus, editCateStatus } = props
     const aastatus = getStore('addCateStatus')
     const ddstatus = getStore('delCateStatus')
     const eestatus = getStore('editCateStatus')
@@ -213,27 +209,75 @@ const Category: FunctionComponent<Props> = (props) => {
       console.log(props)
       console.log(errorMsgCate)
       setStore('addCateStatus', addCateStatus)
-      if (addCateStatus < 1) message.success('分类添加成功！')
-      else if (errorMsgCate && errorMsgCate.includes('存在')) message.error('此菜品已存在！')
+      if (addCateStatus < 1) message.success('分类添加成功')
+      else if (errorMsgCate && errorMsgCate.includes('存在')) message.warn('此分类已存在')
     }
     //删除
     if (ddstatus == delCateStatus) {
     } else {
       setStore('delCateStatus', delCateStatus)
-      if (delCateStatus < 1) message.success('分类删除成功！')
+      if (delCateStatus < 1) message.success('分类删除成功')
     }
     //修改
     if (eestatus == editCateStatus) {
     } else {
       setStore('editCateStatus', editCateStatus)
-      if (editCateStatus < 1) message.success('分类修改成功！')
+      console.log(props)
+      if (editCateStatus < 1) {
+        message.success('分类修改成功')
+        //清空选中项
+        SetSelectValue([])
+        // @ts-ignore
+        ref.current = []
+      } else if (errorMsgCate && errorMsgCate.includes('存在')) message.warn('此分类已存在')
     }
   }, [props])
 
+  //选中函数
+  const [selectValue, SetSelectValue] = useState([])
+  const [editBtnState, setEditBtnState] = useState(false)
+  const [barVisible, setBarVisible] = useState('')
+  const ref = useRef();
+  const rowSelection = {
+    onChange: (selectedRowKeys: any, selectedRows: any) => {
+      SetSelectValue(selectedRows)
+      ref.current = selectedRowKeys;
+      if (selectedRows.length > 1) setEditBtnState(true)
+      else setEditBtnState(false)
+      console.log(`selectedRowKeys: ${selectedRowKeys}`, 'selectedRows: ', selectedRows);
+    },
+    selectedRowKeys: ref.current,
+  };
+  //异步函数捕捉更新状态
+  useEffect(() => {
+    SetSelectValue(selectValue)
+    if (selectValue.length === 0) setBarVisible('none')
+    else setBarVisible('')
+  }, [selectValue])
+  //捕捉异步pageMsg
+  useEffect(() => {
+    setPageMsg(pageMsg)
+    props.toggleCatePage(pageMsg)
+  }, [pageMsg])
+  // 搜索后列表刷新
+  useEffect(() => {
+    const { list } = props
+    const order_List = list.records
+    SetCategoryList(order_List)
+  }, [props.list.records])
 
-  // @ts-ignore
+  //删除
+  function delSelected() {
+    // @ts-ignore
+    const delAry = selectValue.map(val => val._id)
+    // 把多个删除项处理为字符串格式 传给后端处理
+    const delIds = delAry.join('-')
+    props.delCate(delIds)
+    setBarVisible('none')
+  }
+
   return (
-      <DocumentTitle title="菜品分类">
+      <DocumentTitle title="菜品 > 分类">
         <ConfigProvider locale={zhCN}>
           <Card title="菜品分类" extra={
             <Button onClick={() => {
@@ -243,7 +287,24 @@ const Category: FunctionComponent<Props> = (props) => {
               新增
             </Button>
           }
-                style={{ width: '100%' }}>
+                style={{ width: '100%' }}
+          >
+            <TableCheckBox
+                delSelected={delSelected}
+                barVisible={barVisible}
+                editBtn={() => {
+                  edit_cate(selectValue[0])
+                }}
+                editBtnState={editBtnState}
+                Search={(value: string) => {
+                  setPageMsg({
+                    page: 1,
+                    pagesize: 10,
+                    query: value
+                  })
+                }}
+                title='分类名'/>
+
             {
               categoryList && <Table
                   rowKey='_id'
@@ -251,18 +312,15 @@ const Category: FunctionComponent<Props> = (props) => {
                   columns={columns}
                   dataSource={categoryList}
                   pagination={false}
+                  rowSelection={rowSelection}
               />
             }
             {
               categoryList &&
               <Paging page={props.list.page} total={props.list.total} fun={(page = 1, pageSize = 10): any => {
-                props.toggleCatePage({
-                  query: '',
-                  page: page,
-                  pagesize: pageSize
-                })
+                props.toggleCatePage(pageMsg)
                 setPageMsg({
-                  query: '',
+                  query: pageMsg.query,
                   page: page,
                   pagesize: pageSize
                 })
@@ -285,9 +343,9 @@ const Category: FunctionComponent<Props> = (props) => {
                       message: '请输入分类',
                     },
                   ]}>
-                      <Input autoFocus={true}
-                             prefix={<EditOutlined className="site-form-item-icon"/>}
-                             placeholder="请输入分类名称"/>
+                    <Input autoFocus={true}
+                           prefix={<EditOutlined className="site-form-item-icon"/>}
+                           placeholder="请输入分类名称"/>
                   </Form.Item>
                 }
                 {
@@ -298,24 +356,24 @@ const Category: FunctionComponent<Props> = (props) => {
                       message: '请输入分类',
                     },
                   ]}>
-                      <Input autoFocus={true}
-                             prefix={<EditOutlined className="site-form-item-icon"/>}
-                             placeholder="请输入分类名称"/>
+                    <Input autoFocus={true}
+                           prefix={<EditOutlined className="site-form-item-icon"/>}
+                           placeholder="请输入分类名称"/>
                   </Form.Item>
                 }
 
                 {
                   popCateStyle === '新增分类' &&
                   <Form.Item name="whoAdd" initialValue={userInfo.name}>
-                      <Input disabled
-                             prefix={<UserOutlined className="site-form-item-icon"/>}/>
+                    <Input disabled
+                           prefix={<UserOutlined className="site-form-item-icon"/>}/>
                   </Form.Item>
                 }
                 {
                   popCateStyle === '编辑分类' &&
                   <Form.Item name="whoAdd" initialValue={userInfo.name}>
-                      <Input disabled
-                             prefix={<UserOutlined className="site-form-item-icon"/>}/>
+                    <Input disabled
+                           prefix={<UserOutlined className="site-form-item-icon"/>}/>
                   </Form.Item>
                 }
 

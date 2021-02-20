@@ -48,12 +48,11 @@ function* toggleCusPage(action: any) {
   try {
     console.log('切换，列表页面saga执行')
     const result = yield get(action.url, action.data)
-    const cate_result = yield get(CUSCATELIST_URL)
+    // const cate_result = yield get(CUSCATELIST_URL)
     console.log(result)
-    console.log(cate_result)
-    if (result.meta.status === 200 && cate_result.meta.status === 200) {
+    //console.log(cate_result)
+    if (result.meta.status === 200) {
       yield put({ type: types.GETCUSLISTSUC, data: result })
-      yield put({type: types.GETCUSCATESUC, data: cate_result})
     } else {
       // yield put({type: types.GETFAILED, data: result})
     }

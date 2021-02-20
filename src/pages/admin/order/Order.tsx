@@ -291,10 +291,7 @@ const Order: FunctionComponent<Props> = (props) => {
   return (
       <DocumentTitle title="订单管理">
         <ConfigProvider locale={zhCN}>
-          <Card title="订单列表"
-                headStyle={{ borderBottom: '1px solid #ccc' }}
-                style={{ position: "relative", width: '100%', border: '1px solid #ccc' }}>
-
+          <Card title="订单列表" style={{ position: "relative", width: '100%' }}>
             <TableCheckBox
                 delSelected={delSelected}
                 barVisible={barVisible}
@@ -305,7 +302,7 @@ const Order: FunctionComponent<Props> = (props) => {
                     query: value
                   })
                 }}
-            />
+                title='订单号'/>
 
             {
               orderList && <Table
@@ -320,13 +317,9 @@ const Order: FunctionComponent<Props> = (props) => {
             {
               orderList &&
               <Paging page={props.list.page} total={props.list.total} fun={(page = 1, pageSize = 10): any => {
-                props.toggleOrderPage({
-                  query: '',
-                  page: page,
-                  pagesize: pageSize
-                })
+                props.toggleOrderPage(pageMsg)
                 setPageMsg({
-                  query: '',
+                  query: pageMsg.query,
                   page: page,
                   pagesize: pageSize
                 })
@@ -343,7 +336,7 @@ const Order: FunctionComponent<Props> = (props) => {
               visible={drawVisible}
           >
             <Descriptions title={`订单号：${drawValue.orderid}`}>
-              <Descriptions.Item label="桌位号">{drawValue.tableid} 元</Descriptions.Item>
+              <Descriptions.Item label="桌位号">{drawValue.tableid} 号</Descriptions.Item>
               {
                 drawValue.cus.name &&
                 <Descriptions.Item label="会员姓名">{drawValue.cus.name}</Descriptions.Item>

@@ -1,7 +1,7 @@
-import React, {FunctionComponent, useEffect, useMemo, useState} from 'react';
-import {Dispatch} from "redux";
-import {ADDDISH_URL, DELDISH_URL, DISHLIST, EDITDISH_URL, SERVER_URL, UPPIC_URL} from "../../../common/api";
-import {connect} from "react-redux";
+import React, { FunctionComponent, useEffect, useMemo, useRef, useState } from 'react';
+import { Dispatch } from "redux";
+import { ADDDISH_URL, DELDISH_URL, DISHLIST, EDITDISH_URL, SERVER_URL, UPPIC_URL } from "../../../common/api";
+import { connect } from "react-redux";
 import DocumentTitle from "react-document-title";
 import zhCN from "antd/es/locale/zh_CN";
 import {
@@ -21,14 +21,15 @@ import {
   Table,
   Upload
 } from "antd";
-import {ColumnsType} from "antd/es/table";
-import {ADDDISH, DELDISH, EDITDISH, GETDISHLIST} from "./actions";
+import { ColumnsType } from "antd/es/table";
+import { ADDDISH, DELDISH, EDITDISH, GETDISHLIST } from "./actions";
 import Paging from "../../../components/Paging";
-import {DeleteOutlined, EditOutlined, PlusOutlined,} from '@ant-design/icons';
+import { DeleteOutlined, EditOutlined, PlusOutlined, } from '@ant-design/icons';
 import './dish.css'
-import {getStore, setStore} from "../../../utils/storage";
+import { getStore, setStore } from "../../../utils/storage";
+import TableCheckBox from "../../../components/TableCheckBox";
 
-const {Option} = Select;
+const { Option } = Select;
 
 interface OwnProps {
   [prop: string]: any
@@ -108,6 +109,9 @@ const Dish: FunctionComponent<Props> = (props) => {
       title: '菜品',
       dataIndex: 'name',
       key: 'name',
+      render: (value, records, index) => (<a onClick={() => {
+        edit_dish(records)
+      }}>{value}</a>),
     },
     {
       title: '分类',
@@ -134,7 +138,7 @@ const Dish: FunctionComponent<Props> = (props) => {
           </>
       ),
     },
-    {
+    /*{
       title: '操作',
       key: '_id',
       width: 300,
@@ -158,7 +162,7 @@ const Dish: FunctionComponent<Props> = (props) => {
             }
           </Space>
       ),
-    },
+    },*/
   ];
 
   // 修改菜品信息
@@ -175,7 +179,6 @@ const Dish: FunctionComponent<Props> = (props) => {
       categoryId: records?.category?._id,
       foodTypeName: records?.category?.foodTypeName
     })
-
   }
 
   const [editValue, SetEditValue] = useState({
@@ -185,8 +188,7 @@ const Dish: FunctionComponent<Props> = (props) => {
     number: 888,
     price: 0,
     categoryId: '',
-    foodTypeName: ''
-
+    foodTypeName: '',
   })
   const [dishList, setDishList] = useState([])
 
@@ -207,7 +209,7 @@ const Dish: FunctionComponent<Props> = (props) => {
   // 列表数据和事件处理
   useEffect(() => {
     props.toggleDishPage(pageMsg)
-    const {list} = props
+    const { list } = props
     const dish_List = list.records
     setDishList(dish_List)
     //数组长度发生变化后 获取数据 渲染列表
@@ -215,7 +217,7 @@ const Dish: FunctionComponent<Props> = (props) => {
 
   // 修改状态后 部分信息改变 通过memo监听list变化 重新渲染页面
   useMemo(() => {
-    const {list} = props
+    const { list } = props
     const dishList = list.records
     setDishList(dishList)
   }, [props.list])
@@ -281,7 +283,7 @@ const Dish: FunctionComponent<Props> = (props) => {
   // todo 上传多张照片
   const [dishImgUrl, setDishImgUrl] = useState('')
   // @ts-ignore  图片状态发生变化时
-  const handleChange = ({fileList}) => {
+  const handleChange = ({ fileList }) => {
     setFileList(fileList)
     if (fileList.length > 0 && fileList[0].status === 'done') setDishImgUrl(fileList[0].response[0].file)
   };
@@ -289,7 +291,7 @@ const Dish: FunctionComponent<Props> = (props) => {
   // 图片上传按钮
   const uploadButton = (<div>
     <PlusOutlined/>
-    <div style={{marginTop: 8}}>点击上传</div>
+    <div style={{ marginTop: 8 }}>点击上传</div>
   </div>);
 
   // 新增/编辑菜品表单提交函数
@@ -309,7 +311,7 @@ const Dish: FunctionComponent<Props> = (props) => {
 
   // 删除菜品触发
   const del_dish = (value: Dishes) => {
-    const {_id} = value
+    const { _id } = value
     props.delDish(_id)
   }
 
@@ -331,37 +333,86 @@ const Dish: FunctionComponent<Props> = (props) => {
   // 弹框状态管理 fix 状态存储在缓存 解决每次重新加载页面弹框问题
   useEffect(() => {
     console.log(props)
-    const {errorMsgDish, addDishStatus, delDishStatus, editDishStatus} = props
+    const { errorMsgDish, addDishStatus, delDishStatus, editDishStatus } = props
     const aastatus = getStore('addDishStatus')
     const ddstatus = getStore('delDishStatus')
     const eestatus = getStore('editDishStatus')
+
+    console.log(props)
+    console.log(errorMsgDish)
+
     //添加
     if (aastatus == addDishStatus) {
     } else {
-      console.log(props)
-      console.log(errorMsgDish)
       setStore('addDishStatus', addDishStatus)
-      if (addDishStatus < 1) message.success('菜品添加成功！')
-      else if (errorMsgDish && errorMsgDish.includes('存在')) message.error('此菜品已存在！')
+      if (addDishStatus < 1) message.success('菜品添加成功')
+      else if (errorMsgDish && errorMsgDish.includes('存在')) message.warn('此菜品已存在')
     }
     //删除
     if (ddstatus == delDishStatus) {
     } else {
       setStore('delDishStatus', delDishStatus)
-      if (delDishStatus < 1) message.success('菜品删除成功！')
+      if (delDishStatus < 1) message.success('菜品删除成功')
     }
     //修改
     if (eestatus == editDishStatus) {
     } else {
       setStore('editDishStatus', editDishStatus)
-      if (editDishStatus < 1) message.success('菜品修改成功！')
+      if (editDishStatus < 1) {
+        message.success('菜品修改成功')
+        //清空选中项
+        SetSelectValue([])
+        // @ts-ignore
+        ref.current = []
+      } else if (errorMsgDish && errorMsgDish.includes('存在')) message.warn('此菜品已存在')
     }
   }, [props])
 
-  // .addDishStatus, props.delDishStatus, props.editDishStatus
+  //选中函数
+  const [editBtnState, setEditBtnState] = useState(false)
+  const [selectValue, SetSelectValue] = useState([])
+  const [barVisible, setBarVisible] = useState('')
+  const ref = useRef();
+  const rowSelection = {
+    onChange: (selectedRowKeys: any, selectedRows: any) => {
+      SetSelectValue(selectedRows)
+      ref.current = selectedRowKeys;
+      if (selectedRows.length > 1) setEditBtnState(true)
+      else setEditBtnState(false)
+      console.log(`selectedRowKeys: ${selectedRowKeys}`, 'selectedRows: ', selectedRows);
+    },
+    selectedRowKeys: ref.current,
+  };
+  //异步函数捕捉更新状态
+  useEffect(() => {
+    SetSelectValue(selectValue)
+    if (selectValue.length === 0) setBarVisible('none')
+    else setBarVisible('')
+  }, [selectValue])
+  //捕捉异步pageMsg
+  useEffect(() => {
+    setPageMsg(pageMsg)
+    props.toggleDishPage(pageMsg)
+  }, [pageMsg])
+  // 搜索后列表刷新
+  useEffect(() => {
+    const { list } = props
+    const order_List = list.records
+    setDishList(order_List)
+  }, [props.list.records])
+
+  //删除
+  function delSelected() {
+    // @ts-ignore
+    const delAry = selectValue.map(val => val._id)
+    // 把多个删除项处理为字符串格式 传给后端处理
+    const delIds = delAry.join('-')
+    props.delDish(delIds)
+    setBarVisible('none')
+  }
 
   return (
-      <DocumentTitle title="菜品管理">
+      <DocumentTitle title="菜品 > 列表">
         <ConfigProvider locale={zhCN}>
           <Card title="菜品列表" extra={
             <Button onClick={() => {
@@ -369,7 +420,24 @@ const Dish: FunctionComponent<Props> = (props) => {
               setDrawerType('新增菜品')
             }} type="primary" shape="circle" icon={<PlusOutlined/>} size={"large"}/>
           }
-                style={{width: '100%'}}>
+                style={{ width: '100%' }}>
+
+            <TableCheckBox
+                delSelected={delSelected}
+                barVisible={barVisible}
+                editBtn={() => {
+                  edit_dish(selectValue[0])
+                }}
+                editBtnState={editBtnState}
+                Search={(value: string) => {
+                  setPageMsg({
+                    page: 1,
+                    pagesize: 10,
+                    query: value
+                  })
+                }}
+                title='菜品名'/>
+
             {
               dishList && <Table
                   rowKey='_id'
@@ -377,18 +445,16 @@ const Dish: FunctionComponent<Props> = (props) => {
                   columns={columns}
                   dataSource={dishList}
                   pagination={false}
+                  rowSelection={rowSelection}
+                  scroll={{ y: 400 }}
               />
             }
             {
               dishList &&
               <Paging page={props.list.page} total={props.list.total} fun={(page = 1, pageSize = 10): any => {
-                props.toggleDishPage({
-                  query: '',
-                  page: page,
-                  pagesize: pageSize
-                })
+                props.toggleDishPage(pageMsg)
                 setPageMsg({
-                  query: '',
+                  query: pageMsg.query,
                   page: page,
                   pagesize: pageSize
                 })
@@ -421,13 +487,13 @@ const Dish: FunctionComponent<Props> = (props) => {
                     footer={null}
                     onCancel={handleCancel}
                 >
-                  <img alt="example" style={{width: '100%'}} src={previewImage}/>
+                  <img alt="example" style={{ width: '100%' }} src={previewImage}/>
                 </Modal>
               </>
 
               <Form layout="vertical"
                     requiredMark
-                    style={{marginTop: 30}}
+                    style={{ marginTop: 30 }}
                     onFinish={handleForm}
               >
                 <Row gutter={16}>
@@ -437,9 +503,9 @@ const Dish: FunctionComponent<Props> = (props) => {
                       <Form.Item
                           name="name"
                           label="菜名"
-                          rules={[{required: true, message: '请输入名称'}]}
+                          rules={[{ required: true, message: '请输入名称' }]}
                       >
-                          <Input autoFocus={true} placeholder="请输入名称"/>
+                        <Input autoFocus={true} placeholder="请输入名称"/>
                       </Form.Item>
                     }
                     {
@@ -448,9 +514,9 @@ const Dish: FunctionComponent<Props> = (props) => {
                           name="name"
                           label="菜名"
                           initialValue={editValue.name}
-                          rules={[{required: true, message: '请输入名称'}]}
+                          rules={[{ required: true, message: '请输入名称' }]}
                       >
-                          <Input placeholder="请输入名称" defaultValue={editValue.name} autoFocus={true}/>
+                        <Input placeholder="请输入名称" autoFocus={true}/>
                       </Form.Item>
                     }
                   </Col>
@@ -460,14 +526,14 @@ const Dish: FunctionComponent<Props> = (props) => {
                       <Form.Item
                           name="price"
                           label="单价"
-                          rules={[{required: true, message: '请输入单价'}]}
+                          rules={[{ required: true, message: '请输入单价' }]}
                       >
-                          <Input
-                              type={'number'}
-                              style={{width: '100%'}}
-                              addonAfter="元"
-                              placeholder="请输入单价"
-                          />
+                        <Input
+                            type={'number'}
+                            style={{ width: '100%' }}
+                            addonAfter="元"
+                            placeholder="请输入单价"
+                        />
                       </Form.Item>
                     }
                     {
@@ -476,15 +542,14 @@ const Dish: FunctionComponent<Props> = (props) => {
                           initialValue={editValue.price}
                           name="price"
                           label="单价"
-                          rules={[{required: true, message: '请输入单价'}]}
+                          rules={[{ required: true, message: '请输入单价' }]}
                       >
-                          <Input
-                              type={'number'}
-                              style={{width: '100%'}}
-                              addonAfter="元"
-                              placeholder="请输入单价"
-                              defaultValue={editValue.price}
-                          />
+                        <Input
+                            type={'number'}
+                            style={{ width: '100%' }}
+                            addonAfter="元"
+                            placeholder="请输入单价"
+                        />
                       </Form.Item>
                     }
                   </Col>
@@ -496,42 +561,43 @@ const Dish: FunctionComponent<Props> = (props) => {
                       <Form.Item
                           name="category"
                           label="分类"
-                          rules={[{required: true, message: '请选择分类'}]}
+                          rules={[{ required: true, message: '请选择分类' }]}
                       >
-                          <Select placeholder="请选择分类">
-                            {
-                              props.cateList &&
-                              props.cateList.map((value: any) => (
-                                      <Option value={value._id}
-                                              key={value._id}>
-                                        {value.foodTypeName}
-                                      </Option>
-                                  )
-                              )
-                            }
-                          </Select>
+                        <Select placeholder="请选择分类">
+                          {
+                            props.cateList &&
+                            props.cateList.map((value: any) => (
+                                    <Option value={value._id}
+                                            key={value._id}>
+                                      {value.foodTypeName}
+                                    </Option>
+                                )
+                            )
+                          }
+                        </Select>
                       </Form.Item>
                     }
                     {
                       drawerType === '编辑菜品' &&
                       <Form.Item
-                          initialValue={editValue.foodTypeName}
+                          initialValue={editValue.categoryId}
                           name="category"
                           label="分类"
-                          rules={[{required: true, message: '请选择分类'}]}
+                          rules={[{ required: true, message: '请选择分类' }]}
                       >
-                          <Select placeholder="请选择分类" defaultValue={editValue.foodTypeName}>
-                            {
-                              props.cateList &&
-                              props.cateList.map((value: any) => (
-                                      <Option value={value._id}
-                                              key={value._id}>
-                                        {value.foodTypeName}
-                                      </Option>
-                                  )
-                              )
-                            }
-                          </Select>
+                        <Select placeholder="请选择分类"
+                                defaultValue={editValue.foodTypeName}>
+                          {
+                            props.cateList &&
+                            props.cateList.map((value: any) => (
+                                    <Option value={value._id}
+                                            key={value._id}>
+                                      {value.foodTypeName}
+                                    </Option>
+                                )
+                            )
+                          }
+                        </Select>
                       </Form.Item>
                     }
                   </Col>
@@ -542,14 +608,14 @@ const Dish: FunctionComponent<Props> = (props) => {
                           initialValue={888}
                           name="number"
                           label="库存"
-                          rules={[{required: true, message: '请输入库存'}]}
+                          rules={[{ required: true, message: '请输入库存' }]}
                       >
-                          <Input
-                              type={'number'}
-                              style={{width: '100%'}}
-                              placeholder="请输入库存"
-                              defaultValue={888}
-                          />
+                        <Input
+                            type={'number'}
+                            style={{ width: '100%' }}
+                            placeholder="请输入库存"
+                            defaultValue={888}
+                        />
                       </Form.Item>
                     }
                     {
@@ -558,20 +624,19 @@ const Dish: FunctionComponent<Props> = (props) => {
                           initialValue={editValue.number}
                           name="number"
                           label="库存"
-                          rules={[{required: true, message: '请输入库存'}]}
+                          rules={[{ required: true, message: '请输入库存' }]}
                       >
-                          <Input
-                              type={'number'}
-                              style={{width: '100%'}}
-                              placeholder="请输入库存"
-                              defaultValue={editValue.number}
-                          />
+                        <Input
+                            type={'number'}
+                            style={{ width: '100%' }}
+                            placeholder="请输入库存"
+                        />
                       </Form.Item>
                     }
                   </Col>
                 </Row>
-                <Form.Item style={{marginTop: 66, marginRight: 14}}>
-                  <Space style={{float: "right"}}>
+                <Form.Item style={{ marginTop: 66, marginRight: 14 }}>
+                  <Space style={{ float: "right" }}>
                     <Button type="default" onClick={onClose}>取消</Button>
                     {
                       drawerType === '新增菜品' &&

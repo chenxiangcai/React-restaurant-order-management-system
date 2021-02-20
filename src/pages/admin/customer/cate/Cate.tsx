@@ -175,26 +175,10 @@ const CusCate: FunctionComponent<Props> = (props) => {
     }
   }, [props.addCcateStatus, props.delCcateStatus, props.editCcateStatus])
 
-  // @ts-ignore
-  const [newList, setList] = []
-  //const s = cateList.unshift()
-  // @ts-ignore
-  //SetCateList()
   return (
-      <DocumentTitle title="会员类别">
+      <DocumentTitle title="会员 > 类别">
         <ConfigProvider locale={zhCN}>
           <Card title="会员类别">
-            {/*<List>*/}
-            {/*  <CateWrap>*/}
-            {/*    <Card onClick={() => {*/}
-            {/*      setVisible(true)*/}
-            {/*      setPopCateStyle('新增会员类别')*/}
-            {/*    }}*/}
-            {/*          style={{ width: 262, display: "inline-block" }} className={'card'}>*/}
-            {/*      <div className='plus'><PlusOutlined/></div>*/}
-            {/*    </Card>*/}
-            {/*  </CateWrap>*/}
-            {/*</List>*/}
             <List
                 grid={{ gutter: 16, column: 4 }}
                 dataSource={cateList}
