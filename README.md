@@ -1,5 +1,5 @@
 # Getting Started with Create React App
-[![time tracker](https://wakatime.com/badge/github/chenxiangcai/canteen-order-react.svg)](https://wakatime.com/badge/github/chenxiangcai/canteen-order-react)
+[![time tracker](https://wakatime.com/badge/github/chenxiangcai/Ts-restaurant-ordering-system.svg)](https://wakatime.com/badge/github/chenxiangcai/Ts-restaurant-ordering-system.svg)
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
