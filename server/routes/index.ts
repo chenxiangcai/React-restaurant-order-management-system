@@ -12,7 +12,7 @@ export = app => {
     app.use('/admin/category', require('./category')) //菜品分类
     app.use('/admin/customer',require('./customer')) //会员
     app.use('/admin/order',require('./order')) //订单
-
+    app.use('/admin/dashboard',require('./admin/dashboard/detail')) //看板
 
     app.post('/login', require('./admin/login')) //用户登录
 

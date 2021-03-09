@@ -84,6 +84,11 @@ export const ORDERADD_URL = '/admin/order/add'
 export type ORDERADD_URL = typeof ORDERADD_URL
 
 
+// 看板
+export const DASHBOARD_URL = '/admin/dashboard'
+export type DASHBOARD_URL = typeof DASHBOARD_URL
+
+
 // 图片上传地址
 export const UPPIC_URL = 'http://localhost:8300/upload'
 export type UPPIC_URL = typeof UPPIC_URL

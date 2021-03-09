@@ -5,7 +5,7 @@
 * @time: 2020-12-17 21:44:27
 */
 import { Login } from "../pages/login";
-import Dashboard from "../pages/admin/dashboard";
+import { Dashboard } from "../pages/admin/dashboard/";
 import { Staff } from "../pages/admin/staff";
 import { Dish } from "../pages/admin/dish";
 import { Category } from "../pages/admin/category";

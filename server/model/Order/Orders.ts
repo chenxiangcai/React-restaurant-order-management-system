@@ -7,6 +7,7 @@ const orderSchema: object = new Schema({
   orderid: {
     type: Number,
     required: true,
+    unique: true
   },
   tableid: {
     type: Number,
@@ -58,20 +59,20 @@ const orderSchema: object = new Schema({
 const Orders = model('Orders', orderSchema);
 
 //初始化测试订单
-Orders.findOne({ orderid: 73499 }).then(
+Orders.findOne({ orderid: 434 }).then(
     async (result: null | object): Promise<void> => {
       if (result == null) {
         await Orders.create({
-          orderid: 73499,
+          orderid: 434,
           tableid: 8,
           waiter: '6015033b71e42a1dcf104f74',
           orderdetail: [
-            { _id: '60162a2a64a75c03f3e60b9e', num: 92 },
+            { _id: '602d1ae8c9629d3af74f7263', num: 2 },
           ],
-          receivable: 777,
-          paid: 666,
-          person: 12,
-          cus: '601e74d42015bb03b6f7ca91',
+          receivable: 333777,
+          paid: 66633,
+          person: 1233,
+          cus: '601e75332015bb03b6f7ca97',
           level: '6017aa76610c061ff04fc6cf'
         })
       }
