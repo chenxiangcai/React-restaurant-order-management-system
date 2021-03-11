@@ -88,6 +88,10 @@ export type ORDERADD_URL = typeof ORDERADD_URL
 export const DASHBOARD_URL = '/admin/dashboard'
 export type DASHBOARD_URL = typeof DASHBOARD_URL
 
+//密码
+export const PWD_URL = '/admin/staff/pwd'
+export type PWD_URL = typeof PWD_URL
+
 
 // 图片上传地址
 export const UPPIC_URL = 'http://localhost:8300/upload'

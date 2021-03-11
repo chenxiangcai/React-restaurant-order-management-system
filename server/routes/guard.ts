@@ -1,6 +1,8 @@
 // @ts-ignore
 const { User } = require('../model/User/User')
+// @ts-ignore
 const jwt = require('jsonwebtoken')
+// @ts-ignore
 const { secret } = require('../config/key')
 const _ = require('lodash')
 module.exports = async (req, res, next) => {

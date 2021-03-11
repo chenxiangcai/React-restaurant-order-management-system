@@ -13,6 +13,7 @@ import { sagas as cusCate } from '../pages/admin/customer/cate'
 import { sagas as cusList } from '../pages/admin/customer/list'
 import { sagas as order } from '../pages/admin/order'
 import { sagas as dashboard } from '../pages/admin/dashboard'
+import { sagas as topBarEditInfo } from '../common/Layout'
 
 const { TOLOGIN } = login.types;
 const { GETLIST, ADDSTAFF, TOGGLEPAGE, DELSTAFF, EDITSTAFF } = staff.types;
@@ -22,11 +23,12 @@ const { GETCUSCATELIST, CUSCATEADD, CUSCATEEDIT, CUSCATEDEL } = cusCate.types
 const { GETCUSLIST, CUSADD, CUSEDIT, CUSDEL } = cusList.types
 const { GETORDERLIST, ORDERADD, ORDERDEL, ORDEREDIT } = order.types
 const { GETDASHBOARD } = dashboard.types
+const { EDITUSERINFO } = topBarEditInfo.types
 
 function* sagas() {
   console.log('saga总监听执行')
   // 登录
-  yield takeEvery(TOLOGIN, login.action);
+  yield takeEvery(TOLOGIN, login.toLogin);
 
   // 员工
   yield takeEvery(ADDSTAFF, staff.addStaff)
@@ -67,6 +69,9 @@ function* sagas() {
 
   //看板
   yield takeEvery(GETDASHBOARD, dashboard.getDetail)
+
+  //topBar修改个人信息
+  yield takeEvery(EDITUSERINFO, topBarEditInfo.editInfo)
 
 }
 

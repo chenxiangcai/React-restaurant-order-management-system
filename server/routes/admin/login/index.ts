@@ -34,6 +34,6 @@ export = async (req, res) => {
     // 使用密钥对token加密生成 返回客户端
     const {_id, name} = user
     token = jwt.sign({_id, name}, secret, {expiresIn: '24h'});
-    userInfo = _.pick(user, ['role', '_id','name']);
+    userInfo = _.pick(user, ['role', 'account','name','status','joinTime']);
     res.send({token, userInfo, meta: {status: 200, message: '登录成功'}})
 }

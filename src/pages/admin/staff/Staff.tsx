@@ -502,7 +502,7 @@ const Staff: FunctionComponent<Props> = (props) => {
                     <Radio value={-1}>离职</Radio>
                   </Radio.Group>
                 </Form.Item>
-                <Form.Item style={{ marginBottom: 0 }}>
+                <Form.Item style={{ marginBottom: -6 }}>
                   <Space style={{ float: "right" }}>
                     <Button type="default" onClick={handleCancel}>取消</Button>
                     {

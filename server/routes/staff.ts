@@ -12,5 +12,6 @@ staff.get('/', require('./admin/staffs/list'))
 staff.post('/add', require('./admin/staffs/add'))
 staff.delete('/:id', require('./admin/staffs/del'))
 staff.put('/edit', require('./admin/staffs/edit'))
+staff.post('/pwd', require('./admin/staffs/pwd'))
 
 export = staff

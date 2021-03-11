@@ -21,3 +21,80 @@
 .darkmode-layer, .darkmode-toggle {
     z-index: 500;
 }
+
+.site-layout-background div:first-child {
+    margin-left: 36%;
+    font-size: 27px;
+    font-weight: 200;
+}
+
+.site-layout-background {
+    position: relative;
+}
+
+.avatar {
+    position: absolute;
+    right: 2%;
+    top: 0;
+    cursor: pointer;
+}
+
+.content {
+    position: relative;
+    font-size: 10px;
+}
+
+.contentss {
+    position: relative;
+    font-size: 10px;
+    height: 76px;
+}
+
+.contentss p:first-child {
+    position: absolute;
+    left: -16px;
+    top: -6px;
+    text-align: center;
+    width: 122%;
+    height: 26px;
+    line-height: 26px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.contentss p:hover {
+    background-color: #448df8;
+    border-radius: 6px;
+    color: white;
+}
+
+.contentss p:nth-child(2) {
+    position: absolute;
+    left: -16px;
+    top: 26px;
+    text-align: center;
+    height: 26px;
+    line-height: 26px;
+    width: 122%;
+    cursor: pointer;
+}
+
+.contentss p:last-child {
+    position: absolute;
+    left: -16px;
+    top: 56px;
+    text-align: center;
+    height: 26px;
+    line-height: 26px;
+    width: 122%;
+    cursor: pointer;
+}
+
+.time {
+    position: absolute;
+    height: 100px;
+    width: 800px;
+    right: -20%;
+    font-size: 10px;
+    top: 0
+}
