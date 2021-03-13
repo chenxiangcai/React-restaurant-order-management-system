@@ -14,6 +14,7 @@
     "@types/react-redux": "^7.1.12",
     "@types/react-router-dom": "^5.1.6",
     "antd": "^4.9.3",
+    "antd-mobile": "^2.3.4",
     "axios": "^0.21.0",
     "darkmode-js": "^1.5.7",
     "moment": "^2.29.1",

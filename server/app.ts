@@ -8,12 +8,6 @@ require('./model/connect.ts')
 
 app.use(express.static(path.join(__dirname, 'public')))
 
-/*
-app.all('/!*',(req: express.Request, res: express.Response, next) =>{
-    console.log(req)
-})
-*/
-
 // 设置跨域和相应数据格式
 app.all('/*', (req: express.Request, res: express.Response, next) => {
     res.header('Access-Control-Allow-Origin', '*')

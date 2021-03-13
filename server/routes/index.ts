@@ -5,6 +5,7 @@
 * @time: 2020-12-14 19:49:21
 */
 export = app => {
+    /*后台路由*/
     app.use('/admin/*',require('./guard')) //权限拦截
 
     app.use('/admin/staff', require('./staff')) //用户二级路由
@@ -17,4 +18,7 @@ export = app => {
     app.post('/login', require('./admin/login')) //用户登录
 
     app.post('/upload', require('./admin/upload')) //图片上传
+
+    /*前台路由*/
+    // app.get('/home',require('./front/home'))
 }

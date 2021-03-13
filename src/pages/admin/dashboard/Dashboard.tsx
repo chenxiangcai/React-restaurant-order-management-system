@@ -283,7 +283,7 @@ const Dashboard: FunctionComponent<Props> = (props) => {
                                    value={data?.vip?.vipnum}
                                    suffix={'人'}
                         />
-                        <div className='num'>
+                        <div style={{ marginLeft: '10%' }} className='num'>
                           <DemoLiquid rate={data?.vip?.weekVipActiveRate}/>
                         </div>
                       </div>

@@ -12,12 +12,17 @@ import { Category } from "../pages/admin/category";
 import { CusCate } from "../pages/admin/customer/cate";
 import { CusList } from "../pages/admin/customer/list";
 import { Order } from "../pages/admin/order";
+import { Home } from "../pages/front/home";
 
 // 普通路由
 export const normalRoute = [{
   path: '/login',
   component: Login
-}]
+}, {
+  path: '/home',
+  component: Home
+}
+]
 // 管理员路由
 export const adminRoute = [{
   path: '/admin/dashboard',
