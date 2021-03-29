@@ -48,5 +48,9 @@ export const DashWrap = styled.div`
   /deep/ .a > .ant-statistic-content {
     position: absolute;
   }
+
+  /deep/ .ant-table table {
+    height: 407px;
+  }
 `
 

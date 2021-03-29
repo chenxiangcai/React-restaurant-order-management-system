@@ -1,0 +1,106 @@
+.am-stepper.showNumber {
+    width: 97px;
+    position: absolute;
+    right: 1rem;
+    bottom: -.7rem;
+}
+
+.am-stepper-handler {
+    text-align: center;
+    border: 1px solid #ddd;
+    border-radius: 100%;
+    width: 1rem;
+    height: 1rem;
+    position: relative;
+}
+
+.am-stepper-handler-down > svg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: .7rem;
+    transform: translate(-50%, -50%);
+}
+
+.am-stepper-handler-up > svg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: .7rem;
+    color: white;
+    transform: translate(-50%, -50%);
+}
+
+.am-stepper-handler-wrap > .am-stepper-handler-up {
+    position: absolute;
+    top: 50%;
+    background-color: rgb(35, 45, 57);
+    transform: translateY(-55%);
+}
+
+.img {
+    position: absolute;
+    width: 6rem;
+    height: 6rem;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
+.dish-titles, .dish-prices {
+    position: absolute;
+    left: 5.7rem;
+}
+
+.num {
+    left: 9.5rem;
+}
+
+.dish-prices {
+    top: 1.5rem;
+    font-size: .8rem;
+    font-weight: 400;
+    color: #dabb91;
+}
+
+.am-stepper-input-wrap {
+    display: none;
+    width: 63% !important;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    overflow: hidden;
+}
+
+.am-stepper-handler-wrap {
+    position: absolute;
+    width: 63%;
+    right: 0;
+    font-size: 24px;
+}
+
+.am-stepper-input {
+    display: none;
+    width: 60px;
+    font-size: 16px;
+    color: #000;
+    text-align: center;
+    border: 0;
+    padding: 0;
+    background: none;
+    vertical-align: middle;
+    position: absolute;
+    right: 0.1rem;
+    top: .6rem;
+}
+
+.am-card-body::before {
+    border: none;
+    height: 0 !important;
+}
+
+.numutil {
+    position: absolute;
+    right: .7rem;
+    bottom: 0;
+}
+

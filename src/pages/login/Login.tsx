@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useMemo, useState } from 'react';
+import React, { FC, useEffect } from 'react';
 import { connect } from 'react-redux'
 import { Button, Form, Input, message } from 'antd';
 import { LockOutlined, UserOutlined } from '@ant-design/icons';
@@ -42,11 +42,11 @@ const Login: FC<Props> = (props) => {
   const history = useHistory()
 
   useEffect(() => {
-    if (props.status) {
+    if (String(props.status)) {
       const { status } = props
       console.log(props)
       if (status === -1) message.warning('网络连接错误！');
-      else if (status === 0) message.error('账号或密码错误！')
+      else if (status > 100) message.error('账号或密码错误！')
       else {
         if (getStore('userInfo') !== null) {
           const info = JSON.parse(getStore('userInfo'))

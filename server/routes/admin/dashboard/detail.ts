@@ -47,8 +47,11 @@ export = async (req, res) => {
   const thisWeekMoney: number = thisWeekOrders.records.reduce((pre, cur) => pre + cur.receivable, 0)
   const lastWeekMoney: number = lastWeekOrders.records.reduce((pre, cur) => pre + cur.receivable, 0)
   let weekRate: number | string
-  if (lastWeekMoney !== 0) weekRate = (thisWeekMoney / lastWeekMoney * 0.1).toFixed(2)
+
+  if (lastWeekMoney != 0) weekRate = ((thisWeekMoney / lastWeekMoney) * 0.1).toFixed(2)
+  else if (thisWeekMoney == 0) weekRate = -8888
   else weekRate = -9999
+  if (weekRate == 0) weekRate = -8888
 
   //日环比 = （今日销售数据 / 昨日销售数据） *100%
   const onedaytime = 86400000
@@ -64,7 +67,8 @@ export = async (req, res) => {
   const lastDayMoney: number = lastdayorders.records.reduce((pre, cur) => pre + cur.receivable, 0)
   const todayMoney: number = todayorders.records.reduce((pre, cur) => pre + cur.receivable, 0)
   let dayRate: string | number
-  if (lastDayMoney !== 0) dayRate = ((todayMoney / lastDayMoney) * 0.1).toFixed(2)
+  if (lastDayMoney != 0) dayRate = ((todayMoney / lastDayMoney) * 0.1).toFixed(2)
+  else if (todayMoney == 0) dayRate = -8888
   else dayRate = -9999
 
 
