@@ -14,6 +14,7 @@ import { sagas as cusList } from '../pages/admin/customer/list'
 import { sagas as order } from '../pages/admin/order'
 import { sagas as dashboard } from '../pages/admin/dashboard'
 import { sagas as topBarEditInfo } from '../common/Layout'
+import { sagas as setting } from '../pages/admin/setting'
 
 const { TOLOGIN } = login.types;
 const { GETLIST, ADDSTAFF, TOGGLEPAGE, DELSTAFF, EDITSTAFF } = staff.types;
@@ -24,6 +25,7 @@ const { GETCUSLIST, CUSADD, CUSEDIT, CUSDEL } = cusList.types
 const { GETORDERLIST, ORDERADD, ORDERDEL, ORDEREDIT } = order.types
 const { GETDASHBOARD } = dashboard.types
 const { EDITUSERINFO } = topBarEditInfo.types
+const { GETQRCODE } = setting.types
 
 function* sagas() {
   console.log('saga总监听执行')
@@ -72,6 +74,9 @@ function* sagas() {
 
   //topBar修改个人信息
   yield takeEvery(EDITUSERINFO, topBarEditInfo.editInfo)
+
+  //设置
+  yield takeEvery(GETQRCODE, setting.getQR)
 
 }
 

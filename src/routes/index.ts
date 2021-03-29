@@ -13,6 +13,10 @@ import { CusCate } from "../pages/admin/customer/cate";
 import { CusList } from "../pages/admin/customer/list";
 import { Order } from "../pages/admin/order";
 import { Home } from "../pages/front/home";
+import { ShopCar } from "../pages/front/shopcar";
+import { PreHome } from "../pages/front/prehome";
+import { OrderDetail } from "../pages/front/orderdetail";
+import { Setting } from "../pages/admin/setting";
 
 // 普通路由
 export const normalRoute = [{
@@ -20,8 +24,23 @@ export const normalRoute = [{
   component: Login
 }, {
   path: '/home',
-  component: Home
-}
+  component: Home,
+  exact: true
+},
+  {
+    path: '/home/shopcar',
+    component: ShopCar,
+    exact: true
+
+  }, {
+    path: '/prehome',
+    component: PreHome,
+    exact: true
+  }, {
+    path: '/home/orderdetail',
+    component: OrderDetail,
+    exact: true
+  }
 ]
 // 管理员路由
 export const adminRoute = [{
@@ -51,5 +70,9 @@ export const adminRoute = [{
 }, {
   path: '/admin/orders',
   component: Order,
+  exact: true
+}, {
+  path: '/admin/setting',
+  component: Setting,
   exact: true
 }]

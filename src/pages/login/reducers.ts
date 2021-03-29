@@ -1,4 +1,4 @@
-import {  ERRORLOGIN, NETERROR, SUCCESSLOGIN, TOLOGIN } from "./actions";
+import { ERRORLOGIN, NETERROR, SUCCESSLOGIN, TOLOGIN } from "./actions";
 import { setStore } from "../../utils/storage";
 
 const defaultState = {
@@ -40,7 +40,7 @@ export default (state = defaultState, action: any) => {
     case ERRORLOGIN:
       return {
         ...state,
-        status: Math.random()
+        status: Math.random() * 1000
       }
     case NETERROR:
       return {

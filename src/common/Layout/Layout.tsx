@@ -21,6 +21,7 @@ import {
   ShopOutlined,
   TeamOutlined,
   UnorderedListOutlined,
+  SettingFilled
 } from '@ant-design/icons';
 import logo from '../../assets/images/logo_small.png'
 import { useHistory, useLocation } from 'react-router-dom';
@@ -219,9 +220,11 @@ const LayoutWrap: FunctionComponent<Props> = (props) => {
               >
                 职工
               </Menu.Item>
-              {/*<Menu.Item key="9" icon={<FileOutlined/>}>*/}
-              {/*  Files*/}
-              {/*</Menu.Item>*/}
+              <Menu.Item key="9" icon={<SettingFilled/>} onClick={() => {
+                history.push('/admin/setting')
+              }}>
+                设置
+              </Menu.Item>
             </Menu>
           </Sider>
           <Layout className="site-layout">

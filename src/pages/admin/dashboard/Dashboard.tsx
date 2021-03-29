@@ -141,7 +141,7 @@ const Dashboard: FunctionComponent<Props> = (props) => {
                         />
                         <div className='num'>
                           {
-                            data?.allSold?.weekRate !== -9999 &&
+                            data?.allSold?.weekRate !== -9999 && data?.allSold?.weekRate !== -8888 &&
                             <Statistic
                                 title="周环比"
                                 value={data?.allSold?.weekRate}
@@ -169,7 +169,19 @@ const Dashboard: FunctionComponent<Props> = (props) => {
                             />
                           }
                           {
-                            data?.allSold?.dayRate !== -9999 &&
+                            data?.allSold?.weekRate === -8888 &&
+                            <Statistic
+                                title="周环比"
+                                value={'暂无本周数据'}
+                                precision={2}
+                                valueStyle={{
+                                  color: '#a4b0be',
+                                  fontSize: 16
+                                }}
+                            />
+                          }
+                          {
+                            data?.allSold?.dayRate !== -9999 && data?.allSold?.dayRate !== -8888 &&
                             <Statistic
                                 style={{ marginLeft: 30 }}
                                 title="日环比"
@@ -191,6 +203,19 @@ const Dashboard: FunctionComponent<Props> = (props) => {
                                 style={{ marginLeft: 30 }}
                                 title="日环比"
                                 value={'暂无昨日数据'}
+                                precision={2}
+                                valueStyle={{
+                                  color: '#a4b0be',
+                                  fontSize: 16
+                                }}
+                            />
+                          }
+                          {
+                            data?.allSold?.dayRate === -8888 &&
+                            <Statistic
+                                style={{ marginLeft: 30 }}
+                                title="日环比"
+                                value={'暂无今日数据'}
                                 precision={2}
                                 valueStyle={{
                                   color: '#a4b0be',

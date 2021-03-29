@@ -92,6 +92,10 @@ export type DASHBOARD_URL = typeof DASHBOARD_URL
 export const PWD_URL = '/admin/staff/pwd'
 export type PWD_URL = typeof PWD_URL
 
+//设置
+export const QR_URL = '/admin/qrcode'
+export type QR_URL = typeof QR_URL
+
 
 // 图片上传地址
 export const UPPIC_URL = 'http://localhost:8300/upload'
