@@ -14,8 +14,9 @@ export = app => {
   app.use('/admin/customer', require('./customer')) //会员
   app.use('/admin/order', require('./order')) //订单
   app.use('/admin/dashboard', require('./admin/dashboard/detail')) //看板
+  app.use('/admin/table',require('./table')) //餐桌
 
-  app.get('/admin/qrcode', require('./qrcode'))// 网站二维码
+  app.get('/admin/qrcode/:id', require('./qrcode'))// 网站二维码
 
   app.post('/login', require('./admin/login')) //用户登录
 
@@ -23,5 +24,5 @@ export = app => {
 
 
   /*前台路由*/
-  app.get('/home', require('./front'))
+  app.use('/home', require('./front'))
 }

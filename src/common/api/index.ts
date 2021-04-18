@@ -92,9 +92,22 @@ export type DASHBOARD_URL = typeof DASHBOARD_URL
 export const PWD_URL = '/admin/staff/pwd'
 export type PWD_URL = typeof PWD_URL
 
-//设置
+//餐桌
 export const QR_URL = '/admin/qrcode'
 export type QR_URL = typeof QR_URL
+
+export const TABLE_URL = '/admin/table'
+export type TABLE_URL = typeof TABLE_URL
+
+export const TABLEADD_URL = '/admin/table/add'
+export type TABLEADD_URL = typeof TABLEADD_URL
+
+export const TABLEEDIT_URL = '/admin/table/edit'
+export type TABLEEDIT_URL = typeof TABLEEDIT_URL
+
+export const TABLEDEL_URL = '/admin/table/del'
+export type TABLEDEL_URL = typeof TABLEDEL_URL
+
 
 
 // 图片上传地址
@@ -104,3 +117,11 @@ export type UPPIC_URL = typeof UPPIC_URL
 // 服务器端地址
 export const SERVER_URL = 'http://localhost:8300'
 export type SERVER_URL = typeof SERVER_URL
+
+
+/** 前台 */
+export const HOMEDOSH_URL = '/home'
+export type HOMEDOSH_URL = typeof HOMEDOSH_URL
+
+export const HOMEDISHCATE_URL = '/home/cate'
+export type HOMEDISHCATE_URL = typeof HOMEDISHCATE_URL

@@ -50,9 +50,9 @@ const Login: FC<Props> = (props) => {
       else {
         if (getStore('userInfo') !== null) {
           const info = JSON.parse(getStore('userInfo'))
-          if (info.role === 'admin') history.replace('/admin/dashboard')
-          else if (info.role === 'chef') history.replace('/chef')
-          else history.replace('/waiter')
+          if (info.role === 'admin') history.push('/admin/dashboard')
+          else if (info.role === 'chef') history.push('/chef')
+          else history.push('/waiter')
           message.success(`欢迎您：${info.name}`)
         }
       }

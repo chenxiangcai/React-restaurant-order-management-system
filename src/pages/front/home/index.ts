@@ -1,5 +1,5 @@
 import Home from './Home';
-// import reducers from "./reducers";
-// import * as sagas from "./sagas"
+import reducers from "./reducers";
+import * as sagas from "./sagas"
 
-export { Home }
+export { Home, reducers, sagas }

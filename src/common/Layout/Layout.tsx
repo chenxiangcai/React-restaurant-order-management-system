@@ -21,7 +21,7 @@ import {
   ShopOutlined,
   TeamOutlined,
   UnorderedListOutlined,
-  SettingFilled
+  InsertRowBelowOutlined
 } from '@ant-design/icons';
 import logo from '../../assets/images/logo_small.png'
 import { useHistory, useLocation } from 'react-router-dom';
@@ -96,7 +96,7 @@ const LayoutWrap: FunctionComponent<Props> = (props) => {
           removeStore('userInfo')
           removeStore('token')
           removeStore('topBarEditState')
-          history.push('/login')
+          history.push('/')
         }}>退出登录</p>
       </div>
   );
@@ -164,9 +164,7 @@ const LayoutWrap: FunctionComponent<Props> = (props) => {
             setCollapsed(!collapsed)
           }}>
             <div className="logo">
-              <img style={{ cursor: 'pointer' }} onClick={() => {
-                history.push('/admin/dashboard')
-              }} className='bigLogo' src={logo} alt="logo"/>
+              <img style={{ cursor: 'pointer' }} className='bigLogo' src={logo} alt="logo"/>
             </div>
             <Menu theme="dark" defaultSelectedKeys={[pathname]} mode="inline">
               <Menu.Item key="/admin/dashboard" icon={<LineChartOutlined/>} onClick={() => {
@@ -220,10 +218,10 @@ const LayoutWrap: FunctionComponent<Props> = (props) => {
               >
                 职工
               </Menu.Item>
-              <Menu.Item key="9" icon={<SettingFilled/>} onClick={() => {
-                history.push('/admin/setting')
+              <Menu.Item key="/admin/table" icon={<InsertRowBelowOutlined />} onClick={() => {
+                history.push('/admin/table')
               }}>
-                设置
+                餐桌
               </Menu.Item>
             </Menu>
           </Sider>
@@ -233,7 +231,7 @@ const LayoutWrap: FunctionComponent<Props> = (props) => {
               <div className='time'><Time/></div>
               <div className='avatar'>
                 <Popover placement={"leftTop"} content={content} title="欢迎您：">
-                  <Avatar size={"large"} style={{ backgroundColor: '#1e90ff' }}>{personInfo?.name}</Avatar>
+                  <Avatar size={"large"} style={{ backgroundColor: '#2ed573' }}>{personInfo?.name}</Avatar>
                 </Popover>
               </div>
             </Header>

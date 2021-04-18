@@ -1,5 +1,5 @@
 import reducers from './reducers'
 import * as sagas from './sagas'
-import Setting from './Setting'
+import Table from './Table'
 
-export { Setting, reducers, sagas }
+export { Table, reducers, sagas }

@@ -233,7 +233,6 @@ const Order: FunctionComponent<Props> = (props) => {
   }, [drawValue])
 
   useEffect(() => {
-    console.log(props)
     const { errorMsgO, addOStatus, delOStatus, editOStatus } = props
     const aastatus = getStore('addOStatus')
     const ddstatus = getStore('delOStatus')

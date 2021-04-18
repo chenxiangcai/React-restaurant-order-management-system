@@ -16,12 +16,17 @@ import { Home } from "../pages/front/home";
 import { ShopCar } from "../pages/front/shopcar";
 import { PreHome } from "../pages/front/prehome";
 import { OrderDetail } from "../pages/front/orderdetail";
-import { Setting } from "../pages/admin/setting";
+import { Table } from "../pages/admin/table";
+import NotFound from "../pages/error/NotFound";
+import NotAuth from "../pages/error/NotAuth";
+import Waiter from "../pages/waiter/Waiter";
 
 // 普通路由
 export const normalRoute = [{
-  path: '/login',
-  component: Login
+  path: '/',
+  redirect: '/login',
+  component: Login,
+  exact: true
 }, {
   path: '/home',
   component: Home,
@@ -33,12 +38,27 @@ export const normalRoute = [{
     exact: true
 
   }, {
-    path: '/prehome',
+    path: '/prehome/:id',
     component: PreHome,
     exact: true
   }, {
     path: '/home/orderdetail',
     component: OrderDetail,
+    exact: true
+  },
+  {
+    path: '/waiter',
+    component: Waiter,
+    exact: true
+  },
+  {
+    path: '/notfound',
+    component: NotFound,
+    exact: true
+  },
+  {
+    path: '/noauth',
+    component: NotAuth,
     exact: true
   }
 ]
@@ -72,7 +92,7 @@ export const adminRoute = [{
   component: Order,
   exact: true
 }, {
-  path: '/admin/setting',
-  component: Setting,
+  path: '/admin/table',
+  component: Table,
   exact: true
 }]

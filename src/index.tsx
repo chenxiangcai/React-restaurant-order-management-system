@@ -15,14 +15,14 @@ ReactDOM.render(
         <Switch>
           {/*管理路由转移到APP组件进行渲染*/}
           <Route path='/admin' render={(routeProps) => <App {...routeProps}/>}/>
-          {/*后台普通路由渲染*/}
+          {/*普通路由渲染*/}
           {
             normalRoute.map((route: any) => {
               return  <Route key={route.path}{...route}/>
             })
           }
-          <Redirect to='/login'/>
-          <Redirect to='/404'/>
+          <Redirect to='/notfound'/>
+          <Redirect to='/noauth'/>
         </Switch>
       </BrowserRouter>
     </Provider>,

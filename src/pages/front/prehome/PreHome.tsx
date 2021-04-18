@@ -3,6 +3,7 @@ import { Button, Icon, InputItem, List, NavBar, TextareaItem, Toast } from "antd
 import { PreWrap } from "./PreWrap";
 import img from '../../../assets/images/logo.png'
 import { useHistory } from "react-router-dom";
+import { setStore } from "../../../utils/storage";
 
 interface OwnProps {
 }
@@ -16,8 +17,10 @@ const PreHome: FunctionComponent<Props> = (props) => {
 
 
   function toHome() {
-    if (Number(peoplenum) > 0) history.push('/home')
-    else Toast.info('请输入就餐人数', 1)
+    if (Number(peoplenum) > 0) {
+      history.push('/home')
+      setStore('peoplenum', peoplenum)
+    } else Toast.info('请输入就餐人数', 1)
   }
 
   return (

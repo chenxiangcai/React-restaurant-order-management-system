@@ -10,9 +10,10 @@ import { reducers as orders } from '../pages/admin/order/'
 import { reducers as dashboard } from '../pages/admin/dashboard/'
 // @ts-ignore
 import { reducers as topBarEditInfo } from '../common/Layout'
-import { reducers as setting } from '../pages/admin/setting'
+import { reducers as table } from '../pages/admin/table'
+import { reducers as home } from '../pages/front/home'
 
 // 数据整合导出
 export default combineReducers({
-  login, staff, dish, cate, cuscate, cus, orders, dashboard, topBarEditInfo, setting
+  login, staff, dish, cate, cuscate, cus, orders, dashboard, topBarEditInfo, table, home
 });

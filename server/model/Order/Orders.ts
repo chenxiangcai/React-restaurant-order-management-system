@@ -10,7 +10,9 @@ const orderSchema: object = new Schema({
     unique: true
   },
   tableid: {
-    type: Number,
+    type:Number,
+    // type: Schema.Types.ObjectId,
+    // ref: 'Table',
     required: true,
   },
   person: {
@@ -33,7 +35,8 @@ const orderSchema: object = new Schema({
   },
   finishtime: {
     type: Date,
-    default: Date.now
+    required:true
+    // default: Date.now
   },
   level: {
     type: Schema.Types.ObjectId,
@@ -88,7 +91,8 @@ const validateOrder = (order: any): any => {
     person: Joi.number().required().error(new Error('人数只能为纯数字')),
     paid: Joi.number().required().error(new Error('实收只能为纯数字')),
     level: Joi.string().required().error(new Error('请传入会员等级')),
-    waiter: Joi.string().required().error(new Error('请传入服务员'))
+    waiter: Joi.string().required().error(new Error('请传入服务员')),
+    cus: Joi.string().required().error(new Error('请传入顾客id')),
   }
   return Joi.validate(order, Schema, {
     abortEarly: false,   //把所有错误检测完再返回

@@ -24,7 +24,7 @@ import {
 import { ColumnsType } from "antd/es/table";
 import { ADDDISH, DELDISH, EDITDISH, GETDISHLIST } from "./actions";
 import Paging from "../../../components/Paging";
-import { DeleteOutlined, EditOutlined, PlusOutlined, } from '@ant-design/icons';
+import { PlusOutlined, } from '@ant-design/icons';
 import './dish.css'
 import { getStore, setStore } from "../../../utils/storage";
 import TableCheckBox from "../../../components/TableCheckBox";

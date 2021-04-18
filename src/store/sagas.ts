@@ -14,7 +14,8 @@ import { sagas as cusList } from '../pages/admin/customer/list'
 import { sagas as order } from '../pages/admin/order'
 import { sagas as dashboard } from '../pages/admin/dashboard'
 import { sagas as topBarEditInfo } from '../common/Layout'
-import { sagas as setting } from '../pages/admin/setting'
+import { sagas as table } from '../pages/admin/table'
+import { sagas as home } from '../pages/front/home'
 
 const { TOLOGIN } = login.types;
 const { GETLIST, ADDSTAFF, TOGGLEPAGE, DELSTAFF, EDITSTAFF } = staff.types;
@@ -25,7 +26,8 @@ const { GETCUSLIST, CUSADD, CUSEDIT, CUSDEL } = cusList.types
 const { GETORDERLIST, ORDERADD, ORDERDEL, ORDEREDIT } = order.types
 const { GETDASHBOARD } = dashboard.types
 const { EDITUSERINFO } = topBarEditInfo.types
-const { GETQRCODE } = setting.types
+const { GETQRCODE, GETTABLE, ADDTABLE, EDITTABLE, DELTABLE } = table.types
+const { GETHDISH, ADD2CAR } = home.types
 
 function* sagas() {
   console.log('saga总监听执行')
@@ -75,8 +77,17 @@ function* sagas() {
   //topBar修改个人信息
   yield takeEvery(EDITUSERINFO, topBarEditInfo.editInfo)
 
-  //设置
-  yield takeEvery(GETQRCODE, setting.getQR)
+  //餐桌
+  yield takeEvery(GETQRCODE, table.getQR)
+  yield takeEvery(GETTABLE, table.getTable)
+  yield takeEvery(ADDTABLE, table.addTable)
+  yield takeEvery(EDITTABLE, table.editTable)
+  yield takeEvery(DELTABLE, table.delTable)
+
+
+  /** 前台saga*/
+  yield takeEvery(GETHDISH, home.GetHomeDish)
+  // yield takeEvery(ADD2CAR, home.addtocar)
 
 }
 

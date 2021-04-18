@@ -418,7 +418,7 @@ const Staff: FunctionComponent<Props> = (props) => {
                 })
               }}/>
             }
-            {/*新增员工弹出框*/}
+            {/*新增弹出框*/}
             <Modal
                 title={popStaffStyle}
                 visible={visible}

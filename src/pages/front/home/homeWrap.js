@@ -127,6 +127,7 @@ export const HomeWrap = styled.div`
   }
 
   .more {
+    margin-top: 7vh;
     height: 66vh;
     width: 100%;
     text-align: center;
