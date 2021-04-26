@@ -20,6 +20,7 @@ import { Table } from "../pages/admin/table";
 import NotFound from "../pages/error/NotFound";
 import NotAuth from "../pages/error/NotAuth";
 import Waiter from "../pages/waiter/Waiter";
+import Pay from "../pages/front/Pay";
 
 // 普通路由
 export const normalRoute = [{
@@ -42,7 +43,7 @@ export const normalRoute = [{
     component: PreHome,
     exact: true
   }, {
-    path: '/home/orderdetail',
+    path: '/home/orderdetail/:type',
     component: OrderDetail,
     exact: true
   },
@@ -59,6 +60,11 @@ export const normalRoute = [{
   {
     path: '/noauth',
     component: NotAuth,
+    exact: true
+  },
+  {
+    path: '/pay',
+    component: Pay,
     exact: true
   }
 ]

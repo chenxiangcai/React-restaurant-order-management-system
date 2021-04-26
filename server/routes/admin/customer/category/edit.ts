@@ -1,6 +1,7 @@
 const {CusCate, validateCusCate} = require('../../../../model/Customer/Cate')
 export = async (req, res) => {
   const {_id} = req.fields
+
   try {
     validateCusCate(req.fields)
   } catch (e) {

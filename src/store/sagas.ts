@@ -16,6 +16,9 @@ import { sagas as dashboard } from '../pages/admin/dashboard'
 import { sagas as topBarEditInfo } from '../common/Layout'
 import { sagas as table } from '../pages/admin/table'
 import { sagas as home } from '../pages/front/home'
+import { sagas as orderdetail } from '../pages/front/orderdetail'
+import { sagas as shopCar } from '../pages/front/shopcar'
+
 
 const { TOLOGIN } = login.types;
 const { GETLIST, ADDSTAFF, TOGGLEPAGE, DELSTAFF, EDITSTAFF } = staff.types;
@@ -23,11 +26,14 @@ const { GETDISHLIST, ADDDISH, DELDISH, EDITDISH } = dish.types
 const { GETCATELISTS, CATEADD, CATEEDIT, CATEDEL } = category.types
 const { GETCUSCATELIST, CUSCATEADD, CUSCATEEDIT, CUSCATEDEL } = cusCate.types
 const { GETCUSLIST, CUSADD, CUSEDIT, CUSDEL } = cusList.types
-const { GETORDERLIST, ORDERADD, ORDERDEL, ORDEREDIT } = order.types
+const { GETORDERLIST, ORDERDEL, ORDEREDIT } = order.types
 const { GETDASHBOARD } = dashboard.types
 const { EDITUSERINFO } = topBarEditInfo.types
 const { GETQRCODE, GETTABLE, ADDTABLE, EDITTABLE, DELTABLE } = table.types
-const { GETHDISH, ADD2CAR } = home.types
+const { GETHDISH } = home.types
+const { ISCUS } = orderdetail.types
+const { CUSORDERADD, CUSOREDEREDIT } = shopCar.types
+
 
 function* sagas() {
   console.log('saga总监听执行')
@@ -68,8 +74,8 @@ function* sagas() {
   //订单
   yield takeEvery(GETORDERLIST, order.toggleOrderPage)
   yield takeEvery(ORDERDEL, order.delOrder)
-  yield takeEvery(ORDERADD, order.addOrder)
-  yield takeEvery(ORDEREDIT, order.editOrder)
+  yield takeEvery(CUSORDERADD, shopCar.addOrder)
+  yield takeEvery(CUSOREDEREDIT, shopCar.updateOrder)
 
   //看板
   yield takeEvery(GETDASHBOARD, dashboard.getDetail)
@@ -87,8 +93,7 @@ function* sagas() {
 
   /** 前台saga*/
   yield takeEvery(GETHDISH, home.GetHomeDish)
-  // yield takeEvery(ADD2CAR, home.addtocar)
-
+  yield takeEvery(ISCUS, orderdetail.isCus)
 }
 
 export default sagas;

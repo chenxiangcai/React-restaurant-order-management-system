@@ -1,33 +1,21 @@
-import {
-  GETSHOP, GETSHOPERR, GETSHOPSUC
-} from './actions'
-import { setStore } from "../../../utils/storage";
+import { ORDERADDERR, ORDERADDSUC } from './actions'
 
-type state = { hotlist: object[], shopcar: any, randomlist: object[] }
+type state = { handleOrderState: number }
 const defaultState = {
-  hotlist: [],
-  shopcar: [],
-  randomlist: [],
-  homeDishState: 1
-  // cateList: [],
-  // addDishStatus: 99999, //添加用户初始状态
-  // errorMsgDish: '',
-  // delDishStatus: 99999,
-  // editDishStatus: 99999
+  handleOrderState: -1
 };
 // eslint-disable-next-line import/no-anonymous-default-export
 export default (state: state = defaultState, action: any) => {
   switch (action.type) {
-    case GETSHOPSUC:
+    case ORDERADDSUC:
       return {
         ...state,
-        hotlist: action.data.list.hotlist,
-        randomlist: action.data.list.randomlist
+        handleOrderState: Math.random()
       }
-    case GETSHOPERR:
+    case ORDERADDERR:
       return {
         ...state,
-        homeDishState: Math.random() * 10
+        handleOrderState: Math.random() * 10
       }
     default:
       return {

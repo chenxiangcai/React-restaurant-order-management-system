@@ -1,10 +1,9 @@
 import React, { FunctionComponent, useEffect, useRef, useState } from 'react';
-import { Carousel, Flex, Grid, Icon, NavBar, Tabs, Toast, Popover } from "antd-mobile";
-import { Avatar, Badge } from 'antd'
+import { Carousel, Flex, Grid, Icon, NavBar, Popover, Tabs, Toast } from "antd-mobile";
+import { Avatar, Badge, Input } from 'antd'
 import { HomeWrap } from "./homeWrap";
-import { Input } from "antd";
 import img from '../../../assets/images/logo.png'
-import { PlusOutlined, UpOutlined, ShoppingCartOutlined } from "@ant-design/icons";
+import { PlusOutlined, ShoppingCartOutlined, UpOutlined } from "@ant-design/icons";
 import { useHistory } from "react-router-dom";
 import FoodShelf from "../../../components/FoodShelf";
 import { connect } from "react-redux";
@@ -140,13 +139,12 @@ const Home: FunctionComponent<Props> = (props) => {
                                (<Item key="2"><span style={{ marginRight: 5 }}>更多</span></Item>),
                              ]}
                              onSelect={(node: any, index?: number) => {
-                               console.log(index)
                                if (index === 0) {
                                  // eslint-disable-next-line @typescript-eslint/no-unused-expressions
                                  shopCount === 0 ? Toast.info('购物车空空如也...', 1) : history.push('/home/shopcar')
                                } else if (index === 1) {
-                                 //todo 跳转订单详情页之前验证
-                                 history.push('/home/orderdetail')
+                                 if (getStore('orderid')) history.push('/home/orderdetail')
+                                 else Toast.info('您还没有订单呢...', 1)
                                }
                              }}
                     >

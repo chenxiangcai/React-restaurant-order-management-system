@@ -80,8 +80,14 @@ export type ORDEREDIT_URL = typeof ORDEREDIT_URL
 export const ORDERDEL_URL = '/admin/order/del'
 export type ORDERDEL_URL = typeof ORDERDEL_URL
 
-export const ORDERADD_URL = '/admin/order/add'
-export type ORDERADD_URL = typeof ORDERADD_URL
+export const CUSORDERADD_URL = '/cus/order/add'
+export type CUSORDERADD_URL = typeof CUSORDERADD_URL
+
+export const CUSORDEREDIT_URL = '/cus/order/edit'
+export type CUSORDEREDIT_URL = typeof CUSORDEREDIT_URL
+
+export const WAITERORDERADD_URL = '/waiter/order/add'
+export type WAITERORDERADD_URL = typeof WAITERORDERADD_URL
 
 
 // 看板
@@ -109,7 +115,6 @@ export const TABLEDEL_URL = '/admin/table/del'
 export type TABLEDEL_URL = typeof TABLEDEL_URL
 
 
-
 // 图片上传地址
 export const UPPIC_URL = 'http://localhost:8300/upload'
 export type UPPIC_URL = typeof UPPIC_URL
@@ -125,3 +130,6 @@ export type HOMEDOSH_URL = typeof HOMEDOSH_URL
 
 export const HOMEDISHCATE_URL = '/home/cate'
 export type HOMEDISHCATE_URL = typeof HOMEDISHCATE_URL
+
+export const ISCUS_URL = '/home/iscus'
+export type ISCUS_URL = typeof ISCUS_URL

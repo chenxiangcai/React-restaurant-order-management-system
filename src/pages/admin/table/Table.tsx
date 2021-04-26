@@ -3,11 +3,16 @@ import { connect } from "react-redux";
 import { Dispatch } from "redux";
 import { QR_URL, TABLE_URL, TABLEADD_URL, TABLEDEL_URL, TABLEEDIT_URL } from "../../../common/api";
 import { ADDTABLE, DELTABLE, EDITTABLE, GETQRCODE, GETTABLE, } from "./action";
-import { Button, Card, Drawer, Form, Input, List, Modal, Radio, Select, Space, Descriptions, message } from "antd";
+import { Button, Card, Descriptions, Drawer, Form, Input, List, message, Modal, Radio, Select, Space } from "antd";
 import { TableWrap } from "./TableWrap";
-import { FieldNumberOutlined, ExclamationCircleOutlined } from "@ant-design/icons";
+import {
+  DeleteOutlined,
+  DownloadOutlined,
+  EditOutlined,
+  ExclamationCircleOutlined,
+  FieldNumberOutlined
+} from "@ant-design/icons";
 import DocumentTitle from "react-document-title";
-import { EditOutlined, DeleteOutlined, DownloadOutlined } from '@ant-design/icons';
 import { getStore, setStore } from "../../../utils/storage";
 
 const { Option } = Select;
@@ -265,7 +270,7 @@ const Table: FunctionComponent<Props> = (props) => {
                 renderItem={(item: any) => (
                     <List.Item>
                       {
-                        item.status === 1 &&
+                        item.status === 0 &&
                         <Card hoverable style={{ backgroundColor: '#f1f2f6' }}
                               className='card'
                               onClick={() => onDrawerOpen(item)}
@@ -275,7 +280,7 @@ const Table: FunctionComponent<Props> = (props) => {
                         </Card>
                       }
                       {
-                        item.status === 0 &&
+                        item.status === 1 &&
                         <Card onClick={() => onDrawerOpen(item)}
                               hoverable style={{ backgroundColor: '#F9F5E9' }} className='card'>
                           <h2>{item.tableID}</h2>

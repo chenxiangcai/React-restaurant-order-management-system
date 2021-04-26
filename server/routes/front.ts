@@ -4,6 +4,8 @@ const home = require('express').Router();
 home.get('/', require('./front/home/hotlist'))
 //菜品分类
 home.get('/cate', require('./front/home/cate'))
+//是否会员
+home.post('/iscus', require('./front/home/iscus'))
 
 
 export = home

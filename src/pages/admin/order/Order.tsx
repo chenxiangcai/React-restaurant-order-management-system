@@ -6,8 +6,8 @@ import Paging from "../../../components/Paging";
 import { ColumnsType } from "antd/es/table";
 import { connect } from "react-redux";
 import { Dispatch } from "redux";
-import { GETORDERLIST, ORDERADD, ORDERDEL, ORDEREDIT } from "./actions";
-import { ORDERADD_URL, ORDERDEL_URL, ORDEREDIT_URL, ORDERLIST_URL } from "../../../common/api";
+import { GETORDERLIST, ORDERDEL, ORDEREDIT } from "./actions";
+import { ORDERDEL_URL, ORDEREDIT_URL, ORDERLIST_URL } from "../../../common/api";
 import moment from 'moment';
 import TableCheckBox from "../../../components/TableCheckBox";
 import { getStore, setStore } from "../../../utils/storage";
@@ -19,7 +19,7 @@ interface OwnProps {
 
   delOrder(value: string): void,
 
-  addOrder(value: object): void,
+  // addOrder(value: object): void,
 
   editOrder(value: object): void
 }
@@ -54,13 +54,13 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
       data: value
     })
   },
-  addOrder(value: object) {
-    dispatch({
-      type: ORDERADD,
-      url: ORDERADD_URL,
-      data: value
-    })
-  },
+  // addOrder(value: object) {
+  //   dispatch({
+  //     type: ORDERADD,
+  //     url: ORDERADD_URL,
+  //     data: value
+  //   })
+  // },
   toggleOrderPage(value: object) {
     dispatch({
       type: GETORDERLIST,
