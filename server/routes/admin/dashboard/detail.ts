@@ -203,115 +203,78 @@ export = async (req, res) => {
 
 
   /** 销售排行模块 */
-      //本月
-  const getRankMonth = async (val: any) => {
-        //根据id遍历菜名
-        let f1 = function (i) {
-          return new Promise<void>(async function (resolve, reject) {
-            const dish = await Dishes.findOne({ _id: `${val[i]._id}` })
-            val[i].name = dish.name
-            val[i].num = val[i].paid / dish.price
-            resolve(dish);
-          });
-        };
-        for (let i = 0; i < val.length; i++) {
-          await f1(i)
+
+      //查询近一个月的所有订单
+  const monthOrders = await Orders.find({
+        finishtime: {
+          $gte: new Date(`${nowDay.slice(0, 7)}-01`),
+          $lt: new Date(`${nowDay.slice(0, 7)}-31`)
         }
-        globalThis.RankMonth = val
+      })
+  //查询每个订单下的点餐详情
+  let rankMonth = await monthOrders.map(val => val.orderdetail).flat()
+  rankMonth = rankMonth.reduce((cur, pre) => {
+    var a = false
+    for (let i = 0; i < cur.length; i++) {
+      if (cur[i]._id == pre._id) {
+        cur[i].num += pre.num
+        a = true
       }
-
-  await Orders.aggregate(
-      [
-        {
-          $match: {
-            'finishtime': {
-              $gte: new Date(`${nowDay.slice(0, 7)}-01`),
-              $lt: new Date(`${nowDay.slice(0, 7)}-31`)
-            }
-          }
-        },
-        { $project: { orderdetail: "$orderdetail", paid: "$paid" } },
-        { $group: { _id: "$orderdetail._id", num: { $sum: 1 }, paid: { $sum: '$paid' } } },
-        { $sort: { num: -1 } },
-        { $limit: 7 }
-
-        // { $match: { $or: [{ paid: { $gt: 99999 } }] } },
-      ], async function (err, docs) {
-        await getRankMonth(docs)
-      })
-
-  //本周
-  const getRankWeek = async (val: any) => {
-    //根据id遍历菜名
-    let f1 = function (i) {
-      return new Promise<void>(async function (resolve, reject) {
-        const dish = await Dishes.findOne({ _id: `${val[i]._id}` })
-        val[i].name = dish.name
-        val[i].num = val[i].paid / dish.price
-        resolve(dish);
-      });
-    };
-    for (let i = 0; i < val.length; i++) {
-      await f1(i)
     }
-    globalThis.RankWeek = val
-  }
+    if (a == false) cur.push(pre)
+    return cur
+  }, [])
+  //根据销量反向排序 并截取前7个热门菜品
+  rankMonth = rankMonth.sort((a, b) => b.num - a.num)
+  if (rankMonth.length > 7) rankMonth.splice(0, 7)
 
-  await Orders.aggregate(
-      [
-        {
-          $match: {
-            'finishtime': {
-              $gte: new Date(`${sixDayAgoTime}`),
-              $lt: new Date(`${nowDayTime}`)
-            }
-          }
-        },
-        { $project: { orderdetail: "$orderdetail", paid: "$paid" } },
-        { $group: { _id: "$orderdetail._id", num: { $sum: 1 }, paid: { $sum: '$paid' } } },
-        { $sort: { num: -1 } },
-        { $limit: 7 }
-
-        // { $match: { $or: [{ paid: { $gt: 99999 } }] } },
-      ], async function (err, docs) {
-        await getRankWeek(docs)
-      })
-
-  //今日
-  const getRankDay = async (val: any) => {
-    //根据id遍历菜名
-    let f1 = function (i) {
-      return new Promise<void>(async function (resolve, reject) {
-        const dish = await Dishes.findOne({ _id: `${val[i]._id}` })
-        val[i].name = dish.name
-        val[i].num = val[i].paid / dish.price
-        resolve(dish);
-      });
-    };
-    for (let i = 0; i < val.length; i++) {
-      await f1(i)
+  //查询近一周的所有订单
+  const weekOrders = await Orders.find({
+    finishtime: {
+      $gte: new Date(`${sixDayAgoTime}`),
+      $lt: new Date(`${nowDayTime}`)
     }
-    globalThis.RankDay = val
-  }
+  })
+  //查询每个订单下的点餐详情
+  let RankWeek = await weekOrders.map(val => val.orderdetail).flat()
+  RankWeek = RankWeek.reduce((cur, pre) => {
+    var a = false
+    for (let i = 0; i < cur.length; i++) {
+      if (cur[i]._id == pre._id) {
+        cur[i].num += pre.num
+        a = true
+      }
+    }
+    if (a == false) cur.push(pre)
+    return cur
+  }, [])
+  //根据销量反向排序 并截取前7个热门菜品
+  RankWeek = RankWeek.sort((a, b) => b.num - a.num)
+  if (RankWeek.length > 7) RankWeek.splice(0, 7)
 
-  await Orders.aggregate(
-      [
-        {
-          $match: {
-            'finishtime': {
-              $gte: new Date(`${nowDay}`),
-            }
-          }
-        },
-        { $project: { orderdetail: "$orderdetail", paid: "$paid" } },
-        { $group: { _id: "$orderdetail._id", num: { $sum: 1 }, paid: { $sum: '$paid' } } },
-        { $sort: { num: -1 } },
-        { $limit: 7 }
-        // { $match: { $or: [{ paid: { $gt: 99999 } }] } },
-      ], async function (err, docs) {
-        await getRankDay(docs)
-      })
 
+  //查询今日的所有订单
+  const dayorders = await Orders.find({
+    finishtime: {
+      $gte: new Date(`${nowDay}`),
+    }
+  })
+  //查询每个订单下的点餐详情
+  let RankDay = await dayorders.map(val => val.orderdetail).flat()
+  RankDay = RankDay.reduce((cur, pre) => {
+    var a = false
+    for (let i = 0; i < cur.length; i++) {
+      if (cur[i]._id == pre._id) {
+        cur[i].num += pre.num
+        a = true
+      }
+    }
+    if (a == false) cur.push(pre)
+    return cur
+  }, [])
+  //根据销量反向排序 并截取前7个热门菜品
+  RankDay = RankDay.sort((a, b) => b.num - a.num)
+  if (RankDay.length > 7) RankDay.splice(0, 7)
 
   res.send({
     allSold: { allMoney, dayMoney, weekRate, dayRate },
@@ -319,7 +282,7 @@ export = async (req, res) => {
     orderNum: { totalordernum, todayordernum },
     vip: { vipnum, dayVipActiveNum, weekVipActiveRate, },
     SoldModule: { soldModule, soldModuleDay },
-    rank: { rankMonth: globalThis.RankMonth, rankWeek: globalThis.RankWeek, rankDay: globalThis.RankDay },
+    rank: { rankMonth: rankMonth, rankWeek: RankWeek, rankDay: RankDay },
     meta: { status: 200, message: '查询成功' }
   })
 }

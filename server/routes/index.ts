@@ -12,16 +12,17 @@ export = app => {
   app.use('/admin/dish', require('./dish')) //菜品
   app.use('/admin/category', require('./category')) //菜品分类
   app.use('/admin/customer', require('./customer')) //会员
-  app.use('/admin/order', require('./order')) //订单
+  app.use('/admin/order', require('./adminOrder')) //管理员订单
+  // app.use('/waiter/order',require('./waiterOrder'))//服务员订单
+  app.use('/cus/order', require('./cusOrder'))//顾客订单
   app.use('/admin/dashboard', require('./admin/dashboard/detail')) //看板
-  app.use('/admin/table',require('./table')) //餐桌
+  app.use('/admin/table', require('./table')) //餐桌
 
   app.get('/admin/qrcode/:id', require('./qrcode'))// 网站二维码
 
   app.post('/login', require('./admin/login')) //用户登录
 
   app.post('/upload', require('./admin/upload')) //图片上传
-
 
   /*前台路由*/
   app.use('/home', require('./front'))

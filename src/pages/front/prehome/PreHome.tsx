@@ -1,9 +1,9 @@
-import React, { FunctionComponent, useState } from 'react';
+import React, { FunctionComponent, useEffect, useState } from 'react';
 import { Button, Icon, InputItem, List, NavBar, TextareaItem, Toast } from "antd-mobile";
 import { PreWrap } from "./PreWrap";
 import img from '../../../assets/images/logo.png'
 import { useHistory } from "react-router-dom";
-import { setStore } from "../../../utils/storage";
+import { getStore, removeStore, setStore } from "../../../utils/storage";
 
 interface OwnProps {
 }
@@ -13,13 +13,21 @@ type Props = OwnProps;
 const PreHome: FunctionComponent<Props> = (props) => {
 
   const history = useHistory()
+  const tableID = Number(history.location.pathname.slice(-1))
+
   const [peoplenum, setpn] = useState('')
 
+  //进入页面时清空缓存菜单信息
+  useEffect(() => {
+    if (getStore('more')) removeStore('more')
+    if (getStore('shopcar')) removeStore('shopcar')
+  }, [])
 
   function toHome() {
     if (Number(peoplenum) > 0) {
       history.push('/home')
       setStore('peoplenum', peoplenum)
+      setStore('tableID', tableID)
     } else Toast.info('请输入就餐人数', 1)
   }
 

@@ -67,4 +67,16 @@ export const OrderWrap = styled.div`
       border-radius: 3rem;
     }
   }
+
+  .phonenum {
+    width: 40vw;
+    border: none;
+    margin-left: 1rem;
+    outline: none;
+  }
+
+  .custitle {
+    font-size: .9rem;
+    color: #dabb91
+  }
 `
