@@ -17,24 +17,6 @@ function* toLogin(action: any) {
     }, action.data);
     console.log(result)
 
-    // if (result.meta.status === 200) {
-    //     const { role } = result.userInfo
-    //     switch (role) {
-    //         case 'admin':
-    //             yield put({ type: types.SUCCESSLOGIN, data: result });
-    //             break;
-    //         case 'chef':
-    //             yield put({ type: types.CHEFLOGINSUC, data: result });
-    //             break;
-    //         case 'waiter':
-    //             yield put({ type: types.WAITERLOGINSUC, data: result });
-    //             break
-    //         default:
-    //             return {}
-    //     }
-    // }
-
-
     if (result.meta.status === 200) {
       //命令 middleware 向 Store 发起一个 action
       yield put({ type: types.SUCCESSLOGIN, data: result });

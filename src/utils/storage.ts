@@ -16,7 +16,15 @@ export const removeStore = (name: string): any => {
 
 export const isLoginAndAdmin = () => {
   const userInfo = JSON.parse(getStore('userInfo'))
-  console.log(userInfo)
-  // if (userInfo.status === 0) return false
-  return !!(userInfo.status !== 0 && getStore('token'));
+  return !!(userInfo?.status !== 0 && userInfo?.role === 'admin' && getStore('token'));
+}
+
+export const isLoginAndChef = () => {
+  const userInfo = JSON.parse(getStore('userInfo'))
+  return !!(userInfo?.status !== 0 && userInfo?.role === 'chef' && getStore('token'));
+}
+
+export const isLoginAndWaiter = () => {
+  const userInfo = JSON.parse(getStore('userInfo'))
+  return !!(userInfo?.status !== 0 && userInfo?.role === 'waiter' && getStore('token'));
 }

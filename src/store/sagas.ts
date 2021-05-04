@@ -18,6 +18,7 @@ import { sagas as table } from '../pages/admin/table'
 import { sagas as home } from '../pages/front/home'
 import { sagas as orderdetail } from '../pages/front/orderdetail'
 import { sagas as shopCar } from '../pages/front/shopcar'
+import { sagas as chef } from '../pages/chef'
 
 
 const { TOLOGIN } = login.types;
@@ -33,6 +34,7 @@ const { GETQRCODE, GETTABLE, ADDTABLE, EDITTABLE, DELTABLE } = table.types
 const { GETHDISH } = home.types
 const { ISCUS } = orderdetail.types
 const { CUSORDERADD, CUSOREDEREDIT } = shopCar.types
+const { CGETORDERLIST, CORDEREDIT } = chef.types
 
 
 function* sagas() {
@@ -76,6 +78,8 @@ function* sagas() {
   yield takeEvery(ORDERDEL, order.delOrder)
   yield takeEvery(CUSORDERADD, shopCar.addOrder)
   yield takeEvery(CUSOREDEREDIT, shopCar.updateOrder)
+  yield takeEvery(CGETORDERLIST, chef.GetOrder)
+  yield takeEvery(CORDEREDIT, chef.UpdateOrder)
 
   //看板
   yield takeEvery(GETDASHBOARD, dashboard.getDetail)

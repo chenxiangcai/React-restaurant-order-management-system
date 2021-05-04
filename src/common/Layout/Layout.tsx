@@ -10,18 +10,18 @@ import {
   Menu,
   message,
   Modal,
+  notification,
   Popover,
   Space,
-  Tag,
-  notification
+  Tag
 } from 'antd';
 import {
   HeartOutlined,
+  InsertRowBelowOutlined,
   LineChartOutlined,
   ShopOutlined,
   TeamOutlined,
-  UnorderedListOutlined,
-  InsertRowBelowOutlined
+  UnorderedListOutlined
 } from '@ant-design/icons';
 import logo from '../../assets/images/logo_small.png'
 import { useHistory, useLocation } from 'react-router-dom';
@@ -113,6 +113,7 @@ const LayoutWrap: FunctionComponent<Props> = (props) => {
   //获取当前用户信息
   useEffect(() => {
     const userInfo = JSON.parse(getStore('userInfo'))
+    console.log(userInfo)
     setPersonInfo(userInfo)
   }, [])
 
@@ -135,7 +136,7 @@ const LayoutWrap: FunctionComponent<Props> = (props) => {
 
   // 弹框状态管理 fix 状态存储在缓存 解决每次重新加载页面弹框问题
   useEffect(() => {
-    console.log(props)
+    // console.log(props)
     const { topBarEditState, tberr } = props
     console.log(tberr)
     const estatus = getStore('topBarEditStatus')
@@ -166,64 +167,99 @@ const LayoutWrap: FunctionComponent<Props> = (props) => {
             <div className="logo">
               <img style={{ cursor: 'pointer' }} className='bigLogo' src={logo} alt="logo"/>
             </div>
-            <Menu theme="dark" defaultSelectedKeys={[pathname]} mode="inline">
-              <Menu.Item key="/admin/dashboard" icon={<LineChartOutlined/>} onClick={() => {
-                history.push('/admin/dashboard')
-              }}>
-                统计
-              </Menu.Item>
 
-              <SubMenu key="sub122" icon={<ShopOutlined/>} title="菜品">
-                <Menu.Item key="/admin/dishes"
-                           onClick={() => {
-                             history.push('/admin/dishes')
-                           }}
-                >菜品列表</Menu.Item>
-                <Menu.Item key="/admin/dishes/category"
-                           onClick={() => {
-                             history.push('/admin/dishes/category')
-                           }}
-                >菜品分类</Menu.Item>
-              </SubMenu>
+            {/*  admin显示侧边栏*/}
+            {
+              personInfo && personInfo.role === 'admin' &&
+              <Menu theme="dark" defaultSelectedKeys={[pathname]} mode="inline">
+                <Menu.Item key="/admin/dashboard" icon={<LineChartOutlined/>} onClick={() => {
+                  history.push('/admin/dashboard')
+                }}>
+                  统计
+                </Menu.Item>
 
-              <Menu.Item
-                  key="/admin/orders"
-                  icon={<UnorderedListOutlined/>}
-                  onClick={() => {
-                    history.push('/admin/orders')
-                  }}
-              >
-                订单
-              </Menu.Item>
+                <SubMenu key="sub122" icon={<ShopOutlined/>} title="菜品">
+                  <Menu.Item key="/admin/dishes"
+                             onClick={() => {
+                               history.push('/admin/dishes')
+                             }}
+                  >菜品列表</Menu.Item>
+                  <Menu.Item key="/admin/dishes/category"
+                             onClick={() => {
+                               history.push('/admin/dishes/category')
+                             }}
+                  >菜品分类</Menu.Item>
+                </SubMenu>
 
+                <Menu.Item
+                    key="/admin/orders"
+                    icon={<UnorderedListOutlined/>}
+                    onClick={() => {
+                      history.push('/admin/orders')
+                    }}
+                >
+                  订单
+                </Menu.Item>
+                <SubMenu key="sub2453" icon={<HeartOutlined/>} title="会员">
+                  <Menu.Item key="/admin/customer"
+                             onClick={() => {
+                               history.push('/admin/customer')
+                             }}
+                  >会员资料</Menu.Item>
+                  <Menu.Item key="/admin/customer/cate"
+                             onClick={() => {
+                               history.push('/admin/customer/cate')
+                             }}
+                  >会员类别</Menu.Item>
+                </SubMenu>
+                <Menu.Item
+                    key="/admin/staffs"
+                    icon={<TeamOutlined/>}
+                    onClick={() => {
+                      history.push('/admin/staffs')
+                    }}
+                >
+                  职工
+                </Menu.Item>
+                <Menu.Item key="/admin/table" icon={<InsertRowBelowOutlined/>} onClick={() => {
+                  history.push('/admin/table')
+                }}>
+                  餐桌
+                </Menu.Item>
+              </Menu>
+            }
 
-              <SubMenu key="sub2453" icon={<HeartOutlined/>} title="会员">
-                <Menu.Item key="/admin/customer"
-                           onClick={() => {
-                             history.push('/admin/customer')
-                           }}
-                >会员资料</Menu.Item>
-                <Menu.Item key="/admin/customer/cate"
-                           onClick={() => {
-                             history.push('/admin/customer/cate')
-                           }}
-                >会员类别</Menu.Item>
-              </SubMenu>
-              <Menu.Item
-                  key="/admin/staffs"
-                  icon={<TeamOutlined/>}
-                  onClick={() => {
-                    history.push('/admin/staffs')
-                  }}
-              >
-                职工
-              </Menu.Item>
-              <Menu.Item key="/admin/table" icon={<InsertRowBelowOutlined />} onClick={() => {
-                history.push('/admin/table')
-              }}>
-                餐桌
-              </Menu.Item>
-            </Menu>
+            {/*  厨师显示侧边栏*/}
+            {
+              personInfo && personInfo.role === 'chef' &&
+              <Menu theme="dark" defaultSelectedKeys={[pathname]} mode="inline">
+                <Menu.Item
+                    key="/chef/orders"
+                    icon={<UnorderedListOutlined/>}
+                    onClick={() => {
+                      history.push('/chef/orders')
+                    }}
+                >
+                  订单
+                </Menu.Item>
+              </Menu>
+            }
+
+            {/*  服务员显示侧边栏*/}
+            {
+              personInfo && personInfo.role === 'waiter' &&
+              <Menu theme="dark" defaultSelectedKeys={[pathname]} mode="inline">
+                <Menu.Item
+                    key="/waiter/orders"
+                    icon={<UnorderedListOutlined/>}
+                    onClick={() => {
+                      history.push('/waiter/orders')
+                    }}
+                >
+                  订单
+                </Menu.Item>
+              </Menu>
+            }
           </Sider>
           <Layout className="site-layout">
             <Header className="site-layout-background">

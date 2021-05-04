@@ -6,10 +6,14 @@ export const DashWrap = styled.div`
     border-bottom: 1px solid #eee;
   }
 
-  .contents {
+  .contents, .contentss {
     /deep/ .ant-statistic-content {
       position: absolute;
     }
+  }
+
+  .contentss {
+
   }
 
   .money {
@@ -19,7 +23,7 @@ export const DashWrap = styled.div`
   }
 
   .num {
-    margin: 6px 0 0 0;
+    margin: 0 0 0 0;
     display: flex
   }
 
@@ -49,8 +53,8 @@ export const DashWrap = styled.div`
     position: absolute;
   }
 
-  /deep/ .ant-table table {
-    height: 407px;
+  /deep/ .ant-table {
+    height: 407px !important;
   }
 `
 

@@ -1,9 +1,9 @@
 import React, { FunctionComponent, useEffect, useMemo, useState } from 'react';
-import { Card, Col, ConfigProvider, Row, Statistic, Tooltip, Radio, Table } from 'antd';
+import { Card, Col, ConfigProvider, Radio, Row, Statistic, Table, Tooltip } from 'antd';
 import zhCN from "antd/es/locale/zh_CN";
 import DocumentTitle from "react-document-title";
 import { DashWrap } from "./dashbord-style";
-import { ArrowUpOutlined, ArrowDownOutlined, ExclamationCircleOutlined } from '@ant-design/icons';
+import { ArrowDownOutlined, ArrowUpOutlined, ExclamationCircleOutlined } from '@ant-design/icons';
 import LineChart from "../../../components/LineChart";
 import DemoColumn from "../../../components/ColumnChart";
 import { connect } from "react-redux";
@@ -111,7 +111,7 @@ const Dashboard: FunctionComponent<Props> = (props) => {
     //销售额初始值设为本月
     setSoldMoneyData(detail?.SoldModule?.soldModuleDay)
     //销量排行初始值设为今日
-    setSoldNumData(detail?.soldRank?.soldRankDay)
+    setSoldNumData(detail?.rank?.rankDay)
 
   }, [props.detail])
 
@@ -125,21 +125,19 @@ const Dashboard: FunctionComponent<Props> = (props) => {
               <div className="site-card-wrapper">
                 <Row gutter={16}>
                   <Col span={6}>
-                    <Card bordered={false} headStyle={{ borderBottom: 0, minHeight: 0 }}
-                          bodyStyle={{ paddingTop: 20, paddingBottom: 10 }}
-                    >
+                    <Card bordered={false} bodyStyle={{ paddingTop: 20, paddingBottom: 10 }}>
                       <div className='rightdot'>
                         <Tooltip placement="top" title={'指标说明'}>
                           <ExclamationCircleOutlined/>
                         </Tooltip>
                       </div>
-                      <div className='content'>
+                      <div className='contents'>
                         <Statistic title="总销售额"
                                    valueStyle={{ fontSize: 30 }}
                                    value={data?.allSold?.allMoney}
                                    prefix={'¥'}
                         />
-                        <div className='num'>
+                        <div className='num' style={{ marginTop: 20 }}>
                           {
                             data?.allSold?.weekRate !== -9999 && data?.allSold?.weekRate !== -8888 &&
                             <Statistic
@@ -238,15 +236,13 @@ const Dashboard: FunctionComponent<Props> = (props) => {
                     </Card>
                   </Col>
                   <Col span={6}>
-                    <Card bordered={false} headStyle={{ borderBottom: 0, minHeight: 0 }}
-                          bodyStyle={{ paddingTop: 20, paddingBottom: 10 }}
-                    >
+                    <Card bordered={false} bodyStyle={{ paddingTop: 20, paddingBottom: 10 }}>
                       <div className='rightdot'>
                         <Tooltip placement="top" title={'指标说明'}>
                           <ExclamationCircleOutlined/>
                         </Tooltip>
                       </div>
-                      <div className='content'>
+                      <div className='contents'>
                         <Statistic title="销售实收"
                                    valueStyle={{ fontSize: 30 }}
                                    value={data?.allReceive?.allReMoney}
@@ -267,16 +263,14 @@ const Dashboard: FunctionComponent<Props> = (props) => {
                     </Card>
                   </Col>
                   <Col span={6}>
-                    <Card bordered={false} headStyle={{ borderBottom: 0, minHeight: 0 }}
-                          bodyStyle={{ paddingTop: 20, paddingBottom: 10 }}
-                    >
+                    <Card bordered={false} bodyStyle={{ paddingTop: 20, paddingBottom: 10 }}>
                       <div className='rightdot'>
                         <Tooltip placement="top" title={'指标说明'}>
                           <ExclamationCircleOutlined/>
                         </Tooltip>
                       </div>
 
-                      <div className='content'>
+                      <div className='contents'>
                         <Statistic suffix={'单'}
                                    title="总订单量"
                                    value={data?.orderNum?.totalordernum}/>
@@ -308,7 +302,7 @@ const Dashboard: FunctionComponent<Props> = (props) => {
                                    value={data?.vip?.vipnum}
                                    suffix={'人'}
                         />
-                        <div style={{ marginLeft: '10%' }} className='num'>
+                        <div style={{ marginLeft: '4%', marginTop: '-12%' }} className='num'>
                           <DemoLiquid rate={data?.vip?.weekVipActiveRate}/>
                         </div>
                       </div>

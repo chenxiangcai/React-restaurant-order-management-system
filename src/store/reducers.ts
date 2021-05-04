@@ -13,6 +13,7 @@ import { reducers as table } from '../pages/admin/table'
 import { reducers as home } from '../pages/front/home'
 import { reducers as orderDetail } from '../pages/front/orderdetail'
 import { reducers as shopCar } from '../pages/front/shopcar'
+import { reducers as chef } from '../pages/chef'
 
 
 // 数据整合导出
@@ -29,5 +30,6 @@ export default combineReducers({
   table,
   home,
   orderDetail,
-  shopCar
+  shopCar,
+  chef
 });

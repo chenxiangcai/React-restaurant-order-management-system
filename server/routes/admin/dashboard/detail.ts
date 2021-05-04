@@ -73,7 +73,7 @@ export = async (req, res) => {
 
 
   /** 销售实收模块 */
-  const allReMoney = orders.records.reduce((pre, cur) => pre + cur.paid, 0)
+  const allReMoney = orders.records.reduce((pre, cur) => pre + cur.paid, 0).toFixed(2)
   //日销售额
   const reTodayMoney: number = todayorders.records.reduce((pre, cur) => pre + cur.paid, 0)
   //按日期分组查询 统计本周每日订单数和实际收入

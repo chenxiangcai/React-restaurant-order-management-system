@@ -89,6 +89,11 @@ export type CUSORDEREDIT_URL = typeof CUSORDEREDIT_URL
 export const WAITERORDERADD_URL = '/waiter/order/add'
 export type WAITERORDERADD_URL = typeof WAITERORDERADD_URL
 
+export const CORDERLIST_URL = '/chef/order'
+export type CORDERLIST_URL = typeof CORDERLIST_URL
+
+export const CORDEREDIT_URL = '/chef/order/edit'
+export type CORDEREDIT_URL = typeof CORDEREDIT_URL
 
 // 看板
 export const DASHBOARD_URL = '/admin/dashboard'

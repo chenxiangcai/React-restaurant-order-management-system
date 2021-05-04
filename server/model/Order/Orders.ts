@@ -52,6 +52,11 @@ const orderSchema: object = new Schema({
     type: Number,
     default: 0
   },
+  //出餐状态  -1未开始制作 0出餐中 1出餐完毕
+  status: {
+    type: Number,
+    default: 0
+  },
 }, { versionKey: false }) //忽略增加的文档在数据库中的__v字段
 
 // @ts-ignore

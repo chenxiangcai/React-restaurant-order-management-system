@@ -21,6 +21,7 @@ import NotFound from "../pages/error/NotFound";
 import NotAuth from "../pages/error/NotAuth";
 import Waiter from "../pages/waiter/Waiter";
 import Pay from "../pages/front/Pay";
+import Chef from "../pages/chef/Chef";
 
 // 普通路由
 export const normalRoute = [{
@@ -68,6 +69,7 @@ export const normalRoute = [{
     exact: true
   }
 ]
+
 // 管理员路由
 export const adminRoute = [{
   path: '/admin/dashboard',
@@ -102,3 +104,21 @@ export const adminRoute = [{
   component: Table,
   exact: true
 }]
+
+//厨师路由
+export const chefRoute = [
+  {
+    path: '/chef/orders',
+    component: Chef,
+    exact: true
+  },
+]
+
+//厨师路由
+export const waiterRoute = [
+  {
+    path: '/waiter/orders',
+    component: Waiter,
+    exact: true
+  },
+]
