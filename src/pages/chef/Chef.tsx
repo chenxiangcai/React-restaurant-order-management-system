@@ -3,8 +3,11 @@ import { connect } from "react-redux";
 import { Dispatch } from "redux";
 import { ORDERDEL } from "../admin/order/actions";
 import { CORDEREDIT_URL, CORDERLIST_URL, ORDERDEL_URL } from "../../common/api";
-import { Card, List, Switch, Table } from "antd";
+import { Card, List, Switch, Table, Tag } from "antd";
 import { CGETORDERLIST, CORDEREDIT } from "./actions";
+import moment from "moment";
+import 'moment/locale/zh-cn'
+
 
 interface OwnProps {
   GetOrder(value?: object): void
@@ -95,11 +98,12 @@ const Chef: FunctionComponent<Props> = (props) => {
             dataSource={orderList}
             renderItem={(item: any) => (
                 <List.Item>
-                  <Card style={{ overflow: "scroll" }} title={item.tableID + '号餐桌'}>
+                  <Card style={{ overflow: "scroll" }}
+                        title={<Tag color="#2db7f5">{item.tableID}</Tag>}
+                        extra={<Tag color="orange-inverse">{moment(item.fromNow).fromNow()}</Tag>}>
                     <Table rowKey={item.tableID} pagination={false} columns={columns} dataSource={item.order}/>
                   </Card>
                 </List.Item>
-
             )}
         />
       </div>

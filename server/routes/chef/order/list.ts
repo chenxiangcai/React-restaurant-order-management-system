@@ -10,7 +10,8 @@ export = async (req, res) => {
     return {
       order: val.orderdetail,
       orderid: val._id,
-      tableID: val.tableid.tableID
+      tableID: val.tableid.tableID,
+      fromNow: val.begintime
     }
   })
   order = order.filter(val => val.order.length !== 0)
