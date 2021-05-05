@@ -78,6 +78,18 @@ const Chef: FunctionComponent<Props> = (props) => {
 
   //获取订单列表
   useEffect(() => {
+    const socket = new WebSocket("ws://localhost:8300/chef/order");
+    socket.addEventListener("open", function (event) {
+      console.log("socket is open");
+      socket.send("连接成功");
+    });
+
+    socket.addEventListener("message", function (event) {
+      console.log("Message from server", event.data);
+      console.log(event.data)
+      //服务器发送的数据更新了
+      if (event.data !== 'websocket connected') setOrderList(JSON.parse(event.data))
+    });
     props.GetOrder()
   }, [])
 

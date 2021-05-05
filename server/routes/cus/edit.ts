@@ -1,5 +1,6 @@
 const { Orders, validateOrder } = require('../../model/Order/Orders')
 const { Table } = require('../../model/Table/Table')
+const { Dishes } = require('../../model/Dish/Dish')
 
 export = async (req, res) => {
   const { orderid, status, level, cus, receivable, paid } = req.fields
@@ -23,8 +24,16 @@ export = async (req, res) => {
       }
     })
   }
+
   //更新订单
   const order = await Orders.updateOne({ _id: orderid }, { orderdetail: req.fields.orderdetail })
+  const { addOrder } = req.fields
+  //新增菜品时减少对应库存数量
+  addOrder.map(async val => {
+    const dish = await Dishes.findOne({ _id: val._id })
+    dish.number -= val.num
+    await Dishes.updateOne({ _id: val._id }, { number: dish.number })
+  })
 
   res.send({
     meta: {

@@ -93,6 +93,7 @@ const ShopCar: FunctionComponent<Props> = (props) => {
       const value = {
         orderid: getStore('orderid'),
         orderdetail: [...more, ...sc],
+        addOrder: [...sc],
         tableID: Number(getStore('tableID'))
       }
       props.updateOrder(value)

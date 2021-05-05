@@ -26,4 +26,7 @@ export = app => {
 
   /*前台路由*/
   app.use('/home', require('./front'))
+
+  /** websocket */
+  // app.use('/ifc', require('./chef/order/'));
 }
