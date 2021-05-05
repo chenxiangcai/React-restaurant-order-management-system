@@ -138,3 +138,6 @@ export type HOMEDISHCATE_URL = typeof HOMEDISHCATE_URL
 
 export const ISCUS_URL = '/home/iscus'
 export type ISCUS_URL = typeof ISCUS_URL
+
+export const SEARCHDISH_URL = '/home/dish/search'
+export type SEARCHDISH_URL = typeof SEARCHDISH_URL

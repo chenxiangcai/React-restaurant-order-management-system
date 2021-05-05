@@ -1,0 +1,8 @@
+export const SEARCHDISH = 'SEARCHDISH'
+export type SEARCHDISH = typeof SEARCHDISH
+
+export const SEARCHDISHSUC = 'SEARCHDISHSUC'
+export type SEARCHDISHSUC = typeof SEARCHDISHSUC
+
+export const SEARCHDISHERR = 'SEARCHDISHERR'
+export type SEARCHDISHERR = typeof SEARCHDISHERR

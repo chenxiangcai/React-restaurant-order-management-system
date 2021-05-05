@@ -14,6 +14,7 @@ import { reducers as home } from '../pages/front/home'
 import { reducers as orderDetail } from '../pages/front/orderdetail'
 import { reducers as shopCar } from '../pages/front/shopcar'
 import { reducers as chef } from '../pages/chef'
+import { reducers as search } from '../pages/front/search'
 
 
 // 数据整合导出
@@ -31,5 +32,6 @@ export default combineReducers({
   home,
   orderDetail,
   shopCar,
-  chef
+  chef,
+  search
 });

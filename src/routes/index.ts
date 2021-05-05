@@ -22,6 +22,7 @@ import NotAuth from "../pages/error/NotAuth";
 import Waiter from "../pages/waiter/Waiter";
 import Pay from "../pages/front/Pay";
 import Chef from "../pages/chef/Chef";
+import SearchPage from "../pages/front/search/SearchPage";
 
 // 普通路由
 export const normalRoute = [{
@@ -46,6 +47,11 @@ export const normalRoute = [{
   }, {
     path: '/home/orderdetail/:type',
     component: OrderDetail,
+    exact: true
+  },
+  {
+    path: '/home/search',
+    component: SearchPage,
     exact: true
   },
   {
@@ -114,7 +120,7 @@ export const chefRoute = [
   },
 ]
 
-//厨师路由
+//服务员路由
 export const waiterRoute = [
   {
     path: '/waiter/orders',

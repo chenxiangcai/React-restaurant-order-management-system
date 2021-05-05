@@ -1,3 +1,4 @@
+//菜品分类时列表切换模块
 import React, { FunctionComponent } from 'react';
 import { Tabs } from "antd";
 import { connect } from "react-redux";
@@ -35,12 +36,6 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
 
 const FoodShelf: FunctionComponent<Props> = (props) => {
   const { cate, catedish } = props
-  console.log(props)
-
-  function changeCate(key: string) {
-    console.log(cate)
-    console.log(2)
-  }
 
   return (
       <div>
@@ -57,12 +52,6 @@ const FoodShelf: FunctionComponent<Props> = (props) => {
                 </TabPane>
             )
           }
-          {/*<TabPane tab="Tab 1" key="1">*/}
-          {/*  <FoodDetail order={{}}/>*/}
-          {/*  <FoodDetail order={{}}/>*/}
-          {/*  <FoodDetail order={{}}/>*/}
-          {/*  <FoodDetail order={{}}/>*/}
-          {/*</TabPane>*/}
         </Tabs>
       </div>
   );

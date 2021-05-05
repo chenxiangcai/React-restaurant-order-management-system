@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useEffect, useRef, useState } from 'react';
+import React, { FunctionComponent, useEffect, useState } from 'react';
 import { Carousel, Flex, Grid, Icon, NavBar, Popover, Tabs, Toast } from "antd-mobile";
 import { Avatar, Badge, Input } from 'antd'
 import { HomeWrap } from "./homeWrap";
@@ -55,18 +55,12 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
 
 
 const Home: FunctionComponent<Props> = (props) => {
-
       const tabs = [
         { title: '热门菜' },
         { title: '菜单' },
       ];
-      const [selectedItemClassName, setClickClass] = useState('')
-
-      const [searchBar, setSearchBar] = useState('none')
       const [currentTab, setCurrentTab] = useState(0)
       const history = useHistory()
-
-      const searchBarState = useRef<any>()
 
       //购物车数量
       const [shopCount, setShopCount] = useState(0)
@@ -76,22 +70,6 @@ const Home: FunctionComponent<Props> = (props) => {
       const increase = () => {
         setShopCount(shopCount + 1)
       }
-
-      useEffect(() => {
-        // searchBarState.current.focus()
-      }, [searchBar])
-
-      //导航栏搜索
-      function clickSearch() {
-        setSearchBar('block')
-      }
-
-      //搜索提交
-      function searchSubmit(e: string) {
-        console.log(e)
-        // setSearchBar('none')
-      }
-
 
       //获取列表数据
       useEffect(() => {
@@ -104,7 +82,6 @@ const Home: FunctionComponent<Props> = (props) => {
           props.resetcar(shop_car)
         }
       }, [])
-
 
       useEffect(() => {
         const shop_car = JSON.parse(getStore('shopcar'))
@@ -143,7 +120,7 @@ const Home: FunctionComponent<Props> = (props) => {
                                  // eslint-disable-next-line @typescript-eslint/no-unused-expressions
                                  shopCount === 0 ? Toast.info('购物车空空如也...', 1) : history.push('/home/shopcar')
                                } else if (index === 1) {
-                                 if (getStore('orderid')) history.push('/home/orderdetail')
+                                 if (getStore('orderid')) history.push('/home/orderdetail/home')
                                  else Toast.info('您还没有订单呢...', 1)
                                }
                              }}
@@ -165,14 +142,15 @@ const Home: FunctionComponent<Props> = (props) => {
               </NavBar>
 
             </div>
-            {/*style={{ maxWidth: '100%', display: searchBar }}*/}
             <Flex>
               <Flex.Item style={{ position: 'relative' }}>
                 <div className='top-block'>
                   <span>欢迎来到</span>
                   <span>这是一个名字</span>
                 </div>
-                <div className='search-item'>
+                <div className='search-item' onClick={() => {
+                  history.push('/home/search')
+                }}>
                   <Input
                       className='search-input'
                       prefix={<Icon type="search" size='xxs'/>}
@@ -204,15 +182,12 @@ const Home: FunctionComponent<Props> = (props) => {
                       {
                         data1 &&
                         <Carousel autoplay infinite>
-                          {/*beforeChange={(from, to) => console.log(`slide from ${from} to ${to}`)}*/}
-                          {/*afterChange={index => console.log('slide to', index)}*/}
                           {data1.map((val: any, index: number) => (
                               <div className='hot-dish' key={val}>
                                 {
                                   val.url === '' ? <img src={img} alt="" style={{ objectFit: "contain" }}/> :
                                       <img src={`${SERVER_URL}${val.url}`} style={{ objectFit: "contain" }} alt=''/>
                                 }
-
                                 <span className='dish-title'>{val.name}</span>
                                 <div className='price-plus' onClick={() => {
                                   add2car(val)
@@ -230,7 +205,13 @@ const Home: FunctionComponent<Props> = (props) => {
                         data1 &&
                         <div className='more'>
                           <span style={{ marginBottom: '.3rem', paddingTop: '.5rem' }}><UpOutlined/></span>
-                          <span style={{ paddingBottom: '.4rem' }}>更多推荐</span>
+                          <span style={{ paddingBottom: '.4rem' }} onClick={() => {
+                            window.scrollTo({
+                              top: 1000,
+                              behavior: "smooth"
+                            })
+                          }
+                          }>更多推荐</span>
                           <Grid data={data2}
                                 columnNum={2}
                                 hasLine={false}
@@ -259,16 +240,6 @@ const Home: FunctionComponent<Props> = (props) => {
                     <div style={{ display: "flex" }}>
                       <FoodShelf/>
                     </div>
-
-
-                    {/*<div style={{*/}
-                    {/*  display: 'flex',*/}
-                    {/*  alignItems: 'center',*/}
-                    {/*  justifyContent: 'center',*/}
-                    {/*  height: '150px',*/}
-                    {/*}}>*/}
-                    {/*  Content of third tab*/}
-                    {/*</div>*/}
                   </Tabs>
                 </Flex.Item>
               </Flex>

@@ -1,3 +1,4 @@
+// 购物车菜品列表模块 含(单价、总价、数量、加、减)
 import React, { FunctionComponent, useEffect, useState } from 'react';
 import { Card } from "antd-mobile";
 import img from '../assets/images/logo.png'
@@ -11,7 +12,6 @@ import { ADD2CAR, LESS2CAR } from "../pages/front/home/actions";
 
 interface OwnProps {
   [prop: string]: any,
-
 
   add2car(val: any): () => void,
 
@@ -100,43 +100,6 @@ const FoodDetail: FunctionComponent<Props> = (props) => {
             )
           })
         }
-        {/*{*/}
-        {/*  dishes && dishes.map((order: any, index: number) => {*/}
-        {/*    return (*/}
-        {/*        <div>*/}
-        {/*          {*/}
-        {/*            orders && <Card key={index} style={{ marginBottom: 10 }}>*/}
-        {/*              <Card.Body>*/}
-        {/*                {*/}
-        {/*                  order.picture === '' ?*/}
-        {/*                      <img src={img} alt="" className='img' style={{ objectFit: "cover", top: 0, left: 0 }}/> :*/}
-        {/*                      <img src={`${SERVER_URL}${order.picture}`} className='img'*/}
-        {/*                           style={{ objectFit: "cover", top: 0, left: 0 }} alt=''/>*/}
-        {/*                }*/}
-        {/*                <div style={{ display: "flex", position: "relative" }}>*/}
-        {/*                  <div style={{ display: "flex", flexDirection: "column" }}>*/}
-        {/*                    <span className='dish-titles'>{order.name}</span>*/}
-        {/*                    <span className='dish-prices'>¥ {order.price}</span>*/}
-        {/*                  </div>*/}
-        {/*                </div>*/}
-        {/*                <div className='numutil'>*/}
-        {/*                  <Button shape="circle" size={"small"} onClick={() => {*/}
-        {/*                    less(order)*/}
-        {/*                  }} icon={<MinusOutlined/>}/>*/}
-        {/*                  <span style={{ margin: '0 .5rem' }}>0</span>*/}
-        {/*                  <Button shape="circle" size={"small"} onClick={() => {*/}
-        {/*                    plus(order)*/}
-        {/*                  }}*/}
-        {/*                          style={{ backgroundColor: 'rgb(35, 45, 57)', color: 'white' }}*/}
-        {/*                          icon={<PlusOutlined/>}/>*/}
-        {/*                </div>*/}
-        {/*              </Card.Body>*/}
-        {/*            </Card>*/}
-        {/*          }*/}
-        {/*        </div>*/}
-        {/*    )*/}
-        {/*  })*/}
-        {/*}*/}
       </div>
   );
 };

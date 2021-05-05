@@ -19,6 +19,7 @@ import { sagas as home } from '../pages/front/home'
 import { sagas as orderdetail } from '../pages/front/orderdetail'
 import { sagas as shopCar } from '../pages/front/shopcar'
 import { sagas as chef } from '../pages/chef'
+import { sagas as searchPage } from '../pages/front/search'
 
 
 const { TOLOGIN } = login.types;
@@ -27,7 +28,7 @@ const { GETDISHLIST, ADDDISH, DELDISH, EDITDISH } = dish.types
 const { GETCATELISTS, CATEADD, CATEEDIT, CATEDEL } = category.types
 const { GETCUSCATELIST, CUSCATEADD, CUSCATEEDIT, CUSCATEDEL } = cusCate.types
 const { GETCUSLIST, CUSADD, CUSEDIT, CUSDEL } = cusList.types
-const { GETORDERLIST, ORDERDEL, ORDEREDIT } = order.types
+const { GETORDERLIST, ORDERDEL } = order.types
 const { GETDASHBOARD } = dashboard.types
 const { EDITUSERINFO } = topBarEditInfo.types
 const { GETQRCODE, GETTABLE, ADDTABLE, EDITTABLE, DELTABLE } = table.types
@@ -35,6 +36,7 @@ const { GETHDISH } = home.types
 const { ISCUS } = orderdetail.types
 const { CUSORDERADD, CUSOREDEREDIT } = shopCar.types
 const { CGETORDERLIST, CORDEREDIT } = chef.types
+const { SEARCHDISH } = searchPage.types
 
 
 function* sagas() {
@@ -98,6 +100,8 @@ function* sagas() {
   /** 前台saga*/
   yield takeEvery(GETHDISH, home.GetHomeDish)
   yield takeEvery(ISCUS, orderdetail.isCus)
+  yield takeEvery(SEARCHDISH, searchPage.searchDish)
+
 }
 
 export default sagas;

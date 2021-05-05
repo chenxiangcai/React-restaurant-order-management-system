@@ -1,3 +1,4 @@
+//菜品列表展示模块 （无总价模块）
 import React, { FunctionComponent, useEffect, useState } from 'react';
 import { Card } from "antd-mobile";
 import img from '../assets/images/dish1.jpeg'
@@ -97,7 +98,6 @@ const CateFoodDetail: FunctionComponent<Props> = (props) => {
                           }} icon={<MinusOutlined/>}/>
                           <span style={{ margin: '0 .5rem' }}>{num[index]}</span>
                           <Button shape="circle" size={"small"} onClick={() => {
-                            console.log('order98', order)
                             plus(order)
                           }}
                                   style={{ backgroundColor: 'rgb(35, 45, 57)', color: 'white' }}
