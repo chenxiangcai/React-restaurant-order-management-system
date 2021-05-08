@@ -1,14 +1,25 @@
 const { Orders } = require('../../../model/Order/Orders')
-const pagination = require('mongoose-sex-page')
 
 export = async (req, res) => {
-  let condition: object = null
-  let page: number = +req.query.page
-  let pagesize: number = req.query.pagesize
+  let order = await Orders.find({}).populate('tableid')
 
-  if (!page || typeof page !== 'number') page = 1
-  if (pagesize == null) pagesize = 10
+  //找到未完成订单
+  order = order.filter(val => val.status !== 1)
 
-  const dish = await pagination(Orders).find(condition).page(page).size(pagesize).sort('-createAt').populate('category').exec()
-  res.send({ dish, meta: { status: 200, message: '查询成功' } })
+  order = order.map(val => {
+    return {
+      order: val.orderdetail,
+      orderid: val._id,
+      tableID: val.tableid.tableID,
+      fromNow: val.begintime
+    }
+  })
+  order = order.filter(val => val.order.length !== 0)
+
+  //每个菜品详情中加入tableID\orderid 便于table显示
+  order.forEach(val => val.order.forEach(value => {
+    value.tableID = val.tableID
+    value.orderid = val.orderid
+  }))
+  res.send({ order, meta: { status: 200, message: '查询成功' } })
 }

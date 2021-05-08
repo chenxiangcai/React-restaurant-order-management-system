@@ -26,10 +26,17 @@ export = async (req: any, res: any) => {
   })
 
   //关联商品库存表，自动减少库存数量
+  const notEnough = []
   fields.orderdetail.map(async val => {
     const dish = await Dishes.findOne({ _id: val._id })
-    dish.number -= val.num
-    await Dishes.updateOne({ _id: val._id }, { number: dish.number })
+    //判断库存是否充足
+    if (dish.number - val.num < 0) {
+      notEnough.push(val)
+      val.status = -1
+    } else {
+      dish.number -= val.num
+      await Dishes.updateOne({ _id: val._id }, { number: dish.number })
+    }
   })
 
   const saveValue = JSON.parse(JSON.stringify(fields))
@@ -44,6 +51,7 @@ export = async (req: any, res: any) => {
   await order.save()
   res.send({
     order,
+    notEnough,
     status: 200
   })
 }

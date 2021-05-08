@@ -86,14 +86,23 @@ export type CUSORDERADD_URL = typeof CUSORDERADD_URL
 export const CUSORDEREDIT_URL = '/cus/order/edit'
 export type CUSORDEREDIT_URL = typeof CUSORDEREDIT_URL
 
-export const WAITERORDERADD_URL = '/waiter/order/add'
-export type WAITERORDERADD_URL = typeof WAITERORDERADD_URL
-
 export const CORDERLIST_URL = '/chef/order'
 export type CORDERLIST_URL = typeof CORDERLIST_URL
 
 export const CORDEREDIT_URL = '/chef/order/edit'
 export type CORDEREDIT_URL = typeof CORDEREDIT_URL
+
+export const WORDERLIST_URL = '/waiter/order'
+export type WORDERLIST_URL = typeof WORDERLIST_URL
+
+export const WORDEREDIT_URL = '/waiter/order/edit'
+export type WORDEREDIT_URL = typeof WORDEREDIT_URL
+
+export const WDISH_URL = '/waiter/dish'
+export type WDISH_URL = typeof WDISH_URL
+
+export const WORDERADD_URL = '/waiter/order/add'
+export type WORDERADD_URL = typeof WORDERADD_URL
 
 // 看板
 export const DASHBOARD_URL = '/admin/dashboard'
@@ -127,6 +136,10 @@ export type UPPIC_URL = typeof UPPIC_URL
 // 服务器端地址
 export const SERVER_URL = 'http://localhost:8300'
 export type SERVER_URL = typeof SERVER_URL
+
+// ws地址
+export const WEBSOCKET_URL = 'ws://localhost:8300'
+export type WEBSOCKET_URL = typeof WEBSOCKET_URL
 
 
 /** 前台 */

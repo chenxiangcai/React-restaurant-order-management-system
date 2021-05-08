@@ -118,7 +118,9 @@ const Order: FunctionComponent<Props> = (props) => {
       key: 'level',
       render: (value, records, index) => (
           <>
-            {records?.level?.name}
+            {
+              records?.level?.name === undefined ? '无会员' : records.level.name
+            }
           </>
       ),
     },

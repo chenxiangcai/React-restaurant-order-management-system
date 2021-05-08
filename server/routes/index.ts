@@ -13,8 +13,10 @@ export = app => {
   app.use('/admin/category', require('./category')) //菜品分类
   app.use('/admin/customer', require('./customer')) //会员
   app.use('/admin/order', require('./adminOrder')) //管理员订单
-  app.use('/chef/order', require('./chefOrder'))//厨师订单
-  app.use('/cus/order', require('./cusOrder'))//顾客订单
+  app.use('/chef/order', require('./chefOrder'))  //厨师订单
+  app.use('/cus/order', require('./cusOrder'))  //顾客订单
+  app.use('/waiter/order', require('./waiterOrder')) //服务员订单
+  app.get('/waiter/dish', require('./waiter/dish/list')) //服务员菜品列表
   app.use('/admin/dashboard', require('./admin/dashboard/detail')) //看板
   app.use('/admin/table', require('./table')) //餐桌
 

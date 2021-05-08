@@ -33,7 +33,7 @@ const orderSchema: object = new Schema({
   },
   finishtime: {
     type: Date,
-    default: Date.now
+    // default: Date.now
   },
   level: {
     type: Schema.Types.ObjectId,

@@ -1,8 +1,7 @@
 import React, { FunctionComponent, useEffect, useMemo, useState } from 'react';
 import { connect } from "react-redux";
 import { Dispatch } from "redux";
-import { ORDERDEL } from "../admin/order/actions";
-import { CORDEREDIT_URL, CORDERLIST_URL, ORDERDEL_URL } from "../../common/api";
+import { CORDEREDIT_URL, CORDERLIST_URL, WEBSOCKET_URL } from "../../common/api";
 import { Card, List, Switch, Table, Tag } from "antd";
 import { CGETORDERLIST, CORDEREDIT } from "./actions";
 import moment from "moment";
@@ -20,19 +19,8 @@ interface OwnProps {
 type Props = OwnProps;
 const mapStateToProps = (state: any) => ({
   orderlist: state.chef.orderlist,
-  addOStatus: state.chef.addOStatus,
-  delOStatus: state.chef.delOStatus,
-  errorMsgO: state.chef.errorMsgO,
-  editCStatus: state.chef.editCStatus
 })
 const mapDispatchToProps = (dispatch: Dispatch) => ({
-  delOrder(value: string) {
-    dispatch({
-      type: ORDERDEL,
-      url: ORDERDEL_URL,
-      data: value
-    })
-  },
   GetOrder(value?: object) {
     dispatch({
       type: CGETORDERLIST,
@@ -78,7 +66,7 @@ const Chef: FunctionComponent<Props> = (props) => {
 
   //获取订单列表
   useEffect(() => {
-    const socket = new WebSocket("ws://localhost:8300/chef/order");
+    const socket = new WebSocket(`${WEBSOCKET_URL}/chef/order`);
     socket.addEventListener("open", function (event) {
       console.log("socket is open");
       socket.send("连接成功");
@@ -86,7 +74,7 @@ const Chef: FunctionComponent<Props> = (props) => {
 
     socket.addEventListener("message", function (event) {
       console.log("Message from server", event.data);
-      console.log(event.data)
+      // console.log(event.data)
       //服务器发送的数据更新了
       if (event.data !== 'websocket connected') setOrderList(JSON.parse(event.data))
     });
@@ -111,7 +99,7 @@ const Chef: FunctionComponent<Props> = (props) => {
             renderItem={(item: any) => (
                 <List.Item>
                   <Card style={{ overflow: "scroll" }}
-                        title={<Tag color="#2db7f5">{item.tableID}</Tag>}
+                        title={<Tag color="#2db7f5">{item.tableID} 号桌</Tag>}
                         extra={<Tag color="orange-inverse">{moment(item.fromNow).fromNow()}</Tag>}>
                     <Table rowKey={item.tableID} pagination={false} columns={columns} dataSource={item.order}/>
                   </Card>

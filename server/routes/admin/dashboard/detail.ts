@@ -14,7 +14,7 @@ export = async (req, res) => {
   //今日销售额
   let dayMoney = 0
   const nowDay = new Date().toISOString().slice(0, 10)
-  const isNowDayAry = orders.records.filter(val => val.finishtime.toISOString().slice(0, 10) === nowDay)
+  const isNowDayAry = orders.records.filter(val => val?.finishtime?.toISOString()?.slice(0, 10) === nowDay)
   if (isNowDayAry.length !== 0) dayMoney = isNowDayAry.reduce((pre, cur) => pre + cur.receivable, 0)
 
   //周环比 = （当前日期-6 求本周数据 / 当前日期-13 求上周数据）/  *100%

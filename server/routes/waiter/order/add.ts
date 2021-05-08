@@ -1,21 +1,49 @@
-const { Orders, validateOrder } = require('../../../model/Order/Orders')
-const _ = require('lodash')
-export = async (req: any, res: any) => {
-  console.log(req.fields)
+const { Orders } = require('../../../model/Order/Orders')
+const { Dishes } = require('../../../model/Dish/Dish')
 
-  try {
-    await validateOrder(req.fields)
-  } catch (e) {
-    return res.send({ status: -7, message: e.message })
+export = async (req: any, res: any) => {
+  let { orderid, dish } = req.fields
+
+  const order = await Orders.findOne({ _id: orderid })
+  const dishes = await Dishes.findOne({ _id: dish.id })
+
+
+  //添加时如果存在已存在的菜品,直接添加数量
+  if (order.orderdetail.filter(val => val._id === dish.id).length > 0) {
+    order.orderdetail.filter(async (val, index) => {
+      if (val._id === dish.id) {
+        //订单添加
+        order.orderdetail[index].num += +dish.num
+        order.orderdetail[index].status = 0
+        await Orders.updateOne({ _id: orderid }, { orderdetail: order.orderdetail })
+        //库存减少
+        const n = dishes.number -= +dish.num
+        if (n < 0) dishes.number += +dish.num
+        else {
+          dishes.number -= +dish.num
+          await Dishes.updateOne({ _id: dish.id }, { $set: dishes })
+        }
+      }
+    })
+  }
+  //否则新增菜品到订单中
+  else {
+    order.orderdetail.push({
+      orderid: orderid,
+      _id: dish.id,
+      num: +dish.num,
+      price: dishes.price,
+      name: dishes.name,
+      url: dishes.picture,
+      status: 0,
+      tableID: dish.tableID
+    })
+
+    await Orders.updateOne({ _id: orderid }, { orderdetail: order.orderdetail })
   }
 
-  return
-  // let order = await Orders.findOne({ foodTypeName: req.fields.foodTypeName })
-  // if (order) return res.send({ message: '此订单已存在' })
-  let order = new Orders(req.fields)
-  await order.save()
   res.send({
-    data: (_.pick(order, ['foodTypeName', 'whoAdd'])),
+    order,
     status: 200
   })
 }

@@ -19,7 +19,7 @@ import { OrderDetail } from "../pages/front/orderdetail";
 import { Table } from "../pages/admin/table";
 import NotFound from "../pages/error/NotFound";
 import NotAuth from "../pages/error/NotAuth";
-import Waiter from "../pages/waiter/Waiter";
+import WaiterOrder from "../pages/waiter/order/WaiterOrder";
 import Pay from "../pages/front/Pay";
 import Chef from "../pages/chef/Chef";
 import SearchPage from "../pages/front/search/SearchPage";
@@ -52,11 +52,6 @@ export const normalRoute = [{
   {
     path: '/home/search',
     component: SearchPage,
-    exact: true
-  },
-  {
-    path: '/waiter',
-    component: Waiter,
     exact: true
   },
   {
@@ -124,7 +119,7 @@ export const chefRoute = [
 export const waiterRoute = [
   {
     path: '/waiter/orders',
-    component: Waiter,
+    component: WaiterOrder,
     exact: true
   },
 ]
