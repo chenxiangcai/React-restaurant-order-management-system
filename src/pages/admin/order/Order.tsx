@@ -339,8 +339,8 @@ const Order: FunctionComponent<Props> = (props) => {
             <Descriptions title={`订单号：${drawValue.orderid}`}>
               <Descriptions.Item label="桌位号">{drawValue.tableid} 号</Descriptions.Item>
               {
-                drawValue.cus.name &&
-                <Descriptions.Item label="会员姓名">{drawValue.cus.name}</Descriptions.Item>
+                drawValue?.cus?.name &&
+                <Descriptions.Item label="会员姓名">{drawValue?.cus?.name}</Descriptions.Item>
               }
               <Descriptions.Item label="消费金额">{drawValue.paid} 元</Descriptions.Item>
               <Descriptions.Item label="消费时长">

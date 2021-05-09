@@ -258,6 +258,23 @@ const LayoutWrap: FunctionComponent<Props> = (props) => {
                 >
                   订单
                 </Menu.Item>
+                <Menu.Item key="/waiter/table" icon={<InsertRowBelowOutlined/>} onClick={() => {
+                  history.push('/waiter/table')
+                }}>
+                  餐桌
+                </Menu.Item>
+                <SubMenu key="sub2453" icon={<HeartOutlined/>} title="会员">
+                  <Menu.Item key="/waiter/customer"
+                             onClick={() => {
+                               history.push('/waiter/customer')
+                             }}
+                  >会员资料</Menu.Item>
+                  <Menu.Item key="/waiter/customer/cate"
+                             onClick={() => {
+                               history.push('/waiter/customer/cate')
+                             }}
+                  >会员类别</Menu.Item>
+                </SubMenu>
               </Menu>
             }
           </Sider>

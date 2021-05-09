@@ -21,6 +21,9 @@ import { sagas as shopCar } from '../pages/front/shopcar'
 import { sagas as chef } from '../pages/chef'
 import { sagas as searchPage } from '../pages/front/search'
 import { sagas as waiterOrder } from '../pages/waiter/order'
+import { sagas as waiterTable } from '../pages/waiter/table'
+import { sagas as wcuslist } from '../pages/waiter/customer/list'
+import { sagas as wcuscate } from '../pages/waiter/customer/cate'
 
 
 const { TOLOGIN } = login.types;
@@ -39,6 +42,9 @@ const { CUSORDERADD, CUSOREDEREDIT } = shopCar.types
 const { CGETORDERLIST, CORDEREDIT } = chef.types
 const { SEARCHDISH } = searchPage.types
 const { WGETORDERLIST, WORDEREDIT, WORDERADD } = waiterOrder.types
+const { WGETTABLE, WGETQRCODE } = waiterTable.types
+const { WGETCUSCATELIST } = wcuscate.types
+const { WGETCUSLIST } = wcuslist.types
 
 
 function* sagas() {
@@ -70,6 +76,10 @@ function* sagas() {
   yield takeEvery(CUSCATEADD, cusCate.addCusCate)
   yield takeEvery(CUSCATEEDIT, cusCate.editCusCate)
   yield takeEvery(CUSCATEDEL, cusCate.delCusCate)
+  yield takeEvery(WGETCUSCATELIST, wcuscate.toggleCusCatePage)
+  yield takeEvery(WGETCUSCATELIST, wcuscate.toggleCusCatePage)
+  yield takeEvery(WGETCUSLIST, wcuslist.toggleCusPage)
+
 
   //会员
   yield takeEvery(GETCUSLIST, cusList.toggleCusPage)
@@ -101,6 +111,8 @@ function* sagas() {
   yield takeEvery(ADDTABLE, table.addTable)
   yield takeEvery(EDITTABLE, table.editTable)
   yield takeEvery(DELTABLE, table.delTable)
+  yield takeEvery(WGETTABLE, waiterTable.getTable)
+  yield takeEvery(WGETQRCODE, waiterTable.getQR)
 
 
   /** 前台saga*/

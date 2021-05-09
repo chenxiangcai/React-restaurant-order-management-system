@@ -15,6 +15,9 @@ export type DELSTAFF_URL = typeof DELSTAFF_URL
 export const EDITSTAFF_URL = '/admin/staff/edit'
 export type EDITSTAFF_URL = typeof EDITSTAFF_URL
 
+export const WSTAFFLIST = '/waiter/staff'
+export type WSTAFFLIST = typeof WSTAFFLIST
+
 // 菜品模块
 export const DISHLIST = '/admin/dish'
 export type DISHLIST = typeof DISHLIST
@@ -57,6 +60,9 @@ export type CUSCATEDEL_URL = typeof CUSCATEDEL_URL
 export const CUSCATEADD_URL = '/admin/customer/cate/add'
 export type CUSCATEADD_URL = typeof CUSCATEADD_URL
 
+export const WCUSCATELIST_URL = '/waiter/customer/cate'
+export type WCUSCATELIST_URL = typeof WCUSCATELIST_URL
+
 // 会员列表模块
 export const CUSLIST_URL = '/admin/customer'
 export type CUSLIST_URL = typeof CUSLIST_URL
@@ -69,6 +75,9 @@ export type CUSDEL_URL = typeof CUSDEL_URL
 
 export const CUSADD_URL = '/admin/customer/add'
 export type CUSADD_URL = typeof CUSADD_URL
+
+export const WCUSLIST_URL = '/waiter/customer'
+export type WCUSLIST_URL = typeof WCUSLIST_URL
 
 // 订单列表模块
 export const ORDERLIST_URL = '/admin/order'
@@ -115,6 +124,8 @@ export type PWD_URL = typeof PWD_URL
 //餐桌
 export const QR_URL = '/admin/qrcode'
 export type QR_URL = typeof QR_URL
+export const WQR_URL = '/waiter/qrcode'
+export type WQR_URL = typeof WQR_URL
 
 export const TABLE_URL = '/admin/table'
 export type TABLE_URL = typeof TABLE_URL
@@ -127,6 +138,9 @@ export type TABLEEDIT_URL = typeof TABLEEDIT_URL
 
 export const TABLEDEL_URL = '/admin/table/del'
 export type TABLEDEL_URL = typeof TABLEDEL_URL
+
+export const WTABLE_URL = '/waiter/table'
+export type WTABLE_URL = typeof WTABLE_URL
 
 
 // 图片上传地址

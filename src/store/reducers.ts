@@ -16,6 +16,9 @@ import { reducers as shopCar } from '../pages/front/shopcar'
 import { reducers as chef } from '../pages/chef'
 import { reducers as search } from '../pages/front/search'
 import { reducers as waiterOrder } from '../pages/waiter/order'
+import { reducers as waiterTable } from '../pages/waiter/table'
+import { reducers as wcuslist } from '../pages/waiter/customer/list'
+import { reducers as wcuscate } from '../pages/waiter/customer/cate'
 
 
 // 数据整合导出
@@ -35,5 +38,8 @@ export default combineReducers({
   shopCar,
   chef,
   search,
-  waiterOrder
+  waiterOrder,
+  waiterTable,
+  wcuslist,
+  wcuscate
 });

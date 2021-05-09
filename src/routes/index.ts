@@ -23,6 +23,10 @@ import WaiterOrder from "../pages/waiter/order/WaiterOrder";
 import Pay from "../pages/front/Pay";
 import Chef from "../pages/chef/Chef";
 import SearchPage from "../pages/front/search/SearchPage";
+import WTable from "../pages/waiter/table/Table";
+import { WCusCate } from '../pages/waiter/customer/cate'
+import { WCusList } from '../pages/waiter/customer/list'
+
 
 // 普通路由
 export const normalRoute = [{
@@ -122,4 +126,19 @@ export const waiterRoute = [
     component: WaiterOrder,
     exact: true
   },
+  {
+    path: '/waiter/table',
+    component: WTable,
+    exact: true
+  },
+  {
+    path: '/waiter/customer/cate',
+    component: WCusCate,
+    exact: true
+  },
+  {
+    path: '/waiter/customer',
+    component: WCusList,
+    exact: true
+  }
 ]

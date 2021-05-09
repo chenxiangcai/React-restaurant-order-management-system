@@ -7,6 +7,7 @@ import { Dispatch } from "redux";
 import { WGETORDERLIST, WORDERADD, WORDEREDIT } from "./actions";
 import { CheckOutlined, DeleteOutlined, MinusOutlined } from "@ant-design/icons";
 import { Wrap } from "./Wrap";
+import DocumentTitle from "react-document-title";
 
 const { Option } = Select;
 
@@ -139,12 +140,13 @@ const WaiterOrder: FunctionComponent<Props> = (props) => {
       console.log("socket is open");
       socket.send("连接成功");
     });
-
     socket.addEventListener("message", function (event) {
       console.log("Message from server", event.data);
-      // console.log(event.data)
       //服务器发送的数据更新了
-      if (event.data !== 'websocket connected') setOrderList(JSON.parse(event.data))
+      if (event.data !== 'websocket connected') {
+        // if (JSON.stringify(orderList) !== event.data) alert('有菜品制作完成，请及时上菜')
+        setOrderList(JSON.parse(event.data))
+      }
     });
     props.getOrderList()
     console.log(props)
@@ -290,87 +292,89 @@ const WaiterOrder: FunctionComponent<Props> = (props) => {
   }
 
   return (
-      <Wrap>
-        <List
-            grid={{ column: 1 }}
-            dataSource={orderList}
-            renderItem={(item: any) => (
-                <List.Item>
-                  <Card style={{ overflow: "scroll" }}
-                        title={
-                          <>
-                            <Tag color="#2db7f5">{item.tableID} 号桌</Tag>
-                            <Tag color="lime-inverse">{moment(item.fromNow).fromNow()}</Tag>
-                          </>
-                        }
-                        extra={
-                          <Button type="primary" style={{ borderRadius: 5 }}
-                                  onClick={() => {
-                                    orderAddDish(item)
-                                  }}
-                          >加菜</Button>}>
-                    <Table rowKey={item.tableID} pagination={false} columns={columns} dataSource={item.order}/>
-                  </Card>
-                </List.Item>
-            )}
-        />
-        {/*新增弹出框*/}
-        <Modal
-            title={'新增点菜'}
-            visible={visible}
-            onCancel={() => {
-              setVisible(false)
-            }}
-            destroyOnClose
-            footer={null}
-        >
-          <Form onFinish={handleOk}>
-            <Form.Item>
-              <Form.Item name="tableID" style={{ margin: 0 }} initialValue={tableID}>
-                <Input placeholder="餐桌号" disabled/>
-              </Form.Item>
-              <Form.Item name="id" rules={[
-                {
-                  required: true,
-                  message: '请选择菜品',
-                },
-              ]}>
-                <Select
-                    autoFocus
-                    showSearch
-                    style={{ width: '100%', marginTop: 20 }}
-                    placeholder="菜品"
-                    optionFilterProp="children"
-                >
+      <DocumentTitle title="订单列表">
+        <Wrap>
+          <List
+              grid={{ column: 1 }}
+              dataSource={orderList}
+              renderItem={(item: any) => (
+                  <List.Item>
+                    <Card style={{ overflow: "scroll" }}
+                          title={
+                            <>
+                              <Tag color="#2db7f5">{item.tableID} 号桌</Tag>
+                              <Tag color="lime-inverse">{moment(item.fromNow).fromNow()}</Tag>
+                            </>
+                          }
+                          extra={
+                            <Button type="primary" style={{ borderRadius: 5 }}
+                                    onClick={() => {
+                                      orderAddDish(item)
+                                    }}
+                            >加菜</Button>}>
+                      <Table rowKey={item.tableID} pagination={false} columns={columns} dataSource={item.order}/>
+                    </Card>
+                  </List.Item>
+              )}
+          />
+          {/*新增弹出框*/}
+          <Modal
+              title={'新增点菜'}
+              visible={visible}
+              onCancel={() => {
+                setVisible(false)
+              }}
+              destroyOnClose
+              footer={null}
+          >
+            <Form onFinish={handleOk}>
+              <Form.Item>
+                <Form.Item name="tableID" style={{ margin: 0 }} initialValue={tableID}>
+                  <Input placeholder="餐桌号" disabled/>
+                </Form.Item>
+                <Form.Item name="id" rules={[
                   {
-                    dishlist && dishlist.map((val: any) => <Option value={val._id}
-                                                                   key={val._id}>{val.name}</Option>)
-                  }
-                </Select>
-              </Form.Item>
-              <Form.Item name='num' rules={[
-                {
-                  required: true,
-                  message: '请输入数量',
-                },
-              ]} style={{ marginTop: 0 }}>
-                <Input type={"number"}
-                       placeholder="数量"/>
+                    required: true,
+                    message: '请选择菜品',
+                  },
+                ]}>
+                  <Select
+                      autoFocus
+                      showSearch
+                      style={{ width: '100%', marginTop: 20 }}
+                      placeholder="菜品"
+                      optionFilterProp="children"
+                  >
+                    {
+                      dishlist && dishlist.map((val: any) => <Option value={val._id}
+                                                                     key={val._id}>{val.name}</Option>)
+                    }
+                  </Select>
+                </Form.Item>
+                <Form.Item name='num' rules={[
+                  {
+                    required: true,
+                    message: '请输入数量',
+                  },
+                ]} style={{ marginTop: 0 }}>
+                  <Input type={"number"}
+                         placeholder="数量"/>
+                </Form.Item>
+
               </Form.Item>
 
-            </Form.Item>
-
-            <Form.Item style={{ marginBottom: -6 }}>
-              <Space style={{ float: "right" }}>
-                <Button type="default" onClick={() => {
-                  setVisible(false)
-                }}>取消</Button>
-                <Button type="primary" htmlType="submit">添加</Button>
-              </Space>
-            </Form.Item>
-          </Form>
-        </Modal>
-      </Wrap>
+              <Form.Item style={{ marginBottom: -6 }}>
+                <Space style={{ float: "right" }}>
+                  <Button type="default" onClick={() => {
+                    setVisible(false)
+                  }}>取消</Button>
+                  <Button type="primary" htmlType="submit">添加</Button>
+                </Space>
+              </Form.Item>
+            </Form>
+          </Modal>
+        </Wrap>
+      </DocumentTitle>
   );
 };
 export default connect(mapStateToProps, mapDispatchToProps)(WaiterOrder);

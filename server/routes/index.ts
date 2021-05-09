@@ -12,6 +12,8 @@ export = app => {
   app.use('/admin/dish', require('./dish')) //菜品
   app.use('/admin/category', require('./category')) //菜品分类
   app.use('/admin/customer', require('./customer')) //会员
+  app.use('/waiter/customer', require('./customer'))
+
   app.use('/admin/order', require('./adminOrder')) //管理员订单
   app.use('/chef/order', require('./chefOrder'))  //厨师订单
   app.use('/cus/order', require('./cusOrder'))  //顾客订单
@@ -21,10 +23,14 @@ export = app => {
   app.use('/admin/table', require('./table')) //餐桌
 
   app.get('/admin/qrcode/:id', require('./qrcode'))// 网站二维码
+  app.get('/waiter/qrcode/:id', require('./qrcode'))
 
   app.post('/login', require('./admin/login')) //用户登录
 
   app.post('/upload', require('./admin/upload')) //图片上传
+
+  app.get('/waiter/table', require('./admin/table/list'))
+  app.get('/waiter/staff', require('./admin/staffs/list'))
 
   /*前台路由*/
   app.use('/home', require('./front'))
