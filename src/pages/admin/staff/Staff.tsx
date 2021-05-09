@@ -1,5 +1,5 @@
 import React, { FunctionComponent, useEffect, useMemo, useRef, useState } from 'react';
-import { Button, Card, ConfigProvider, Form, Input, message, Modal, Popconfirm, Radio, Space, Table, Tag } from 'antd';
+import { Button, Card, ConfigProvider, Form, Input, message, Modal, Radio, Space, Table, Tag } from 'antd';
 import { ColumnsType } from 'antd/es/table';
 import { Dispatch } from "redux";
 import { ADDSTAFF, DELSTAFF, EDITSTAFF, TOGGLEPAGE } from "./actions";
@@ -365,7 +365,7 @@ const Staff: FunctionComponent<Props> = (props) => {
                   <Button type="primary" onClick={() => {
                     setVisible(true)
                     setPopStaffStyle('新增员工')
-                  }}>新增</Button>
+                  }} style={{ borderRadius: 5 }}>新增</Button>
                 }
                 headStyle={{}}
                 style={{ width: '100%' }}

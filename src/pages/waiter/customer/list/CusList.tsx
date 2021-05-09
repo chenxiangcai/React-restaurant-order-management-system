@@ -5,9 +5,9 @@ import Paging from "../../../../components/Paging";
 import DocumentTitle from "react-document-title";
 import { ColumnsType } from "antd/es/table";
 import { Dispatch } from "redux";
-import { WCUSLIST_URL, } from "../../../../common/api";
+import { WCUSADD_URL, WCUSLIST_URL, } from "../../../../common/api";
 import { connect } from "react-redux";
-import { WGETCUSLIST } from "./action";
+import { WCUSADD, WGETCUSLIST } from "./action";
 import { getStore, setStore } from "../../../../utils/storage";
 import TableCheckBox from "../../../../components/TableCheckBox";
 
@@ -17,6 +17,8 @@ interface OwnProps {
   [prop: string]: any
 
   toggleCusPage(value?: object): void
+
+  addCus(value: object): void
 }
 
 type Props = OwnProps;
@@ -48,6 +50,13 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
     dispatch({
       type: WGETCUSLIST,
       url: WCUSLIST_URL,
+      data: value
+    })
+  },
+  addCus(value: object) {
+    dispatch({
+      type: WCUSADD,
+      url: WCUSADD_URL,
       data: value
     })
   },
@@ -118,30 +127,6 @@ const WCusList: FunctionComponent<Props> = (props) => {
               </>
           ),
         },
-        /*{
-          title: '操作',
-          key: '_id',
-          render: (text, records, index) => (
-              <Space>
-                <Button type="primary" onClick={() => {
-                  edit_cus(records)
-                }} shape="circle" icon={<EditOutlined/>} size={"small"}/>
-                {
-                  <Popconfirm
-                      title="确定要删除此会员吗？"
-                      placement="top"
-                      okText="确定"
-                      cancelText="取消"
-                      onConfirm={() => {
-                        del_cus(records)
-                      }}
-                  >
-                    <Button type="primary" danger shape="circle" icon={<DeleteOutlined/>} size={"small"}/>
-                  </Popconfirm>
-                }
-              </Space>
-          ),
-        },*/
       ];
 
       // 取消弹出框
@@ -272,10 +257,29 @@ const WCusList: FunctionComponent<Props> = (props) => {
         setBarVisible('none')
       }
 
+      // 弹框状态管理 fix 状态存储在缓存 解决每次重新加载页面弹框问题
+      useEffect(() => {
+            const { errorMsgC, addCStatus } = props
+            const astatus = getStore('addCStatus')
+            //添加
+            if (astatus == addCStatus) {
+            } else {
+              setStore('addCStatus', addCStatus)
+              if (addCStatus < 1) message.success('会员添加成功！')
+              else if (errorMsgC && errorMsgC.includes('存在')) message.warning('此会员账号已存在')
+            }
+          }, [props.addCStatus]
+      )
       return (
           <DocumentTitle title="会员 > 资料">
             <ConfigProvider locale={zhCN}>
               <Card title="会员档案"
+                    extra={
+                      <Button type="primary" onClick={() => {
+                        setVisible(true)
+                        setPopCusStyle('新增会员')
+                      }} style={{ borderRadius: 5 }}>新增</Button>
+                    }
                     style={{ width: '100%' }}
               >
                 <TableCheckBox

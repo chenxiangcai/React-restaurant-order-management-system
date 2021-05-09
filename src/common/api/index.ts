@@ -77,7 +77,10 @@ export const CUSADD_URL = '/admin/customer/add'
 export type CUSADD_URL = typeof CUSADD_URL
 
 export const WCUSLIST_URL = '/waiter/customer'
-export type WCUSLIST_URL = typeof WCUSLIST_URL
+export type WCUSLIST_URL = typeof CUSLIST_URL
+
+export const WCUSADD_URL = '/waiter/customer/add'
+export type WCUSADD_URL = typeof WCUSADD_URL
 
 // 订单列表模块
 export const ORDERLIST_URL = '/admin/order'

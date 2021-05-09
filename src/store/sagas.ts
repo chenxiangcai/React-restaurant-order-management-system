@@ -44,7 +44,7 @@ const { SEARCHDISH } = searchPage.types
 const { WGETORDERLIST, WORDEREDIT, WORDERADD } = waiterOrder.types
 const { WGETTABLE, WGETQRCODE } = waiterTable.types
 const { WGETCUSCATELIST } = wcuscate.types
-const { WGETCUSLIST } = wcuslist.types
+const { WGETCUSLIST, WCUSADD } = wcuslist.types
 
 
 function* sagas() {
@@ -86,6 +86,8 @@ function* sagas() {
   yield takeEvery(CUSADD, cusList.addCus)
   yield takeEvery(CUSEDIT, cusList.editCus)
   yield takeEvery(CUSDEL, cusList.delCus)
+  yield takeEvery(WCUSADD, wcuslist.addCus)
+
 
   //订单
   yield takeEvery(GETORDERLIST, order.toggleOrderPage)

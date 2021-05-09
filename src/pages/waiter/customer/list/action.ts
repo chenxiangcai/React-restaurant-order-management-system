@@ -9,3 +9,12 @@ export type WGETCUSLISTSUC = typeof WGETCUSLISTSUC
 
 export const WGETCUSCATESUC = 'WGETCUSCATESUC'
 export type WGETCUSCATESUC = typeof WGETCUSCATESUC
+
+export const WCUSADD = 'WCUSADD'
+export type WCUSADD = typeof WCUSADD
+
+export const WCUSADDSUC = 'WCUSADDSUC'
+export type WCUSADDSUC = typeof WCUSADDSUC
+
+export const WCUSADDERR = 'WCUSADDERR'
+export type WCUSADDERR = typeof WCUSADDERR

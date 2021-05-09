@@ -1,8 +1,8 @@
 import React, { FunctionComponent, useEffect, useMemo, useRef, useState } from 'react';
 import DocumentTitle from "react-document-title";
-import { Button, Card, ConfigProvider, Form, Input, message, Modal, Popconfirm, Space, Table } from "antd";
+import { Button, Card, ConfigProvider, Form, Input, message, Modal, Space, Table } from "antd";
 import zhCN from "antd/es/locale/zh_CN";
-import { DeleteOutlined, EditOutlined, UserOutlined } from "@ant-design/icons";
+import { EditOutlined, UserOutlined } from "@ant-design/icons";
 import { ColumnsType } from "antd/es/table";
 import { connect } from 'react-redux'
 import { Dispatch } from "redux";
@@ -283,7 +283,7 @@ const Category: FunctionComponent<Props> = (props) => {
             <Button onClick={() => {
               setVisible(true)
               setPopCateStyle('新增分类')
-            }} type="primary">
+            }} style={{ borderRadius: 5 }} type="primary">
               新增
             </Button>
           }

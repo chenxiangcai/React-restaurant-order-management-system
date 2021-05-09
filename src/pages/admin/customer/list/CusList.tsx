@@ -1,28 +1,11 @@
 import React, { FunctionComponent, useEffect, useMemo, useState } from 'react';
-import {
-  Button,
-  Card,
-  ConfigProvider,
-  Form,
-  Input,
-  message,
-  Modal,
-  Popconfirm,
-  Select,
-  Space,
-  Table,
-} from "antd";
+import { Button, Card, ConfigProvider, Form, Input, message, Modal, Select, Space, Table, } from "antd";
 import zhCN from "antd/es/locale/zh_CN";
 import Paging from "../../../../components/Paging";
 import DocumentTitle from "react-document-title";
 import { ColumnsType } from "antd/es/table";
-import { DeleteOutlined, EditOutlined } from '@ant-design/icons';
 import { Dispatch } from "redux";
-import {
-  CUSADD_URL,
-  CUSDEL_URL, CUSEDIT_URL,
-  CUSLIST_URL,
-} from "../../../../common/api";
+import { CUSADD_URL, CUSDEL_URL, CUSEDIT_URL, CUSLIST_URL, } from "../../../../common/api";
 import { connect } from "react-redux";
 import { CUSADD, CUSDEL, CUSEDIT, GETCUSLIST } from "./action";
 import { getStore, setStore } from "../../../../utils/storage";
@@ -162,30 +145,6 @@ const CusList: FunctionComponent<Props> = (props) => {
               </>
           ),
         },
-        /*{
-          title: '操作',
-          key: '_id',
-          render: (text, records, index) => (
-              <Space>
-                <Button type="primary" onClick={() => {
-                  edit_cus(records)
-                }} shape="circle" icon={<EditOutlined/>} size={"small"}/>
-                {
-                  <Popconfirm
-                      title="确定要删除此会员吗？"
-                      placement="top"
-                      okText="确定"
-                      cancelText="取消"
-                      onConfirm={() => {
-                        del_cus(records)
-                      }}
-                  >
-                    <Button type="primary" danger shape="circle" icon={<DeleteOutlined/>} size={"small"}/>
-                  </Popconfirm>
-                }
-              </Space>
-          ),
-        },*/
       ];
 
       // 取消弹出框
@@ -324,7 +283,7 @@ const CusList: FunctionComponent<Props> = (props) => {
                       <Button type="primary" onClick={() => {
                         setVisible(true)
                         setPopCusStyle('新增会员')
-                      }}>新增</Button>
+                      }} style={{ borderRadius: 5 }}>新增</Button>
                     }
                     style={{ width: '100%' }}
               >
