@@ -79,7 +79,7 @@ const FoodDetail: FunctionComponent<Props> = (props) => {
                           <div style={{ display: "flex", flexDirection: "column" }}>
                             <span className='dish-titles'>{order.name}</span>
                             <span className='dish-prices'>¥ {order.price * order.num}</span>
-                            <span className='dish-titles num'>x {order.num}</span>
+                            <span className='dish-titles num' style={{ left: '14.5rem' }}>x {order.num}</span>
                           </div>
                         </div>
                         <div className='numutil'>

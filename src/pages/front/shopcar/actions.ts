@@ -1,17 +1,21 @@
-export const CUSORDERADD = 'CUSORDERADD'
-export type CUSORDERADD = typeof CUSORDERADD
+export const SCUSORDERADD = 'SCUSORDERADD'
+export type SCUSORDERADD = typeof SCUSORDERADD
 
-export const ORDERADDSUC = 'orderaddsuc'
-export type ORDERADDSUC = typeof ORDERADDSUC
+export const SORDERADDSUC = 'SORDERADDSUC'
+export type SORDERADDSUC = typeof SORDERADDSUC
 
-export const ORDERADDERR = 'orderadderr'
-export type ORDERADDERR = typeof ORDERADDERR
+export const SORDERADDERR = 'SORDERADDERR'
+export type SORDERADDERR = typeof SORDERADDERR
 
 export const CUSOREDEREDIT = 'CUSOREDEREDIT'
 export type CUSOREDEREDIT = typeof CUSOREDEREDIT
 
-export const ORDEREDITSUC = 'ORDEREDITSUC'
-export type ORDEREDITSUC = typeof ORDEREDITSUC
+export const SORDEREDITSUC = 'SORDEREDITSUC'
+export type SORDEREDITSUC = typeof SORDEREDITSUC
 
-export const ORDEREDITERR = 'ORDEREDITERR'
-export type ORDEREDITERR = typeof ORDEREDITERR
+export const SORDEREDITERR = 'SORDEREDITERR'
+export type SORDEREDITERR = typeof SORDEREDITERR
+
+export const RESET = 'RESET'
+export type RESET = typeof RESET
+

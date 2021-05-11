@@ -53,7 +53,7 @@ export const DashWrap = styled.div`
     position: absolute;
   }
 
-  /deep/ .ant-table {
+  .ant-table {
     height: 407px !important;
   }
 `

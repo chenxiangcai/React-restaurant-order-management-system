@@ -137,7 +137,7 @@ const Dashboard: FunctionComponent<Props> = (props) => {
                                    value={data?.allSold?.allMoney}
                                    prefix={'¥'}
                         />
-                        <div className='num' style={{ marginTop: 20 }}>
+                        <div className='num' style={{ marginTop: 16 }}>
                           {
                             data?.allSold?.weekRate !== -9999 && data?.allSold?.weekRate !== -8888 &&
                             <Statistic

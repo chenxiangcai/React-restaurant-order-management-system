@@ -1,6 +1,7 @@
 const { Orders, validateOrder } = require('../../model/Order/Orders')
 const { Table } = require('../../model/Table/Table')
 const { Dishes } = require('../../model/Dish/Dish')
+const { Customer } = require('../../model/Customer/Customer')
 
 export = async (req, res) => {
   const { orderid, status, level, cus, receivable, paid } = req.fields
@@ -11,12 +12,27 @@ export = async (req, res) => {
   }
   //结束订单
   if (status) {
-    if (level && cus) await Orders.updateOne({ _id: orderid }, { finishtime: Date.now(), level, cus, receivable, paid })
-    else await Orders.updateOne({ _id: orderid }, { finishtime: Date.now(), receivable, paid })
+    //如果是会员
+    if (level && cus) {
+      //更新订单信息
+      await Orders.updateOne({ _id: orderid }, { status: 1, finishtime: Date.now(), level, cus, receivable, paid })
+      //更新会员表信息
+      const cus1 = await Customer.findOne({ _id: cus })
+      cus1.xftimes++
+      cus1.xftotal += receivable
+      await Customer.updateOne({ _id: cus }, { $set: cus1 })
+
+    } else await Orders.updateOne({ _id: orderid }, { status: 1, finishtime: Date.now(), receivable, paid })
+
+
     //置空餐桌状态
+    console.log(orderid)
     const table = await Orders.findOne({ _id: orderid }).populate('tableid')
+    console.log(table)
     const tableid = table.tableid._id
     const result = await Table.updateOne({ _id: tableid }, { status: 0 })
+
+
     if (result.ok == 1) return res.send({
       meta: {
         status: 200,
@@ -26,20 +42,32 @@ export = async (req, res) => {
   }
 
   //更新订单
-  const order = await Orders.updateOne({ _id: orderid }, { orderdetail: req.fields.orderdetail })
   const { addOrder } = req.fields
+
+  var notE = []
   //新增菜品时减少对应库存数量
   addOrder.map(async val => {
     const dish = await Dishes.findOne({ _id: val._id })
     dish.number -= val.num
-    await Dishes.updateOne({ _id: val._id }, { number: dish.number })
-  })
+    if (dish.number < 0) {
+      dish.number += val.num
+      notE.push(val.name)
+      return res.send({
+        notE,
+        status: 400
+      })
+    }
 
-  res.send({
-    meta: {
-      status: 200,
-      message: '修改信息成功'
-    },
-    order
+    await Dishes.updateOne({ _id: val._id }, { number: dish.number })
+    if (notE.length === 0) {
+      const order = await Orders.updateOne({ _id: orderid }, { orderdetail: req.fields.orderdetail })
+      res.send({
+        meta: {
+          status: 200,
+          message: '修改信息成功'
+        },
+        order
+      })
+    }
   })
 }

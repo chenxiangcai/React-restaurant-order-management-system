@@ -5,6 +5,9 @@ const { Dishes } = require('../../model/Dish/Dish')
 export = async (req: any, res: any) => {
   let { fields } = req
 
+  //存入之前判断是否当前餐桌是否已使用，如正使用则添加菜品
+
+
   //存入之前查询数据库中最后的orderid，自增1
   const orders = await Orders.find()
   const max_orderID = orders.reduce((pre, cur) => pre.orderid > cur.orderid ? pre : cur, 0)
@@ -16,6 +19,7 @@ export = async (req: any, res: any) => {
   const table = await Table.findOne({ tableID })
   fields.tableid = table._id
   fields.waiter = table.staff
+  fields.tableID = tableID
 
   //关联餐桌表，订单生成时自动更改餐桌状态
   await Table.updateOne({ _id: table._id }, { status: 1 })
@@ -25,33 +29,41 @@ export = async (req: any, res: any) => {
     val.status = 0
   })
 
-  //关联商品库存表，自动减少库存数量
+  //关联商品库存表，自动减少库存数量;不足时直接返回
   const notEnough = []
-  fields.orderdetail.map(async val => {
+  fields.orderdetail.map(async (val, index) => {
     const dish = await Dishes.findOne({ _id: val._id })
     //判断库存是否充足
     if (dish.number - val.num < 0) {
-      notEnough.push(val)
-      val.status = -1
+      notEnough.push(val.name)
+      // val.status = -1
+      return res.send({
+        notEnough,
+        status: 400
+      })
     } else {
       dish.number -= val.num
       await Dishes.updateOne({ _id: val._id }, { number: dish.number })
     }
-  })
+    //筛选库存不足的商品，添加正常的商品到订单中
+    fields.orderdetail = fields.orderdetail.filter(val => val.status !== -1)
 
-  const saveValue = JSON.parse(JSON.stringify(fields))
+    const saveValue = JSON.parse(JSON.stringify(fields))
 
-  try {
-    await validateOrder(saveValue)
-  } catch (e) {
-    return res.send({ status: -7, message: e.message })
-  }
+    try {
+      await validateOrder(saveValue)
+    } catch (e) {
+      return res.send({ status: -7, message: e.message })
+    }
 
-  let order = new Orders(fields)
-  await order.save()
-  res.send({
-    order,
-    notEnough,
-    status: 200
+    if (notEnough.length === 0) {
+      let order = new Orders(fields)
+      await order.save()
+      res.send({
+        order,
+        notEnough,
+        status: 200
+      })
+    }
   })
 }

@@ -38,7 +38,7 @@ const { EDITUSERINFO } = topBarEditInfo.types
 const { GETQRCODE, GETTABLE, ADDTABLE, EDITTABLE, DELTABLE } = table.types
 const { GETHDISH } = home.types
 const { ISCUS } = orderdetail.types
-const { CUSORDERADD, CUSOREDEREDIT } = shopCar.types
+const { SCUSORDERADD, CUSOREDEREDIT, RESET } = shopCar.types
 const { CGETORDERLIST, CORDEREDIT } = chef.types
 const { SEARCHDISH } = searchPage.types
 const { WGETORDERLIST, WORDEREDIT, WORDERADD } = waiterOrder.types
@@ -92,13 +92,14 @@ function* sagas() {
   //订单
   yield takeEvery(GETORDERLIST, order.toggleOrderPage)
   yield takeEvery(ORDERDEL, order.delOrder)
-  yield takeEvery(CUSORDERADD, shopCar.addOrder)
+  yield takeEvery(SCUSORDERADD, shopCar.addOrder)
   yield takeEvery(CUSOREDEREDIT, shopCar.updateOrder)
   yield takeEvery(CGETORDERLIST, chef.GetOrder)
   yield takeEvery(CORDEREDIT, chef.UpdateOrder)
   yield takeEvery(WORDEREDIT, waiterOrder.updateOrder)
   yield takeEvery(WGETORDERLIST, waiterOrder.getOrderList)
   yield takeEvery(WORDERADD, waiterOrder.addDish)
+  yield takeEvery(RESET, shopCar.retSetShopCarState)
 
 
   //看板

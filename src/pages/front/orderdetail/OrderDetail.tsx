@@ -5,9 +5,9 @@ import { OrderWrap } from "./OrderWrap";
 import { connect } from "react-redux";
 import { Dispatch } from "redux";
 import { getStore, setStore } from "../../../utils/storage";
-import { Input, Switch } from "antd";
+import { Input, message, Switch } from "antd";
 import { ISCUS } from "./action";
-import { CUSORDEREDIT_URL, ISCUS_URL } from "../../../common/api";
+import { CUSORDEREDIT_URL, ISCUS_URL, WEBSOCKET_URL } from "../../../common/api";
 import { CUSOREDEREDIT } from "../shopcar/actions";
 
 const Item = List.Item;
@@ -68,9 +68,28 @@ const OrderDetail: FunctionComponent<Props> = (props) => {
 
   //判断页面跳转来源
   useEffect(() => {
-    console.log(history.location.pathname.includes('readonly'))
+    // console.log(history.location.pathname.includes('readonly'))
     if (history.location.pathname.includes('readonly')) setIsReadOnly(true)
     else setIsReadOnly(false)
+
+    //websocket
+    const socket = new WebSocket(`${WEBSOCKET_URL}/cus/order`);
+    socket.addEventListener("open", function (event) {
+      console.log("socket is open");
+      const id = getStore('orderid')
+      id ? socket.send(id) : socket.send('连接成功')
+    });
+
+    socket.addEventListener("message", function (event) {
+      // console.log("Message from server", event.data);
+      // console.log(event.data)
+      //服务器发送的数据更新了
+      if (event.data !== -1 && event.data !== 'websocket connected') setTimeOrder(JSON.parse(event.data).orderdetail)
+      else if (event.data === -1) {
+        message.warn('暂无库存')
+        history.goBack()
+      }
+    });
   }, [])
 
   const inputRef = useRef(null);
@@ -79,6 +98,7 @@ const OrderDetail: FunctionComponent<Props> = (props) => {
   const [prePrice, setprice] = useState(0)
   const [youhuiPrice, setyouhuiPrice] = useState(0)
   const [total, settotal] = useState(0)
+  const [timeOrder, setTimeOrder] = useState([])
 
 
   const sc = JSON.parse(getStore('shopcar'))
@@ -93,7 +113,15 @@ const OrderDetail: FunctionComponent<Props> = (props) => {
     })
   })
 
-  const car = [...sc, ...mc]
+  //显示的数据源
+  let car = [...sc, ...mc]
+
+  //实时拿到后台数据，用于同步服务员更新后的具体点餐信息
+  if (timeOrder.length > 0) {
+    car = timeOrder
+    setStore('shopcar', car)
+  }
+
   const iscus = props.iscus
 
   const cusInfo = props.cusInfo.cus
@@ -138,7 +166,7 @@ const OrderDetail: FunctionComponent<Props> = (props) => {
       const t = prePrice - youhui
       settotal(t)
     } else if (iscus === -1) {
-      console.log('初始化')
+      // console.log('初始化')
       setprice(car.reduce((pre: any, cur: any) => pre + cur.num * cur.price, 0))
       setyouhuiPrice(0)
       settotal(car.reduce((pre: any, cur: any) => pre + cur.num * cur.price, 0))
