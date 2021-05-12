@@ -10,19 +10,18 @@ export = async (req, res) => {
   } catch (e) {
     return res.send({ status: -1, message: e.message })
   }
-  //结束订单
+  //结束订单 付款
   if (status) {
     //如果是会员
     if (level && cus) {
       //更新订单信息
-      await Orders.updateOne({ _id: orderid }, { status: 1, finishtime: Date.now(), level, cus, receivable, paid })
+      await Orders.updateOne({ _id: orderid }, { status: 2, finishtime: Date.now(), level, cus, receivable, paid })
       //更新会员表信息
       const cus1 = await Customer.findOne({ _id: cus })
       cus1.xftimes++
       cus1.xftotal += receivable
       await Customer.updateOne({ _id: cus }, { $set: cus1 })
-
-    } else await Orders.updateOne({ _id: orderid }, { status: 1, finishtime: Date.now(), receivable, paid })
+    } else await Orders.updateOne({ _id: orderid }, { status: 2, finishtime: Date.now(), receivable, paid })
 
 
     //置空餐桌状态

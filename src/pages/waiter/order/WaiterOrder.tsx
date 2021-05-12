@@ -304,14 +304,19 @@ const WaiterOrder: FunctionComponent<Props> = (props) => {
                             <>
                               <Tag color="#2db7f5">{item.tableID} 号桌</Tag>
                               <Tag color="lime-inverse">{moment(item.fromNow).fromNow()}</Tag>
+                              {
+                                item.isPaid ? <Tag color="#87d068">已付款</Tag> :
+                                    <Tag color="#f50">未付款</Tag>
+                              }
                             </>
                           }
                           extra={
-                            <Button type="primary" style={{ borderRadius: 5 }}
-                                    onClick={() => {
-                                      orderAddDish(item)
-                                    }}
-                            >加菜</Button>}>
+                            item.isPaid ? '' : <Button type="primary" style={{ borderRadius: 5 }}
+                                                       onClick={() => {
+                                                         orderAddDish(item)
+                                                       }}
+                            >加菜</Button>
+                          }>
                       <Table rowKey={item.tableID} pagination={false} columns={columns} dataSource={item.order}/>
                     </Card>
                   </List.Item>

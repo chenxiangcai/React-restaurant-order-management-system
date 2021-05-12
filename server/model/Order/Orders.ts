@@ -52,7 +52,7 @@ const orderSchema: object = new Schema({
     type: Number,
     default: 0
   },
-  //出餐状态  -1未开始制作 0出餐中 1出餐完毕
+  //出餐状态   0未完成/1已完成/2已付款/3未付款
   status: {
     type: Number,
     default: 0

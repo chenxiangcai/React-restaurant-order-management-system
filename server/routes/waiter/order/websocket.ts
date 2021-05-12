@@ -35,18 +35,26 @@ export = async (ws, req) => {
     //     ws.send(JSON.stringify(order))
     //   }
     // }, 1000, globalThis, ws)
-
+    const lastDayTime = Date.now() - 86400000
+    const lastDay = new Date(lastDayTime).toISOString().slice(0, 10)
+    const nowDay = new Date().toISOString().slice(0, 10)
 
     //用于更新订单时间 每秒返回一次
     setInterval(async (_this, ws) => {
-      await Orders.find({}).populate('tableid').then(val => {
+      await Orders.find({
+        begintime: {
+          '$gte': lastDay,
+          '$lte': nowDay
+        }
+      }).populate('tableid').then(val => {
         let order = val
         //找到未完成订单
-        order = order.filter(val => val.status !== 1)
+        order = order.filter(val => val.status !== 3)
         order = order.map(val => {
           return {
             order: val.orderdetail,
             orderid: val._id,
+            isPaid: val.status === 2,
             tableID: val.tableid.tableID,
             fromNow: val.begintime
           }
@@ -57,6 +65,8 @@ export = async (ws, req) => {
           value.tableID = val.tableID
           value.orderid = val.orderid
         }))
+        order = order.sort((a, b) => b.fromNow - a.fromNow)
+        // console.log(Date.now())
         ws.send(JSON.stringify(order))
       })
     }, 2000, globalThis, ws)
