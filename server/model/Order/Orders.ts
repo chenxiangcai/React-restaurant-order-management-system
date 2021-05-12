@@ -86,7 +86,7 @@ const Orders = model('Orders', orderSchema);
 const validateOrder = (order: any): any => {
   const Schema = {
     orderid: Joi.number().required().error(new Error('订单号只能为纯数字')),
-    tableid: Joi.string().required().error(new Error('请输入订单号')),
+    tableid: Joi.string().required().error(new Error('请输入餐桌订单号')),
     orderdetail: Joi.array().required().error(new Error('请输入订单信息')),
     // receivable: Joi.number().required().error(new Error('应收只能为纯数字')),
     person: Joi.number().required().error(new Error('人数只能为纯数字')),
