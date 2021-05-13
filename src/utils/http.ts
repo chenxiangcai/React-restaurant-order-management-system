@@ -1,9 +1,9 @@
 import axios from "axios";
-import {getStore} from "./storage";
+import { getStore } from "./storage";
 
 const http = axios.create({
-    baseURL: process.env.NODE_ENV === "production" ? "/" : "http://localhost:8300",
-    /*timeout: 3000,*/
+  baseURL: process.env.NODE_ENV === "production" ? "/" : "https://trylive.top/",
+  /*timeout: 3000,*/
 });
 
 //请求拦截处理

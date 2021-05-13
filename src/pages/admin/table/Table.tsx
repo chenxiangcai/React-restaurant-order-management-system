@@ -306,7 +306,7 @@ const Table: FunctionComponent<Props> = (props) => {
                   popTableStyle === '新增餐桌' &&
                   <>
                     <Form.Item name="tableID" style={{ margin: 0 }}>
-                      <Input type={"number"} prefix={<FieldNumberOutlined className="site-form-item-icon"/>}
+                      <Input autoFocus type={"number"} prefix={<FieldNumberOutlined className="site-form-item-icon"/>}
                              placeholder="餐桌号"/>
                     </Form.Item>
                     <Form.Item name='canSeat' rules={[
@@ -315,7 +315,7 @@ const Table: FunctionComponent<Props> = (props) => {
                         message: '请输入可容纳人数',
                       },
                     ]} style={{ marginTop: 20 }}>
-                      <Input type={"number"} autoFocus
+                      <Input type={"number"}
                              placeholder="可容纳人数"/>
                     </Form.Item>
                     <Form.Item name="staff" rules={[
@@ -376,8 +376,8 @@ const Table: FunctionComponent<Props> = (props) => {
               <Form.Item name="status" initialValue={popTableStyle === '编辑餐桌' ? tableDetail.status : 1}
                          style={{ marginTop: -30 }}>
                 <Radio.Group>
-                  <Radio value={1}>空闲</Radio>
-                  <Radio value={0}>占用</Radio>
+                  <Radio value={0}>空闲</Radio>
+                  <Radio value={1}>占用</Radio>
                 </Radio.Group>
               </Form.Item>
 

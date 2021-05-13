@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
-import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom'
+import { HashRouter, Redirect, Route, Switch } from 'react-router-dom'
 import { Provider } from "react-redux";
 import { store } from "./store";
 import { normalRoute } from "./routes";
@@ -11,7 +11,7 @@ import { normalRoute } from "./routes";
 
 ReactDOM.render(
     <Provider store={store}>
-      <BrowserRouter>
+      <HashRouter>
         <Switch>
           {/*登录权限路由转移到APP组件进行渲染*/}
           <Route path='/admin' render={(routeProps) => <App {...routeProps}/>}/>
@@ -27,7 +27,7 @@ ReactDOM.render(
           <Redirect to='/noauth'/>
           {/*<Redirect to='/notfound'/>*/}
         </Switch>
-      </BrowserRouter>
+      </HashRouter>
     </Provider>,
     document.getElementById('root'));
 

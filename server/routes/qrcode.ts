@@ -10,7 +10,7 @@ export = async (req, res) => {
     const table = await Table.find().sort('tableID')
     const tableIDS = table.map(value => value.tableID)
     tableIDS.map(value => {
-      var qr_png = qr_image.imageSync(`http://localhost:3000/prehome/${value}`, { type: 'png' });
+      var qr_png = qr_image.imageSync(`https://trylive.top/#/prehome/${value}`, { type: 'png' });
       const base64 = Buffer.from(qr_png).toString('base64')
       urls.push({
         id: value,
@@ -25,7 +25,7 @@ export = async (req, res) => {
   }
 
   //单张二维码
-  var qr_png = qr_image.imageSync(`http://localhost:3000/prehome/${id}`, { type: 'png' });
+  var qr_png = qr_image.imageSync(`https://trylive.top/#/prehome/${id}`, { type: 'png' });
   qr_png.id = id
   // console.log(qr_png)
   const base64 = Buffer.from(qr_png).toString('base64')

@@ -7,7 +7,7 @@ import { connect } from "react-redux";
 import { Dispatch } from "redux";
 import { ADD2CAR, RESETCAR } from "../home/actions";
 import { getStore, setStore } from "../../../utils/storage";
-import { SERVER_URL } from "../../../common/api";
+import { SERVERNO_URL } from "../../../common/api";
 import { message } from "antd";
 import axios from "axios";
 
@@ -84,7 +84,7 @@ const ShopCar: FunctionComponent<Props> = (props) => {
         addOrder: [...sc],
         tableID: Number(getStore('tableID'))
       }
-      const s = await axios.put(`${SERVER_URL}/cus/order/edit`, { ...value })
+      const s = await axios.put(`${SERVERNO_URL}/cus/order/edit`, { ...value })
       const { notE } = s.data
       if (s.data.status === 400) {
         notE.map((val: string) => {
@@ -102,7 +102,7 @@ const ShopCar: FunctionComponent<Props> = (props) => {
         orderdetail: order.flat(),
         person: Number(getStore('peoplenum'))
       }
-      const s = await axios.post(`${SERVER_URL}/cus/order/add`, { ...val })
+      const s = await axios.post(`${SERVERNO_URL}/cus/order/add`, { ...val })
       const { notEnough } = s.data
       if (s.data.status === 400) {
         notEnough.map((val: string) => {

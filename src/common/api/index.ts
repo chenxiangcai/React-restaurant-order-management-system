@@ -147,15 +147,19 @@ export type WTABLE_URL = typeof WTABLE_URL
 
 
 // 图片上传地址
-export const UPPIC_URL = 'http://localhost:8300/upload'
+export const UPPIC_URL = 'https://trylive.top:8300/upload'
 export type UPPIC_URL = typeof UPPIC_URL
 
 // 服务器端地址
-export const SERVER_URL = 'http://localhost:8300'
+export const SERVER_URL = 'https://trylive.top:8300'
 export type SERVER_URL = typeof SERVER_URL
 
+//server
+export const SERVERNO_URL = 'https://trylive.top'
+export type SERVERNO_URL = typeof SERVERNO_URL
+
 // ws地址
-export const WEBSOCKET_URL = 'ws://localhost:8300'
+export const WEBSOCKET_URL = 'wss://trylive.top'
 export type WEBSOCKET_URL = typeof WEBSOCKET_URL
 
 
