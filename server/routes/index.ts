@@ -28,6 +28,7 @@ export = app => {
   app.post('/login', require('./admin/login')) //用户登录
 
   app.post('/upload', require('./admin/upload')) //图片上传
+  app.post('/staff/pwd', require('./admin/staffs/pwd')) //密码路由
 
   app.get('/waiter/table', require('./admin/table/list'))
   app.get('/waiter/staff', require('./admin/staffs/list'))

@@ -373,7 +373,7 @@ const Table: FunctionComponent<Props> = (props) => {
                 }
               </Form.Item>
 
-              <Form.Item name="status" initialValue={popTableStyle === '编辑餐桌' ? tableDetail.status : 1}
+              <Form.Item name="status" initialValue={popTableStyle === '编辑餐桌' ? tableDetail.status : 0}
                          style={{ marginTop: -30 }}>
                 <Radio.Group>
                   <Radio value={0}>空闲</Radio>
@@ -421,10 +421,7 @@ const Table: FunctionComponent<Props> = (props) => {
               <Descriptions.Item label="餐桌号">{tableDetail.tableID}</Descriptions.Item>
               <Descriptions.Item label="使用状态">
                 {
-                  tableDetail.status === 0 && '使用中'
-                }
-                {
-                  tableDetail.status === 1 && '空闲中'
+                  tableDetail.status === 0 ? '空闲中' : '使用中'
                 }
               </Descriptions.Item>
               <Descriptions.Item label="负责人">{tableDetail.staff}</Descriptions.Item>

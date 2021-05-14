@@ -95,7 +95,9 @@ const Order: FunctionComponent<Props> = (props) => {
       name: undefined,
       num: undefined
     }],
-    tableid: undefined
+    tableid: {
+      tableID: undefined
+    }
   })
 
   // 表格列
@@ -149,7 +151,7 @@ const Order: FunctionComponent<Props> = (props) => {
       render: ((value, record, index) =>
               <>
                 {
-                  moment(value).format('YYYY-MM-DD HH:mm:ss')
+                  value ? moment(value).format('YYYY-MM-DD HH:mm:ss') : '暂未结账'
                 }
               </>
       )
@@ -289,6 +291,7 @@ const Order: FunctionComponent<Props> = (props) => {
     },
   };
 
+  // @ts-ignore
   return (
       <DocumentTitle title="订单管理">
         <ConfigProvider locale={zhCN}>
@@ -337,18 +340,39 @@ const Order: FunctionComponent<Props> = (props) => {
               visible={drawVisible}
           >
             <Descriptions title={`订单号：${drawValue.orderid}`}>
-              <Descriptions.Item label="桌位号">{drawValue.tableid} 号</Descriptions.Item>
+              <Descriptions.Item label="桌位号">{drawValue.tableid.tableID} 号</Descriptions.Item>
               {
                 drawValue?.cus?.name &&
                 <Descriptions.Item label="会员姓名">{drawValue?.cus?.name}</Descriptions.Item>
               }
-              <Descriptions.Item label="消费金额">{drawValue.paid} 元</Descriptions.Item>
-              <Descriptions.Item label="消费时长">
-                {moment(`${drawValue.finishtime}`).diff(moment(`${drawValue.begintime}`), 'hours')}时
-                {moment(`${drawValue.finishtime}`).diff(moment(`${drawValue.begintime}`), 'minutes')}分
+              <Descriptions.Item label="消费金额">
+                {
+                  drawValue.paid === 0 ? drawValue.orderdetail.map((value: any) => {
+                    return value.num * value.price
+                  }) : drawValue.paid
+                }
+                元
               </Descriptions.Item>
-              <Descriptions.Item
-                  label="结账时间">{moment(drawValue.finishtime).format('YYYY-MM-DD HH:mm:ss')}</Descriptions.Item>
+              <Descriptions.Item label="消费时长">
+                {
+                  drawValue.finishtime ?
+                      <span>
+                        {moment(`${drawValue.finishtime}`).diff(moment(`${drawValue.begintime}`), 'hours') + `时`}
+                        {moment(`${drawValue.finishtime}`).diff(moment(`${drawValue.begintime}`), 'minutes') - moment(`${drawValue.finishtime}`).diff(moment(`${drawValue.begintime}`), 'hours') * 60}分
+                      </span>
+                      :
+                      <span>
+                        {
+                          moment(drawValue.begintime).fromNow(true)
+                        }
+                      </span>
+                }
+              </Descriptions.Item>
+              <Descriptions.Item label="结账时间">
+                {
+                  drawValue.finishtime ? moment(drawValue.finishtime).format('YYYY-MM-DD HH:mm:ss') : '暂未结账'
+                }
+              </Descriptions.Item>
             </Descriptions>
 
             <h4 style={{ marginTop: 20 }}>菜单详情：</h4>

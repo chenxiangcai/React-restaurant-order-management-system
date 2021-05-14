@@ -114,7 +114,9 @@ const Login: FC<Props> = (props) => {
             <Form.Item>
               <Button type="primary" htmlType="submit" size="large"
                       className="login-form-button">立即登录</Button>
-              <div className="login-form-login"><span>还没有账号？<a href="???">去注册...</a></span></div>
+              <div className="login-form-login" style={{ margin: 0 }}>
+                {/*<span>还没有账号？<a href="???">去注册...</a></span>*/}
+              </div>
             </Form.Item>
           </Form>
         </LoginWrap>

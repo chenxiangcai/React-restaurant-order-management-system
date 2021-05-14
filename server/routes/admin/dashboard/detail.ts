@@ -10,7 +10,7 @@ export = async (req, res) => {
   const customers = await pagination(Customer).find({}).exec()
 
   /** 总销售模块 */
-  const allMoney: number = orders.records.reduce((pre, cur) => pre + cur.receivable, 0)
+  const allMoney: number = orders.records.reduce((pre, cur) => pre + cur.receivable, 0).toFixed(2)
   //今日销售额
   let dayMoney = 0
   const nowDay = new Date().toISOString().slice(0, 10)
@@ -103,8 +103,9 @@ export = async (req, res) => {
   const vipnum: number = customers.total
   //计算会员周活跃量
   const getActive = (val: []) => {
-    globalThis.WeekVipActiveNum = val.length
-    globalThis.WeekVipActiveRate = (val.length / vipnum)
+    const n = val.filter((val: any) => val._id != null)
+    globalThis.WeekVipActiveNum = n.length
+    globalThis.WeekVipActiveRate = (n.length / vipnum)
     // console.log(globalThis.dayVipActiveRate, globalThis.dayVipActiveNum)
   }
   await Orders.aggregate(

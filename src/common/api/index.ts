@@ -121,7 +121,7 @@ export const DASHBOARD_URL = '/admin/dashboard'
 export type DASHBOARD_URL = typeof DASHBOARD_URL
 
 //密码
-export const PWD_URL = '/admin/staff/pwd'
+export const PWD_URL = '/staff/pwd'
 export type PWD_URL = typeof PWD_URL
 
 //餐桌
@@ -146,20 +146,20 @@ export const WTABLE_URL = '/waiter/table'
 export type WTABLE_URL = typeof WTABLE_URL
 
 
-// 图片上传地址
-export const UPPIC_URL = 'https://trylive.top:8300/upload'
+// 图片上传地址 'https://trylive.top:8300/upload'
+export const UPPIC_URL = 'http://localhost:8300/upload'
 export type UPPIC_URL = typeof UPPIC_URL
 
-// 服务器端地址
-export const SERVER_URL = 'https://trylive.top:8300'
+// 服务器端地址 'https://trylive.top:8300'
+export const SERVER_URL = 'http://localhost:8300'
 export type SERVER_URL = typeof SERVER_URL
 
-//server
-export const SERVERNO_URL = 'https://trylive.top'
+//server https://trylive.top
+export const SERVERNO_URL = 'http://localhost'
 export type SERVERNO_URL = typeof SERVERNO_URL
 
-// ws地址
-export const WEBSOCKET_URL = 'wss://trylive.top'
+// ws地址 wss://trylive.top
+export const WEBSOCKET_URL = 'ws://localhost:8300'
 export type WEBSOCKET_URL = typeof WEBSOCKET_URL
 
 

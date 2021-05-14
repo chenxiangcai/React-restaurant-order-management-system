@@ -5,12 +5,22 @@ export = async (req, res) => {
   const lastDay = new Date(lastDayTime).toISOString().slice(0, 10)
   const nowDay = new Date().toISOString().slice(0, 10)
 
-  let order = await Orders.find({
-    begintime: {
-      '$gte': lastDay,
-      '$lte': nowDay
-    }
-  }).populate('tableid')
+  const nowHour = new Date().getHours()
+  var order = []
+  //按当前时间统计订单，0-5点统计时将加入前一日订单，以避免未付款订单无法显示的情况
+  if (nowHour >= 0 && nowHour <= 5) {
+    order = await Orders.find({
+      begintime: {
+        '$gte': lastDay,
+      }
+    }).populate('tableid')
+  } else {
+    order = await Orders.find({
+      begintime: {
+        '$gte': nowDay,
+      }
+    }).populate('tableid')
+  }
 
   //找到未完成订单 0未完成/2已付款/1未付款
   // order = order.filter(val => val.status !== 0)
