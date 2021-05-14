@@ -316,7 +316,7 @@ const OrderDetail: FunctionComponent<Props> = (props) => {
                 setStore('total', total)
                 setStore('youhuiPrice', youhuiPrice)
                 setStore('pre', prePrice)
-                props.updateOrder(props.cusInfo, total, total - youhuiPrice)
+                props.updateOrder(props.cusInfo, total + youhuiPrice, total - youhuiPrice)
                 Toast.loading('付款中···', 1, () => {
                   history.push('/pay')
                 });

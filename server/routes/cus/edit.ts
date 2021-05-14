@@ -19,7 +19,7 @@ export = async (req, res) => {
       //更新会员表信息
       const cus1 = await Customer.findOne({ _id: cus })
       cus1.xftimes++
-      cus1.xftotal += receivable
+      cus1.xftotal += paid
       await Customer.updateOne({ _id: cus }, { $set: cus1 })
     } else await Orders.updateOne({ _id: orderid }, { status: 2, finishtime: Date.now(), receivable, paid })
 

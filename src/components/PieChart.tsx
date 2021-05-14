@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Liquid } from '@ant-design/charts';
 
 interface OwnProps {
@@ -46,14 +46,15 @@ const DemoLiquid: React.FC<Props> = (props) => {
     },
   };
   useEffect(() => {
-    var data = 0.1;
+    var data = 0;
     var interval = setInterval(function () {
       const random = Math.min(Math.random() * 0.1, 0.1);
       data += random
-      if (data <= props.rate) {
+      if (data <= props.rate ?? 0) {
         setPercent(data);
       } else {
-        if (data - random < props.rate) setPercent(props.rate)
+        const s = props.rate ?? 0
+        if (data - random <= s) setPercent(s)
         clearInterval(interval);
       }
     }, 500);

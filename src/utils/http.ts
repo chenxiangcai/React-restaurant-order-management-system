@@ -1,8 +1,8 @@
 import axios from "axios";
 import { getStore } from "./storage";
 
-const http = axios.create({
-  baseURL: process.env.NODE_ENV === "production" ? "/" : "https://trylive.top/",
+const http = axios.create({ //https://trylive.top
+  baseURL: process.env.NODE_ENV === "production" ? "/" : "http://localhost:8300/",
   /*timeout: 3000,*/
 });
 

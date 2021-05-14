@@ -24,6 +24,7 @@ export = async (req, res) => {
       .page(page).size(pagesize)
       .populate('cus')
       .populate('level')
+      .populate('tableid')
       .populate({
         path: 'waiter',
         select: '-password'
