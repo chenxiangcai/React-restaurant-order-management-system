@@ -1,4 +1,4 @@
-# Getting Started with Create React App
+# 智能餐厅点餐管理系统
 [![wakatime](https://wakatime.com/badge/github/chenxiangcai/React-restaurant-order-management-system.svg)](https://wakatime.com/badge/github/chenxiangcai/React-restaurant-order-management-system)
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
