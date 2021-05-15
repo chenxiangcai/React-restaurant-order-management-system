@@ -1,4 +1,4 @@
-import React, { FC, useEffect } from 'react';
+import React, { FC, useEffect, useRef, useState } from 'react';
 import { connect } from 'react-redux'
 import { Button, Form, Input, message } from 'antd';
 import { LockOutlined, UserOutlined } from '@ant-design/icons';
@@ -10,18 +10,17 @@ import { Dispatch } from "redux";
 import DocumentTitle from 'react-document-title'
 import { getStore } from "../../utils/storage";
 import { useHistory } from "react-router-dom";
+import { post } from "../../utils/http";
+
+const CryptoJS = require("crypto-js");
 
 type Props = {
   status: number,
-  toLogin(values: object): void,
+  toLogin(values: any): void,
   clearState(): void
   [prop: string]: any
 
 };
-type userInput = {
-  account: number | string
-  password: string
-}
 
 const mapStateToProps = (state: any) => ({
   status: state.login.status
@@ -40,11 +39,14 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
 const Login: FC<Props> = (props) => {
 
   const history = useHistory()
+  const [svgUrl, setSvgUrl] = useState('')
+  const vercoderef = useRef(null)
+  const accountref = useRef(null)
+  const pwdref = useRef(null)
 
   useEffect(() => {
     if (String(props.status)) {
       const { status } = props
-      console.log(props)
       if (status === -1) message.warning('网络连接错误！');
       else if (status > 100) message.error('账号或密码错误！')
       else {
@@ -59,17 +61,51 @@ const Login: FC<Props> = (props) => {
     }
   }, [props.status])
 
+  //获取验证码
+  useEffect(() => {
+    getVerCode()
+  }, []);
+
+  //验证码点击事件
+  async function getVerCode() {
+    // @ts-ignore
+    vercoderef.current.value = ''
+    const res = await post({ url: '/getVerificationCode' }, {})
+    setSvgUrl(res)
+  }
+
+  //点击登录触发的函数
+  async function VerCodeIsPass(val: number) {
+    if (val) {
+      const res = await post({ url: "/isvercode" }, { value: val })
+      if (res.status === 200) {
+        // @ts-ignore
+        const value = { account: accountref.current.state.value, password: pwdref.current.state.value }
+        //密码传输加密
+        var ciphertext = CryptoJS.AES.encrypt(JSON.stringify(value), 'cxc-777').toString();
+        console.log(ciphertext)
+        // @ts-ignore
+        onFinish(ciphertext)
+        return
+      }
+      message.error('验证码错误')
+      return
+    }
+    message.info('请输入验证码')
+  }
+
   /**
    * 表单提交验证函数
-   * @param values 用户提交的用户名和密码
+   * @param values 加密后的用户提交的用户名和密码
    */
-  // todo 账号输入是字符串的问题
-  function onFinish(values: userInput): void {
-    const { account, password } = values;
-    if ((account as string).trim() === '' || password.trim() === '') {
-      message.error('请输入工号或密码！')
+  function onFinish(values: any): void {
+    // @ts-ignore
+    if ((accountref.current.state.value as string).trim() === '' || pwdref.current.state.value.trim() === '') {
+      message.error('请输入工号或密码')
     } else {
-      props.toLogin(values)
+      props.toLogin({
+        val: values
+      })
     }
   }
 
@@ -96,7 +132,7 @@ const Login: FC<Props> = (props) => {
                   },
                 ]}
             >
-              <Input prefix={<UserOutlined className="site-form-item-icon"/>} placeholder="工号"/>
+              <Input ref={accountref} prefix={<UserOutlined className="site-form-item-icon"/>} placeholder="工号"/>
             </Form.Item>
             <Form.Item
                 name="password"
@@ -107,12 +143,22 @@ const Login: FC<Props> = (props) => {
                   },
                 ]}
             >
-              <Input.Password prefix={<LockOutlined className="site-form-item-icon"/>}
+              <Input.Password ref={pwdref} prefix={<LockOutlined className="site-form-item-icon"/>}
                               type="password"
                               placeholder="密码"/>
             </Form.Item>
+            <div className='r'>
+              <span onClick={getVerCode} className='svg' dangerouslySetInnerHTML={{ __html: svgUrl }}/>
+              <div>
+                <input ref={vercoderef} type="text" placeholder="请输入验证码"/>
+                <span></span>
+              </div>
+            </div>
             <Form.Item>
-              <Button type="primary" htmlType="submit" size="large"
+              <Button type="primary" onClick={() => {
+                // @ts-ignore
+                VerCodeIsPass(vercoderef.current.value)
+              }} size="large"
                       className="login-form-button">立即登录</Button>
               <div className="login-form-login" style={{ margin: 0 }}>
                 {/*<span>还没有账号？<a href="???">去注册...</a></span>*/}
@@ -121,7 +167,7 @@ const Login: FC<Props> = (props) => {
           </Form>
         </LoginWrap>
       </DocumentTitle>
-  );
+  )
 };
 
 

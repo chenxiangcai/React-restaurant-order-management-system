@@ -13,6 +13,8 @@ export = app => {
   app.use('/admin/category', require('./category')) //菜品分类
   app.use('/admin/customer', require('./customer')) //会员
   app.use('/waiter/customer', require('./customer'))
+  app.post('/getVerificationCode',require('./verCode')) //验证码生成
+  app.post('/isvercode',require('./verCode')) //验证码验证
 
   app.use('/admin/order', require('./adminOrder')) //管理员订单
   app.use('/chef/order', require('./chefOrder'))  //厨师订单

@@ -41,7 +41,7 @@ export const LoginWrap = styled.div`
 
     button {
       width: 100%;
-      margin-top: 26px;
+      margin-top: 36px;
       font-size: 14px
     }
 
@@ -69,6 +69,59 @@ export const LoginWrap = styled.div`
         top: 16px;
       }
     }
+  }
+
+  .svg {
+    display: inline-block;
+    cursor: pointer;
+    width: 150px
+  }
+
+  .r {
+    display: flex;
+
+    div {
+      margin-top: 20px;
+      margin-left: 20px;
+      position: relative;
+
+      input {
+        width: 130px;
+        color: black;
+        font-size: inherit;
+        font-family: inherit;
+        background-color: transparent;
+        border: 1px solid transparent;
+        //border-bottom-color: #448EF7;
+      }
+
+      input:focus {
+        outline: none;
+      }
+
+      input::placeholder {
+        color: #ccc;
+      }
+
+      span {
+        position: absolute;
+        bottom: 5px;
+        left: 5px;
+        right: 0;
+        height: 1px;
+        background-color: #448EF7;
+        transform-origin: bottom right;
+        transform: scaleX(0);
+        transition: transform 0.5s ease;
+      }
+
+      input:focus ~ span {
+        transform-origin: bottom left;
+        transform: scaleX(1);
+      }
+
+    }
+
   }
 `
 

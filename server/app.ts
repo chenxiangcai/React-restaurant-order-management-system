@@ -9,7 +9,6 @@ const expressWs = require('express-ws');
 require('./model/connect.ts')
 
 app.use(express.static(path.join(__dirname, 'public/manager')))
-
 app.use(express.static(path.join(__dirname, 'public')))
 
 app.get('/', (req, res, next) => {

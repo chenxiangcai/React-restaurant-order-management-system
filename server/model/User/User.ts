@@ -76,7 +76,7 @@ const validateUser = (user: any): any => {
 const validateLogin = (user: object): object => {
     const Schema = {
         account: Joi.string().regex(/^[0-9]*$/).required().error(new Error('账号或密码错误')),
-        password: Joi.string().regex(/^[a-zA-Z0-9]{2,7}$/).error(new Error('账号或密码错误'))
+        password: Joi.string().error(new Error('账号或密码错误'))
     }
     return Joi.validate(user, Schema, {
         abortEarly: true    //出现错误立即返回

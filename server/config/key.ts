@@ -1,3 +1,4 @@
 module.exports = {
-    secret: 'author-login'
+  secret: 'author-login',
+  key: 'cxc-777'
 }
