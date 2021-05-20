@@ -16,7 +16,13 @@ export = async (req, res) => {
   const bytes = CryptoJS.AES.decrypt(req.fields.val, key);
   const decryptedData = JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
 
-  user = await User.findOne({ account: decryptedData.account });
+  try {
+    user = await User.findOne({ account: decryptedData.account });
+  } catch (e) {
+    return res.send({
+      meta: { status: 400, message: '账号或密码错误！' }
+    })
+  }
   if (!user) {
     return res.send({
       meta: { status: 400, message: '账号或密码错误！' }
