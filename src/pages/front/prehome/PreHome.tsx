@@ -16,11 +16,13 @@ const PreHome: FunctionComponent<Props> = (props) => {
   const tableID = Number(history.location.pathname.slice(-1))
 
   const [peoplenum, setpn] = useState('')
+  const [remarks, setRemarks] = useState('')
 
   //进入页面时清空缓存菜单信息
   useEffect(() => {
     if (getStore('more')) removeStore('more')
     if (getStore('shopcar')) removeStore('shopcar')
+    if (getStore('remarks')) removeStore('remarks')
   }, [])
 
   function toHome() {
@@ -28,6 +30,7 @@ const PreHome: FunctionComponent<Props> = (props) => {
       history.push('/home')
       setStore('peoplenum', peoplenum)
       setStore('tableID', tableID)
+      setStore('remarks', remarks)
     } else Toast.info('请输入就餐人数', 1)
   }
 
@@ -65,6 +68,9 @@ const PreHome: FunctionComponent<Props> = (props) => {
             <span className='aa'>备注</span>
             <List>
               <TextareaItem
+                  onBlur={(v: any) => {
+                    setRemarks(v.trimLeft())
+                  }}
                   style={{ fontSize: '.7rem' }}
                   rows={5}
                   placeholder='口味要求，忌口等（可不填）'

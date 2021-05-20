@@ -45,7 +45,8 @@ export = async (ws, req) => {
             order: val.orderdetail,
             orderid: val._id,
             tableID: val.tableid.tableID,
-            fromNow: val.begintime
+            fromNow: val.begintime,
+            remarks: val.remarks
           }
         })
         order = order.filter(val => val.order.length !== 0)

@@ -13,7 +13,7 @@
     "@types/react-dom": "^16.9.10",
     "@types/react-redux": "^7.1.12",
     "@types/react-router-dom": "^5.1.6",
-    "antd": "^4.9.3",
+    "antd": "^4.15.5",
     "antd-mobile": "^2.3.4",
     "axios": "^0.21.0",
     "crypto-js": "^4.0.0",
@@ -67,6 +67,7 @@
     "darkmode-js": "^1.5.7",
     "lodash.debounce": "^4.0.8",
     "react-app-rewired": "^2.1.7",
-    "redux-devtools-extension": "^2.13.8"
+    "redux-devtools-extension": "^2.13.8",
+    "webpack-bundle-analyzer": "^4.4.1"
   }
 }

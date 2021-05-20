@@ -99,8 +99,14 @@ const Chef: FunctionComponent<Props> = (props) => {
             renderItem={(item: any) => (
                 <List.Item>
                   <Card style={{ overflow: "scroll" }}
-                        title={<Tag color="#2db7f5">{item.tableID} 号桌</Tag>}
-                        extra={<Tag color="orange-inverse">{moment(item.fromNow).fromNow()}</Tag>}>
+                        title={
+                          <>
+                            <Tag color="#2db7f5">{item.tableID} 号桌</Tag>
+                            <Tag color="orange-inverse">{moment(item.fromNow).fromNow()}</Tag>
+                            <Tag color="#108ee9">{item.remarks}</Tag>
+                          </>
+                        }
+                  >
                     <Table rowKey={item.tableID} pagination={false} columns={columns} dataSource={item.order}/>
                   </Card>
                 </List.Item>

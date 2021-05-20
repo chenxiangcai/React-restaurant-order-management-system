@@ -4,73 +4,51 @@
 * @author: 陈相材
 * @time: 2020-12-17 21:44:27
 */
-import { Login } from "../pages/login";
-import { Dashboard } from "../pages/admin/dashboard/";
-import { Staff } from "../pages/admin/staff";
-import { Dish } from "../pages/admin/dish";
-import { Category } from "../pages/admin/category";
-import { CusCate } from "../pages/admin/customer/cate";
-import { CusList } from "../pages/admin/customer/list";
-import { Order } from "../pages/admin/order";
-import { Home } from "../pages/front/home";
-import { ShopCar } from "../pages/front/shopcar";
-import { PreHome } from "../pages/front/prehome";
-import { OrderDetail } from "../pages/front/orderdetail";
-import { Table } from "../pages/admin/table";
-import NotFound from "../pages/error/NotFound";
-import NotAuth from "../pages/error/NotAuth";
-import WaiterOrder from "../pages/waiter/order/WaiterOrder";
-import Pay from "../pages/front/Pay";
-import Chef from "../pages/chef/Chef";
-import SearchPage from "../pages/front/search/SearchPage";
-import WTable from "../pages/waiter/table/Table";
-import { WCusCate } from '../pages/waiter/customer/cate'
-import { WCusList } from '../pages/waiter/customer/list'
-
+import { lazy } from 'react'
 
 // 普通路由
 export const normalRoute = [{
   path: '/',
   redirect: '/login',
-  component: Login,
+  component: lazy(() => import('../pages/login/Login')),
   exact: true
 }, {
   path: '/home',
-  component: Home,
+  component: lazy(() => import('../pages/front/home/Home')),
   exact: true
 },
   {
     path: '/home/shopcar',
-    component: ShopCar,
+    component: lazy(() => import('../pages/front/shopcar/ShopCar')),
     exact: true
 
   }, {
     path: '/prehome/:id',
-    component: PreHome,
+    component: lazy(() => import('../pages/front/prehome/PreHome')),
     exact: true
   }, {
     path: '/home/orderdetail/:type',
-    component: OrderDetail,
+    component: lazy(() => import('../pages/front/orderdetail/OrderDetail')),
     exact: true
   },
   {
     path: '/home/search',
-    component: SearchPage,
+    component: lazy(() => import('../pages/front/search/SearchPage')),
     exact: true
   },
   {
     path: '/notfound',
-    component: NotFound,
+    component: lazy(() => import('../pages/error/NotFound')),
     exact: true
   },
   {
     path: '/noauth',
-    component: NotAuth,
+    component: lazy(() => import('../pages/error/NotAuth')),
     exact: true
   },
   {
     path: '/pay',
-    component: Pay,
+    component: lazy(() => import('../pages/front/Pay')),
     exact: true
   }
 ]
@@ -78,35 +56,35 @@ export const normalRoute = [{
 // 管理员路由
 export const adminRoute = [{
   path: '/admin/dashboard',
-  component: Dashboard,
+  component: lazy(() => import('../pages/admin/dashboard/Dashboard')),
   exact: true
 }, {
   path: '/admin/staffs',
-  component: Staff,
+  component: lazy(() => import('../pages/admin/staff/Staff')),
   exact: true
 }, {
   path: '/admin/dishes',
-  component: Dish,
+  component: lazy(() => import('../pages/admin/dish/Dish')),
   exact: true
 }, {
   path: '/admin/dishes/category',
-  component: Category,
+  component: lazy(() => import('../pages/admin/category/Category')),
   exact: true
 }, {
   path: '/admin/customer/cate',
-  component: CusCate,
+  component: lazy(() => import('../pages/admin/customer/cate/Cate')),
   exact: true
 }, {
   path: '/admin/customer',
-  component: CusList,
+  component: lazy(() => import('../pages/admin/customer/list/CusList')),
   exact: true
 }, {
   path: '/admin/orders',
-  component: Order,
+  component: lazy(() => import('../pages/admin/order/Order')),
   exact: true
 }, {
   path: '/admin/table',
-  component: Table,
+  component: lazy(() => import('../pages/admin/table/Table')),
   exact: true
 }]
 
@@ -114,7 +92,7 @@ export const adminRoute = [{
 export const chefRoute = [
   {
     path: '/chef/orders',
-    component: Chef,
+    component: lazy(() => import('../pages/chef/Chef')),
     exact: true
   },
 ]
@@ -123,22 +101,22 @@ export const chefRoute = [
 export const waiterRoute = [
   {
     path: '/waiter/orders',
-    component: WaiterOrder,
+    component: lazy(() => import('../pages/waiter/order/WaiterOrder')),
     exact: true
   },
   {
     path: '/waiter/table',
-    component: WTable,
+    component: lazy(() => import('../pages/waiter/table/Table')),
     exact: true
   },
   {
     path: '/waiter/customer/cate',
-    component: WCusCate,
+    component: lazy(() => import('../pages/waiter/customer/cate/WCusCate')),
     exact: true
   },
   {
     path: '/waiter/customer',
-    component: WCusList,
+    component: lazy(() => import('../pages/waiter/customer/list/CusList')),
     exact: true
   }
 ]

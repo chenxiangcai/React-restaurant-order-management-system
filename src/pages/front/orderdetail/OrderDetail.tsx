@@ -197,8 +197,18 @@ const OrderDetail: FunctionComponent<Props> = (props) => {
         </NavBar>
         <div className='content'>
           <div className='title'>
-            <div>您的订单已提交</div>
-            <div>厨房已经在制作啦</div>
+            {
+              isReadOnly ?
+                  <>
+                    <div>以下是您的消费详情：</div>
+                    <div>欢迎下次光临</div>
+                  </>
+                  :
+                  <>
+                    <div>您的订单已提交</div>
+                    <div>厨房已经在制作啦</div>
+                  </>
+            }
           </div>
           <div className='detail'>
             <List className="my-list">

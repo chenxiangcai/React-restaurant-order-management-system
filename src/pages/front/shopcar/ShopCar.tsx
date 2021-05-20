@@ -100,7 +100,8 @@ const ShopCar: FunctionComponent<Props> = (props) => {
       const val = {
         tableID: Number(getStore('tableID')),
         orderdetail: order.flat(),
-        person: Number(getStore('peoplenum'))
+        person: Number(getStore('peoplenum')),
+        remarks: getStore('remarks')
       }
       const s = await axios.post(`${SERVERNO_URL}/cus/order/add`, { ...val })
       const { notEnough } = s.data

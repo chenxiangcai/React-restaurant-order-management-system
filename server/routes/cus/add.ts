@@ -72,11 +72,12 @@ export = async (req: any, res: any) => {
     else fields.orderid = max_orderID.orderid + 1
 
     //根据前台的tableid 查询数据库中的table ID ，waiter
-    const { tableID } = fields
+    const { tableID, remarks } = fields
     const table = await Table.findOne({ tableID })
     fields.tableid = table._id
     fields.waiter = table.staff
     fields.tableID = tableID
+    fields.remarks = remarks
 
     //关联餐桌表，订单生成时自动更改餐桌状态
     await Table.updateOne({ _id: table._id }, { status: 1 })
@@ -104,9 +105,6 @@ export = async (req: any, res: any) => {
       }
       //筛选库存不足的商品，添加正常的商品到订单中
       fields.orderdetail = fields.orderdetail.filter(val => val.status !== -1)
-
-
-      console.log(isOrdering)
 
       const saveValue = JSON.parse(JSON.stringify(fields))
 
