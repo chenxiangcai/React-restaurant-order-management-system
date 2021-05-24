@@ -121,6 +121,7 @@ const CusList: FunctionComponent<Props> = (props) => {
           title: '消费金额',
           key: 'xftotal',
           dataIndex: 'xftotal',
+          render: (val: number) => <>{val.toFixed(2)}</>,
         },
         {
           title: '手机号码',

@@ -156,7 +156,7 @@ const WTable: FunctionComponent<Props> = (props) => {
 
   // @ts-ignore
   return (
-      <DocumentTitle title="餐桌列表">
+      <DocumentTitle title="服务员端 > 餐桌列表">
         <TableWrap>
           <Card title='餐桌管理'>
             <List

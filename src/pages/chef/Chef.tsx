@@ -6,6 +6,7 @@ import { Card, List, Switch, Table, Tag } from "antd";
 import { CGETORDERLIST, CORDEREDIT } from "./actions";
 import moment from "moment";
 import 'moment/locale/zh-cn'
+import DocumentTitle from "react-document-title";
 
 
 interface OwnProps {
@@ -92,7 +93,7 @@ const Chef: FunctionComponent<Props> = (props) => {
   }
 
   return (
-      <div>
+      <DocumentTitle title='厨师端 > 订单列表'>
         <List
             grid={{ column: 1 }}
             dataSource={orderList}
@@ -112,7 +113,7 @@ const Chef: FunctionComponent<Props> = (props) => {
                 </List.Item>
             )}
         />
-      </div>
+      </DocumentTitle>
   );
 };
 export default connect(mapStateToProps, mapDispatchToProps)(Chef);

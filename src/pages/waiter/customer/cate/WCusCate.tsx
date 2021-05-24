@@ -58,7 +58,7 @@ const WCusCate: FunctionComponent<Props> = (props) => {
 
 
   return (
-      <DocumentTitle title="会员类别">
+      <DocumentTitle title="服务员端 > 会员类别">
         <ConfigProvider locale={zhCN}>
           <Card title="会员类别">
             <List

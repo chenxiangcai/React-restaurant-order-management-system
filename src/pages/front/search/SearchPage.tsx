@@ -4,13 +4,14 @@ import { useHistory } from "react-router-dom";
 import { connect } from "react-redux";
 import { Dispatch } from "redux";
 import { SEARCHDISH } from "./action";
-import { SEARCHDISH_URL } from "../../../common/api";
+import { SEARCHDISH_URL, SERVERNO_URL } from "../../../common/api";
 import debounce from 'lodash.debounce';
 import CateFoodDetail from "../../../components/CateFoodDetail";
 import { SearchWrap } from "./SearchWrap";
 import { Avatar, Badge } from "antd";
 import { ShoppingCartOutlined } from "@ant-design/icons";
 import { getStore } from "../../../utils/storage";
+import axios from "axios";
 
 
 interface OwnProps {
@@ -34,7 +35,7 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
       data: val,
       url: SEARCHDISH_URL
     })
-  },
+  }
 })
 
 const SearchPage: FunctionComponent<Props> = (props) => {
@@ -42,6 +43,7 @@ const SearchPage: FunctionComponent<Props> = (props) => {
   const history = useHistory()
   const ref = useRef<any>('input');
   const [list, setList] = useState([])
+  const [val, setVal] = useState('')
   //购物车数量
   const [shopCount, setShopCount] = useState(0)
 
@@ -60,11 +62,21 @@ const SearchPage: FunctionComponent<Props> = (props) => {
 
   useMemo(() => {
     setList(props.searchlist)
-  }, [props])
+  }, [props.searchlist])
+
+  useEffect(() => {
+    searchList(val)
+  }, [val]);
+
+  async function searchList(val: string) {
+    if (val === '') return
+    const res = await axios.post(`${SERVERNO_URL}/home/dish/search`, { name: val })
+    setList(res.data.dishes)
+  }
 
   //节流搜索
   const search = debounce(function (val: string) {
-    if (val.trim().length !== 0) return props.searchDish(val)
+    if (val.trim().length !== 0) return setVal(val)
     setList([])
   }, 200)
 

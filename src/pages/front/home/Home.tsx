@@ -166,7 +166,7 @@ const Home: FunctionComponent<Props> = (props) => {
                   <Tabs tabs={tabs}
                         swipeable={false}
                         initialPage={currentTab}
-                        tabBarUnderlineStyle={{ width: '1rem', marginLeft: '5.4rem', background: '#000000' }}
+                        tabBarUnderlineStyle={{ width: '1rem', marginLeft: '6rem', background: '#000000' }}
                         onChange={(tab, index) => {
                           console.log('onChange', index, tab);
                           setCurrentTab(index)

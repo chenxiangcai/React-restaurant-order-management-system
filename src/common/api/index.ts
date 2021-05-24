@@ -147,11 +147,11 @@ export type WTABLE_URL = typeof WTABLE_URL
 
 
 // 图片上传地址 'https://trylive.top:8300/upload' http://localhost:8300/upload
-export const UPPIC_URL = 'https://trylive.top:8300/upload'
+export const UPPIC_URL = 'https://trylive.top/upload'
 export type UPPIC_URL = typeof UPPIC_URL
 
 // 服务器端地址 'https://trylive.top:8300' http://localhost:8300
-export const SERVER_URL = 'https://trylive.top:8300'
+export const SERVER_URL = 'https://trylive.top'
 export type SERVER_URL = typeof SERVER_URL
 
 //server https://trylive.top

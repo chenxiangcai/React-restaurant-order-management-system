@@ -15,7 +15,7 @@ function* toLogin(action: any) {
     const result = yield post({
       url: action.url
     }, action.data);
-    console.log(result)
+    // console.log(result)
 
     if (result.meta.status === 200) {
       //命令 middleware 向 Store 发起一个 action

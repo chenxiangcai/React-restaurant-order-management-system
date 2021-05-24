@@ -150,7 +150,7 @@ export const HomeWrap = styled.div`
 
   .my-list {
     width: 5rem;
-    height: 100vh;
+    //height: 100vh;
     background-color: #fff;
     left: 0;
     text-align: center;
@@ -196,12 +196,16 @@ export const HomeWrap = styled.div`
 
   .ant-tabs > .ant-tabs-nav, .ant-tabs > div > .ant-tabs-nav {
     background-color: #fff;
-    height: 100vh;
+    min-height: 100vh;
   }
 
   .ant-tabs-tab-active {
     background-color: #f3f4f3;
     color: #212121;
+  }
+
+  .slider-list {
+    height: 400px!important;
   }
 `
 

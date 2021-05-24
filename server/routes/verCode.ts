@@ -1,4 +1,20 @@
 const svgCaptcha = require('svg-captcha');
+const { generateKeyPairSync, publicEncrypt, privateDecrypt } = require('crypto')
+//每次验证码生成时，生成公钥和私钥
+const { publicKey, privateKey } = generateKeyPairSync('rsa', {
+  modulusLength: 1024,
+  publicKeyEncoding: {
+    type: 'spki',
+    format: 'pem'
+  },
+  privateKeyEncoding: {
+    type: 'pkcs8',
+    format: 'pem'
+  }
+});
+
+globalThis.privateKey = privateKey
+
 export = async (req, res) => {
   //验证
   const { value } = req.fields
@@ -23,5 +39,5 @@ export = async (req, res) => {
   // console.log(captcha.text)
   globalThis.verCode = captcha.text
   res.type('svg');
-  res.send(captcha.data);
+  res.send({ svg: captcha.data, publicKey });
 }

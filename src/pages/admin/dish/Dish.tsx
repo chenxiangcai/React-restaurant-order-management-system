@@ -138,31 +138,6 @@ const Dish: FunctionComponent<Props> = (props) => {
           </>
       ),
     },
-    /*{
-      title: '操作',
-      key: '_id',
-      width: 300,
-      render: (text, records, index) => (
-          <Space>
-            <Button type="primary" onClick={() => {
-              edit_dish(records)
-            }} shape="circle" icon={<EditOutlined/>} size={"small"}/>
-            {
-              <Popconfirm
-                  title="确定要删除此菜品吗？"
-                  placement="top"
-                  okText="确定"
-                  cancelText="取消"
-                  onConfirm={() => {
-                    del_dish(records)
-                  }}
-              >
-                <Button type="primary" danger shape="circle" icon={<DeleteOutlined/>} size={"small"}/>
-              </Popconfirm>
-            }
-          </Space>
-      ),
-    },*/
   ];
 
   // 修改菜品信息
@@ -280,7 +255,6 @@ const Dish: FunctionComponent<Props> = (props) => {
     setPreviewTitle(file.name || file.url.substring(file.url.lastIndexOf('/') + 1))
   };
 
-  // todo 上传多张照片
   const [dishImgUrl, setDishImgUrl] = useState('')
   // @ts-ignore  图片状态发生变化时
   const handleChange = ({ fileList }) => {

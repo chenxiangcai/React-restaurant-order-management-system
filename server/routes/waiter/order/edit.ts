@@ -11,6 +11,8 @@ export = async (req: any, res: any) => {
     const { preDishDetail, updateDishId } = req.fields
     //根据订单id找到订单详情
     const order = await Orders.findOne({ _id: orderid })
+    //更改订单状态为未完成
+    await Orders.updateOne({ _id: orderid }, { status: 0 })
     //根据更新后的菜品id找到菜品数据库中的菜品详情，更新置换
     const dish = await Dishes.findOne({ _id: updateDishId })
 

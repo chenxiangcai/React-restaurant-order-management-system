@@ -12,7 +12,7 @@ import { getStore } from "../../utils/storage";
 import { useHistory } from "react-router-dom";
 import { post } from "../../utils/http";
 
-const CryptoJS = require("crypto-js");
+const CryptoJS = require("crypto");
 
 type Props = {
   status: number,
@@ -40,6 +40,7 @@ const Login: FC<Props> = (props) => {
 
   const history = useHistory()
   const [svgUrl, setSvgUrl] = useState('')
+  const [publicKey, setPublicKey] = useState('')
   const vercoderef = useRef(null)
   const accountref = useRef(null)
   const pwdref = useRef(null)
@@ -71,7 +72,8 @@ const Login: FC<Props> = (props) => {
     // @ts-ignore
     vercoderef.current.value = ''
     const res = await post({ url: '/getVerificationCode' }, {})
-    setSvgUrl(res)
+    setSvgUrl(res.svg)
+    setPublicKey(res.publicKey)
   }
 
   //点击登录触发的函数
@@ -81,9 +83,9 @@ const Login: FC<Props> = (props) => {
       if (res.status === 200) {
         // @ts-ignore
         const value = { account: accountref.current.state.value, password: pwdref.current.state.value }
-        //密码传输加密
-        var ciphertext = CryptoJS.AES.encrypt(JSON.stringify(value), 'cxc-777').toString();
-        console.log(ciphertext)
+        //使用公钥加密
+        let ciphertext = CryptoJS.publicEncrypt(publicKey, Buffer.from(JSON.stringify(value), 'utf8'));
+        // console.log(ciphertext)
         // @ts-ignore
         onFinish(ciphertext)
         return

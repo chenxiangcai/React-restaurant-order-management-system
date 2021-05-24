@@ -181,7 +181,14 @@ const Order: FunctionComponent<Props> = (props) => {
     const order_List = list.records
     setOrderList(order_List)
     //数组长度发生变化后 获取数据 渲染列表
-  }, [props.list.total, props.list.page, props.list.size])
+  }, [props.list.total])
+
+  useMemo(() => {
+    const { list } = props
+    const order_List = list.records
+    setOrderList(order_List)
+  }, [props.list.page, props.list.size]);
+
 
   //捕捉异步pageMsg
   useEffect(() => {
@@ -321,7 +328,7 @@ const Order: FunctionComponent<Props> = (props) => {
             {
               orderList &&
               <Paging page={props.list.page} total={props.list.total} fun={(page = 1, pageSize = 10): any => {
-                props.toggleOrderPage(pageMsg)
+                // props.toggleOrderPage(pageMsg)
                 setPageMsg({
                   query: pageMsg.query,
                   page: page,

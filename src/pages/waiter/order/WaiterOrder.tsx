@@ -292,7 +292,7 @@ const WaiterOrder: FunctionComponent<Props> = (props) => {
   }
 
   return (
-      <DocumentTitle title="订单列表">
+      <DocumentTitle title="服务员端 > 订单列表">
         <Wrap>
           <List
               grid={{ column: 1 }}

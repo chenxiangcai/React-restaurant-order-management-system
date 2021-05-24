@@ -271,7 +271,7 @@ const WCusList: FunctionComponent<Props> = (props) => {
           }, [props.addCStatus]
       )
       return (
-          <DocumentTitle title="会员 > 资料">
+          <DocumentTitle title="服务员端 > 会员资料">
             <ConfigProvider locale={zhCN}>
               <Card title="会员档案"
                     extra={

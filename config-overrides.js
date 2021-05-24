@@ -23,9 +23,9 @@ module.exports = override(
           // moment: 'moment',
         }
     ),
-    addWebpackPlugin(
-        new BundleAnalyzerPlugin({
-          analyzerMode: 'static', //输出静态报告文件report.html，而不是启动一个web服务
-        })
-    ),
+    // addWebpackPlugin(
+    //     new BundleAnalyzerPlugin({
+    //       analyzerMode: 'static', //输出静态报告文件report.html，而不是启动一个web服务
+    //     })
+    // ),
 );
