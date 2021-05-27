@@ -1,6 +1,14 @@
 import React, { FunctionComponent, useEffect, useMemo, useRef, useState } from 'react';
 import { Dispatch } from "redux";
-import { ADDDISH_URL, DELDISH_URL, DISHLIST, EDITDISH_URL, SERVER_URL, UPPIC_URL } from "../../../common/api";
+import {
+  ADDDISH_URL,
+  CATESEARCH_URL,
+  DELDISH_URL,
+  DISHLIST,
+  EDITDISH_URL, LOCAL_URL,
+  SERVER_URL,
+  UPPIC_URL
+} from "../../../common/api";
 import { connect } from "react-redux";
 import DocumentTitle from "react-document-title";
 import zhCN from "antd/es/locale/zh_CN";
@@ -57,7 +65,8 @@ interface Dishes {
   },
   number: number,
   price: number,
-  picture: string
+  picture: string,
+  createAt: any
 }
 
 type Props = OwnProps;
@@ -152,7 +161,8 @@ const Dish: FunctionComponent<Props> = (props) => {
       number: records.number,
       price: records.price,
       categoryId: records?.category?._id,
-      foodTypeName: records?.category?.foodTypeName
+      foodTypeName: records?.category?.foodTypeName,
+      createAt: records?.createAt
     })
   }
 
@@ -164,6 +174,7 @@ const Dish: FunctionComponent<Props> = (props) => {
     price: 0,
     categoryId: '',
     foodTypeName: '',
+    createAt: ""
   })
   const [dishList, setDishList] = useState([])
 
@@ -180,13 +191,17 @@ const Dish: FunctionComponent<Props> = (props) => {
     SetStateVisible(false)
   };
 
+  const [total, setTotal] = useState(0)
+  const [cateId, selectCateId] = useState('')
+
 
   // 列表数据和事件处理
   useEffect(() => {
-    props.toggleDishPage(pageMsg)
+    // props.toggleDishPage(pageMsg)
     const { list } = props
     const dish_List = list.records
     setDishList(dish_List)
+    setTotal(props.list.total)
     //数组长度发生变化后 获取数据 渲染列表
   }, [props.list.total, props.list.page, props.list.size])
 
@@ -195,6 +210,7 @@ const Dish: FunctionComponent<Props> = (props) => {
     const { list } = props
     const dishList = list.records
     setDishList(dishList)
+    setTotal(props.list.total)
   }, [props.list])
 
 
@@ -276,9 +292,10 @@ const Dish: FunctionComponent<Props> = (props) => {
     } else {
       // value.categoryId = editValue.categoryId
       value._id = editValue._id
+      value.createAt = editValue.createAt
       value.picture = dishImgUrl
-      console.log(value)
-      props.editDish(value)
+      const isEditName = value.name === editValue.name
+      props.editDish({ ...value, isEditName: !isEditName })
     }
     onClose()
   }
@@ -385,6 +402,16 @@ const Dish: FunctionComponent<Props> = (props) => {
     setBarVisible('none')
   }
 
+  //分类列表
+  async function handleCate(val: any) {
+    selectCateId(val)
+    // const cate_result = await axios.post(`${LOCAL_URL}${CATESEARCH_URL}`, { id: val })
+    // console.log(cate_result)
+    // setDishList(cate_result.data.dish)
+    // setTotal(cate_result.data.dish.length)
+    // setDishList([])
+  }
+
   return (
       <DocumentTitle title="菜品 > 列表">
         <ConfigProvider locale={zhCN}>
@@ -395,25 +422,51 @@ const Dish: FunctionComponent<Props> = (props) => {
             }} type="primary" shape="circle" icon={<PlusOutlined/>} size={"large"}/>
           }
                 style={{ width: '100%' }}>
+            <div style={{ display: "inline", marginRight: 10 }}>
+              <Select
+                  onClear={() => {
+                    selectCateId('')
+                  }}
+                  style={{ width: 200, display: barVisible === 'none' ? 'inline-block' : 'none' }}
+                  allowClear placeholder="按分类查询"
+                  onSelect={handleCate}
+              >
+                {
+                  props.cateList &&
+                  props.cateList.map((value: any) => (
+                          <Option value={value._id}
+                                  key={value._id}>
+                            {value.foodTypeName}
+                          </Option>
+                      )
+                  )
+                }
+              </Select>
+            </div>
 
-            <TableCheckBox
-                delSelected={delSelected}
-                barVisible={barVisible}
-                editBtn={() => {
-                  edit_dish(selectValue[0])
-                }}
-                editBtnState={editBtnState}
-                Search={(value: string) => {
-                  setPageMsg({
-                    page: 1,
-                    pagesize: 10,
-                    query: value
-                  })
-                }}
-                title='菜品名'/>
+            <div style={{ display: "inline" }}>
+              <TableCheckBox
+                  delSelected={delSelected}
+                  barVisible={barVisible}
+                  editBtn={() => {
+                    edit_dish(selectValue[0])
+                  }}
+                  editBtnState={editBtnState}
+                  Search={(value: string) => {
+                    console.log(value)
+                    setPageMsg({
+                      page: 1,
+                      pagesize: 10,
+                      query: JSON.stringify({ name: value, categoryId: cateId })
+                    })
+                  }}
+                  title='菜品名'
+              />
+            </div>
 
             {
               dishList && <Table
+                  style={{ marginTop: 10 }}
                   rowKey='_id'
                   bordered
                   columns={columns}
@@ -425,8 +478,8 @@ const Dish: FunctionComponent<Props> = (props) => {
             }
             {
               dishList &&
-              <Paging page={props.list.page} total={props.list.total} fun={(page = 1, pageSize = 10): any => {
-                props.toggleDishPage(pageMsg)
+              <Paging page={props.list.page} total={total} fun={(page = 1, pageSize = 10): any => {
+                // props.toggleDishPage(pageMsg)
                 setPageMsg({
                   query: pageMsg.query,
                   page: page,
@@ -614,13 +667,11 @@ const Dish: FunctionComponent<Props> = (props) => {
                     <Button type="default" onClick={onClose}>取消</Button>
                     {
                       drawerType === '新增菜品' &&
-                      <Button type="primary" htmlType="submit"
-                              className="login-form-button">添加</Button>
+                      <Button type="primary" htmlType="submit">添加</Button>
                     }
                     {
                       drawerType === '编辑菜品' &&
-                      <Button type="primary" htmlType="submit"
-                              className="login-form-button">提交</Button>
+                      <Button type="primary" htmlType="submit">提交</Button>
                     }
                   </Space>
                 </Form.Item>

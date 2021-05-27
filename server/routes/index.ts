@@ -11,6 +11,8 @@ export = app => {
   app.use('/admin/staff', require('./staff')) //用户二级路由
   app.use('/admin/dish', require('./dish')) //菜品
   app.use('/admin/category', require('./category')) //菜品分类
+  app.use('/category', require('./category')) //菜品分类关联菜品
+
   app.use('/admin/customer', require('./customer')) //会员
   app.use('/waiter/customer', require('./customer'))
   app.post('/getVerificationCode',require('./verCode')) //验证码生成

@@ -200,10 +200,10 @@ const WTable: FunctionComponent<Props> = (props) => {
               <Descriptions.Item label="餐桌号">{tableDetail.tableID}</Descriptions.Item>
               <Descriptions.Item label="使用状态">
                 {
-                  tableDetail.status === 0 && '使用中'
+                  tableDetail.status === 0 && '空闲中'
                 }
                 {
-                  tableDetail.status === 1 && '空闲中'
+                  tableDetail.status === 1 && '使用中'
                 }
               </Descriptions.Item>
               <Descriptions.Item label="负责人">{tableDetail.staff}</Descriptions.Item>

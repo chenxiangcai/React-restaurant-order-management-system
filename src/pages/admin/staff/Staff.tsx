@@ -398,6 +398,7 @@ const Staff: FunctionComponent<Props> = (props) => {
             {
               userList &&
               < Table
+                  style={{ marginTop: 10 }}
                   rowKey='_id'
                   bordered
                   columns={columns}

@@ -78,7 +78,7 @@ export = async (req, res) => {
   const reTodayMoney: number = todayorders.records.reduce((pre, cur) => pre + cur.paid, 0)
   //按日期分组查询 统计本周每日订单数和实际收入
   const getThisWeekRe = (val: []) => {
-    globalThis.thisWeekRe = val
+    globalThis.thisWeekRe = val.filter((val: any) => val._id != '')
   }
 
   await Orders.aggregate(
@@ -182,7 +182,8 @@ export = async (req, res) => {
 
   //本月每日销售额与订单量
   const getSoldModuleDay = (val: []) => {
-    globalThis.soldModuleDay = val
+    //不统计未完成订单
+    globalThis.soldModuleDay = val.filter((val: any) => val._id != '')
   }
   await Orders.aggregate(
       [
@@ -228,7 +229,7 @@ export = async (req, res) => {
   }, [])
   //根据销量反向排序 并截取前7个热门菜品
   rankMonth = rankMonth.sort((a, b) => b.num - a.num)
-  if (rankMonth.length > 7) rankMonth.splice(0, 7)
+  if (rankMonth.length > 7) rankMonth = rankMonth.splice(0, 7)
 
   //查询近一周的所有订单
   const weekOrders = await Orders.find({
@@ -252,7 +253,7 @@ export = async (req, res) => {
   }, [])
   //根据销量反向排序 并截取前7个热门菜品
   RankWeek = RankWeek.sort((a, b) => b.num - a.num)
-  if (RankWeek.length > 7) RankWeek.splice(0, 7)
+  if (RankWeek.length > 7) RankWeek = RankWeek.splice(0, 7)
 
 
   //查询今日的所有订单
@@ -276,7 +277,7 @@ export = async (req, res) => {
   }, [])
   //根据销量反向排序 并截取前7个热门菜品
   RankDay = RankDay.sort((a, b) => b.num - a.num)
-  if (RankDay.length > 7) RankDay.splice(0, 7)
+  if (RankDay.length > 7) RankDay = RankDay.splice(0, 7)
 
   res.send({
     allSold: { allMoney, dayMoney, weekRate, dayRate },

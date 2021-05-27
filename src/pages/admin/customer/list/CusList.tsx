@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useEffect, useMemo, useState } from 'react';
+import React, { FunctionComponent, useEffect, useMemo, useRef, useState } from 'react';
 import { Button, Card, ConfigProvider, Form, Input, message, Modal, Select, Space, Table, } from "antd";
 import zhCN from "antd/es/locale/zh_CN";
 import Paging from "../../../../components/Paging";
@@ -237,16 +237,19 @@ const CusList: FunctionComponent<Props> = (props) => {
       )
 
 //选中函数
+      const [editBtnState, setEditBtnState] = useState(false)
       const [selectValue, SetSelectValue] = useState([])
       const [barVisible, setBarVisible] = useState('')
+      const ref = useRef();
       const rowSelection = {
         onChange: (selectedRowKeys: any, selectedRows: any) => {
           SetSelectValue(selectedRows)
+          ref.current = selectedRowKeys;
+          if (selectedRows.length > 1) setEditBtnState(true)
+          else setEditBtnState(false)
           console.log(`selectedRowKeys: ${selectedRowKeys}`, 'selectedRows: ', selectedRows);
         },
-        onSelectAll: (selected: any, selectedRows: any, changeRows: any) => {
-          console.log(selected, selectedRows, changeRows);
-        },
+        selectedRowKeys: ref.current,
       };
       //异步函数捕捉更新状态
       useEffect(() => {
@@ -291,6 +294,7 @@ const CusList: FunctionComponent<Props> = (props) => {
                 <TableCheckBox
                     delSelected={delSelected}
                     barVisible={barVisible}
+                    editBtnState={editBtnState}
                     editBtn={() => {
                       edit_cus(selectValue[0])
                     }}
@@ -307,6 +311,7 @@ const CusList: FunctionComponent<Props> = (props) => {
                 {
                   cusList &&
                   <Table
+                      style={{ marginTop: 10 }}
                       rowKey='_id'
                       bordered
                       columns={columns}

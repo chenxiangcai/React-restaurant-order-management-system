@@ -42,7 +42,7 @@ export = async (req, res) => {
   }, [])
   //根据销量反向排序 并截取前7个热门菜品
   order2 = order2.sort((a, b) => b.num - a.num)
-  if (order2.length > 7) order2.splice(0, 7)
+  if (order2.length > 7) order2 = order2.splice(0, 7)
 
 
   //随机推荐

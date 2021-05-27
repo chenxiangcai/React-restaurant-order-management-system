@@ -16,7 +16,6 @@
     "antd": "^4.15.5",
     "antd-mobile": "^2.3.4",
     "axios": "^0.21.0",
-    "crypto-js": "^4.0.0",
     "darkmode-js": "^1.5.7",
     "lodash.debounce": "^4.0.8",
     "moment": "^2.29.1",

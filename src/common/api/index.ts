@@ -25,6 +25,9 @@ export type DISHLIST = typeof DISHLIST
 export const CATELIST_URL = '/admin/category'
 export type CATELIST_URL = typeof CATELIST_URL
 
+export const CATESEARCH_URL = '/category/search'
+export type CATESEARCH_URL = typeof CATESEARCH_URL
+
 export const ADDDISH_URL = '/admin/dish/add'
 export type ADDDISH_URL = typeof ADDDISH_URL
 
@@ -161,6 +164,9 @@ export type SERVERNO_URL = typeof SERVERNO_URL
 // ws地址 wss://trylive.top ws://localhost:8300
 export const WEBSOCKET_URL = 'wss://trylive.top'
 export type WEBSOCKET_URL = typeof WEBSOCKET_URL
+
+export const LOCAL_URL = 'http://localhost:8300'
+export type LOCAL_URL = typeof LOCAL_URL
 
 
 /** 前台 */

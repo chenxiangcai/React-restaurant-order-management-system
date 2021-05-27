@@ -26,6 +26,7 @@ export = async (req: any, res: any) => {
     preOrderDish.name = dish.name
     preOrderDish.price = dish.price
     preOrderDish.url = dish.picture
+    preOrderDish.status = 0
 
     console.log('跟新后的', preOrderDish)
     //根据index置换当前订单详情
@@ -59,6 +60,8 @@ export = async (req: any, res: any) => {
   else {
     const { editDishID, editNum } = req.fields
     const dish = await Dishes.findOne({ _id: editDishID })
+    //更改订单状态为未完成
+    await Orders.updateOne({ _id: orderid }, { status: 0 })
     await Dishes.updateOne({ _id: editDishID }, { number: dish.number - editNum })
     const order = await Orders.updateOne({ _id: orderid }, { orderdetail })
     res.send({

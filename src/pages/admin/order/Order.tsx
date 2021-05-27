@@ -131,7 +131,7 @@ const Order: FunctionComponent<Props> = (props) => {
       key: 'orderdetail',
       render: (value, records, index) => (
           <>
-            {records?.receivable}
+            {records?.receivable.toFixed(2)}
           </>
       ),
     },
@@ -140,7 +140,7 @@ const Order: FunctionComponent<Props> = (props) => {
       key: 'orderdetail',
       render: (value, records, index) => (
           <>
-            {records?.paid}
+            {records?.paid.toFixed(2)}
           </>
       ),
     },
@@ -317,6 +317,7 @@ const Order: FunctionComponent<Props> = (props) => {
 
             {
               orderList && <Table
+                  style={{ marginTop: 10 }}
                   rowKey='_id'
                   bordered
                   columns={columns}
@@ -387,7 +388,7 @@ const Order: FunctionComponent<Props> = (props) => {
                 columns={columnss}
                 rowKey='_id'
                 bordered
-                rowSelection={rowSelections}
+                // rowSelection={rowSelections}
                 dataSource={drawValue.orderdetail}
                 pagination={{ hideOnSinglePage: true }}
             />

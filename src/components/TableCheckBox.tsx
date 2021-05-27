@@ -19,7 +19,7 @@ const TableCheckBox: FunctionComponent<Props> = (props) => {
   //   console.log(props)
   // }
   return (
-      <div style={{ marginBottom: 10 }}>
+      <div style={{ display: "inline" }}>
         {
           props.editBtn &&
           <Button style={{ display: props.barVisible, marginRight: 10 }}

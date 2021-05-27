@@ -307,6 +307,7 @@ const Category: FunctionComponent<Props> = (props) => {
 
             {
               categoryList && <Table
+                  style={{ marginTop: 10 }}
                   rowKey='_id'
                   bordered
                   columns={columns}

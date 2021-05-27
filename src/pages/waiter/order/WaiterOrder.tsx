@@ -95,7 +95,9 @@ const WaiterOrder: FunctionComponent<Props> = (props) => {
                 onChange={(e) => {
                   numChange(record, e.target.value)
                 }}
-                onBlur={onNumBlur}
+                onBlur={() => {
+                  onNumBlur(record)
+                }}
                 value={text || ''}
                 className='input'
                 type="number"
@@ -201,9 +203,16 @@ const WaiterOrder: FunctionComponent<Props> = (props) => {
     setOrderList(newOrderList)
   }
 
+  //数量聚焦事件 判断当前菜品是否已完成 已完成禁止修改数量
+  function onFocus(val: any) {
+
+  }
+
 
   //数量修改离焦事件
-  function onNumBlur() {
+  function onNumBlur(record: any) {
+
+    if (record.status === 1) return window.alert('当前菜品已制作完成，请重新点餐')
     // console.log('离焦了')
     dishlist.map((value: any) => {
       if (value._id === editDish) {
